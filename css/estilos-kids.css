@@ -1,0 +1,240 @@
+/* Modern CSS Reset — 2025 */
+
+/* 1. Box sizing reset for more predictable layouts */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* 2. Prevent font size adjustments after orientation changes (esp. iOS) */
+html {
+    -webkit-text-size-adjust: 100%;
+    /* Safari, older iOS browsers */
+    -moz-text-size-adjust: 100%;
+    /* Firefox Mobile */
+    text-size-adjust: 100%;
+}
+
+/* 3. Remove default margins and paddings */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd,
+ul,
+ol,
+fieldset,
+legend {
+    margin: 0;
+    padding: 0;
+}
+
+/* 4. Remove list styles for lists with “role=list”, or all lists if you prefer */
+ul[role="list"],
+ol[role="list"],
+ul,
+ol {
+    list-style: none;
+}
+
+/* 5. Set core body defaults */
+body {
+    min-height: 100vh;
+    line-height: 1.5;
+    background-color: #333;
+    /* optional—change as needed */
+    color: #000;
+    /* optional—change */
+    font-family: system-ui, sans-serif;
+    /* or your preferred stack */
+}
+
+/* 6. Headings & interactive elements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+input,
+label,
+select,
+textarea {
+    font: inherit;
+    line-height: 1.1;
+}
+
+/* 7. Media / images defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* 8. Form element reset */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    background: none;
+    border: none;
+    margin: 0;
+    padding: 0;
+    /* optionally you can reset appearance */
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+/* 9. Avoid text overflow and improve wrapping */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    overflow-wrap: break-word;
+}
+
+p {
+    /* “pretty” wrapping if supported; fallback is ignored if not */
+    text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-wrap: balance;
+}
+
+/* 10. Accessibility & behavior defaults */
+@media (prefers-reduced-motion: no-preference) {
+    html {
+        interpolate-size: allow-keywords;
+        /* Enables transitions for “auto” etc., where supported */
+    }
+}
+
+/* Scroll behavior, target offsets */
+:root {
+    scroll-behavior: smooth;
+    /* optional, can be conditional via prefers-reduced-motion */
+}
+
+:target {
+    scroll-margin-block: 5ex;
+}
+
+/* 11. Root stacking context (useful in component-based/web apps) */
+#root,
+#__next,
+#app {
+    isolation: isolate;
+}
+
+
+/* FIN RESET */
+
+header#header-main {
+    position: relative;
+    width: 100%;
+    padding: 1rem 5% 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+body {
+    background-color: #333;
+}
+
+#video-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.swiper {
+    width: 100%;
+    height: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.swiperMain .swiper-slide {
+    border-radius: 2rem;
+    overflow: hidden;
+    background-size: cover;
+    background-position: center;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+
+.swiperMain {
+    height: 80%;
+    width: 100%;
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+.swiperThumbs {
+    height: 20%;
+    box-sizing: border-box;
+    padding: 10px 0;
+}
+
+.mySwiper .swiperThumbs {
+    width: 25%;
+    height: 100%;
+    opacity: 0.4;
+}
+
+.mySwiper .swiper-slide-thumb-active {
+    opacity: 1;
+}
+
+.swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+.swiperMain .swiper-slide {
+    aspect-ratio: 16/9;
+    object-fit: cover;
+}
+
+.swiper.swiperThumbs {
+    margin: auto;
+}
