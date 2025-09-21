@@ -1,163 +1,136 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title></title>
-  <meta name="description" content>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Landing with Swiper & Thumbs</title>
 
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper@11/swiper-bundle.min.css" />
   <link rel="stylesheet" href="css/estilos-kids.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css" />
-
   <style>
 
   </style>
 </head>
 
-<body id="page-home">
-  <div id="content-wrapper">
-  <video muted="" id="video-bg" autoplay loop loading="lazy">
-    <source src="/videos/video-bg.mp4" type="video/mp4">
-  </video>
-  <header id="header-main">
-    <a href="#" class="logo"><svg width="204" height="68" viewBox="0 0 204 68" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M105.023 5.43849C120.455 6.10008 143.328 7.8781 154.955 10.0283C138.382 2.99888 118.553 -0.681204 97.4126 0.104433C81.304 0.724673 66.1679 4.52881 52.8497 9.86287C68.9161 6.14143 86.5467 4.61151 105.023 5.43849Z"
-          fill="white" />
-        <path
-          d="M181.507 28.4287C181.507 28.4287 181.465 28.4287 181.465 28.3873C162.566 17.8846 139.27 10.4417 113.648 7.75403C88.0265 5.06633 63.7156 7.46459 43.0408 13.8324C59.1494 12.2611 75.9345 11.889 93.1424 12.7573C67.098 13.8324 42.914 19.4972 22.4929 28.5527C47.5648 23.2187 74.2433 20.3242 102.021 20.3242C129.714 20.3242 156.393 23.1773 181.423 28.47C181.465 28.4287 181.507 28.4287 181.507 28.4287Z"
-          fill="white" />
-        <path
-          d="M150.431 52.6593C151.404 52.0391 153.814 50.1783 153.814 46.829C153.814 41.7431 150.347 38.3111 143.92 38.3111H131.025V67.7518H144.555C150.093 67.7518 154.237 64.6919 154.237 59.0684C154.279 54.9335 151.7 53.4036 150.431 52.6593ZM138.678 44.8029H143.455C145.569 44.8029 146.204 46.0434 146.204 47.2012C146.204 48.359 145.569 49.5995 143.455 49.5995H138.678V44.8029ZM143.836 61.26H138.678V56.0913H143.836C145.95 56.0913 146.626 57.4145 146.626 58.6549C146.626 59.8954 145.95 61.26 143.836 61.26ZM201.717 52.2872C200.406 51.0467 198.377 50.2197 195.586 49.8475L191.823 49.3514C190.724 49.2273 190.09 48.8552 189.667 48.483C189.202 48.0282 189.075 47.4906 189.075 47.1185C189.075 45.8367 190.174 44.3894 192.838 44.3894C194.191 44.3894 196.77 44.2654 198.715 46.1261L203.535 41.5777C200.871 39.0554 197.489 38.063 193.05 38.063C185.989 38.063 181.676 41.9912 181.676 47.3666C181.676 49.8889 182.395 51.8737 183.833 53.2795C185.228 54.6441 187.342 55.5124 190.09 55.8845L193.853 56.3807C194.868 56.5048 195.502 56.7942 195.882 57.1664C196.305 57.6212 196.474 58.2001 196.474 58.903C196.474 60.5984 195.037 61.5494 192.035 61.5494C189.54 61.5494 186.708 61.0119 185.101 59.4819L180.196 64.1131C183.325 67.1729 187.215 67.9999 191.993 67.9999C198.546 67.9999 204 64.7333 204 58.7377C204 56.0086 203.366 53.8171 201.717 52.2872ZM42.1952 57.2491C42.1952 59.9781 40.5463 61.5494 38.0095 61.5494C35.4727 61.5494 33.9084 59.9781 33.9084 57.2491V38.3111H26.2558V57.4145C26.2558 63.865 31.5407 67.9999 38.0095 67.9999C44.4783 67.9999 49.8479 63.865 49.8479 57.4145V38.3111H42.1952V57.2491ZM19.3641 52.6593C20.3366 52.0391 22.7888 50.1783 22.7888 46.829C22.7888 41.7431 19.3219 38.3111 12.8953 38.3111H0V67.7518H13.5295C19.0682 67.7518 23.2116 64.6919 23.2116 59.0684C23.2116 54.9335 20.6748 53.4036 19.3641 52.6593ZM7.65264 44.8029H12.4303C14.5442 44.8029 15.1784 46.0434 15.1784 47.2012C15.1784 48.359 14.5442 49.5995 12.4303 49.5995H7.65264V44.8029ZM12.8108 61.26H7.65264V56.0913H12.8108C14.9248 56.0913 15.6012 57.4145 15.6012 58.6549C15.6012 59.8954 14.8825 61.26 12.8108 61.26ZM106.249 67.7518H127.389V61.3013H113.902V56.1326H125.444V49.6821H113.902V44.7616H127.389V38.3111H106.249V67.7518ZM172.375 57.2491C172.375 59.9781 170.726 61.5494 168.189 61.5494C165.652 61.5494 164.088 59.9781 164.088 57.2491V38.3111H156.435V57.4145C156.435 63.865 161.72 67.9999 168.189 67.9999C174.658 67.9999 180.027 63.865 180.027 57.4145V38.3111H172.375V57.2491ZM95.4678 57.2491C95.4678 59.9781 93.8189 61.5494 91.2821 61.5494C88.7453 61.5494 87.1809 59.9781 87.1809 57.2491V38.3111H79.5283V57.4145C79.5283 63.865 84.8133 67.9999 91.2821 67.9999C97.7509 67.9999 103.12 63.865 103.12 57.4145V38.3111H95.4678V57.2491ZM76.5264 53.0314C76.5264 48.6071 76.6533 44.4721 73.3977 41.3709C71.1146 39.2208 68.4933 38.063 64.6881 38.063C60.8829 38.063 58.2616 39.2208 55.9784 41.3709C52.7229 44.4721 52.8497 48.6071 52.8497 53.0314C52.8497 57.4558 52.7229 61.5908 55.9784 64.692C58.2616 66.8421 60.8829 67.9999 64.6881 67.9999H78.3022V61.5494H75.5117C76.5687 58.9857 76.5264 56.0913 76.5264 53.0314ZM67.7322 60.2262C67.1826 60.9292 66.0833 61.5494 64.6881 61.5494C63.2928 61.5494 62.1936 60.9292 61.6439 60.2262C60.9252 59.3579 60.5024 58.4069 60.5024 53.0314C60.5024 47.656 60.9252 46.6636 61.6439 45.7953C62.1936 45.0924 63.2928 44.5135 64.6881 44.5135C66.0833 44.5135 67.1826 45.0924 67.7322 45.7953C68.4087 46.6636 68.8738 47.656 68.8738 53.0314C68.8738 58.4069 68.4087 59.3579 67.7322 60.2262Z"
-          fill="white" />
-      </svg>
-    </a>
-    <a href="#">China Zorrilla</a>
-    <a href="#">Menu</a>
+<body>
+ <video muted autoplay loop class="video-bg">
+    <source src="videos/video-bg.mp4">
+  </video> 
+  <header>
+    <a href="#">
+      <svg width="121" height="42" viewBox="0 0 121 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M62.2926 3.35907C71.446 3.7677 85.013 4.86589 91.9094 6.19393C82.0789 1.85225 70.3175 -0.420744 57.7786 0.0645028C48.224 0.447592 39.2462 2.79721 31.3467 6.09177C40.8762 3.79324 51.3336 2.84828 62.2926 3.35907Z" fill="white"/>
+<path d="M107.659 17.5589C107.659 17.5589 107.634 17.5589 107.634 17.5334C96.4243 11.0464 82.6065 6.44935 67.4094 4.7893C52.2123 3.12925 37.7926 4.61052 25.5296 8.54357C35.0842 7.57308 45.04 7.34323 55.2467 7.87955C39.7988 8.54357 25.4543 12.0425 13.3418 17.6356C28.2129 14.341 44.0369 12.5532 60.513 12.5532C76.9389 12.5532 92.7629 14.3155 107.609 17.5845C107.634 17.5589 107.659 17.5589 107.659 17.5589Z" fill="white"/>
+<path d="M89.2265 32.5249C89.8033 32.1419 91.2327 30.9926 91.2327 28.9239C91.2327 25.7826 89.1764 23.6628 85.3646 23.6628H77.7159V41.8468H85.7407C89.0259 41.8468 91.4835 39.9569 91.4835 36.4835C91.5086 33.9296 89.9789 32.9847 89.2265 32.5249ZM82.2549 27.6725H85.0887C86.3426 27.6725 86.7188 28.4387 86.7188 29.1538C86.7188 29.8689 86.3426 30.635 85.0887 30.635H82.2549V27.6725ZM85.3144 37.8371H82.2549V34.6447H85.3144C86.5683 34.6447 86.9695 35.462 86.9695 36.2281C86.9695 36.9943 86.5683 37.8371 85.3144 37.8371ZM119.646 32.2951C118.868 31.5289 117.665 31.0181 116.01 30.7883L113.778 30.4818C113.126 30.4052 112.749 30.1753 112.499 29.9455C112.223 29.6646 112.148 29.3325 112.148 29.1027C112.148 28.311 112.8 27.4171 114.379 27.4171C115.182 27.4171 116.712 27.3405 117.865 28.4897L120.724 25.6804C119.144 24.1225 117.138 23.5096 114.505 23.5096C110.317 23.5096 107.759 25.9358 107.759 29.2559C107.759 30.8138 108.185 32.0397 109.038 32.908C109.865 33.7508 111.119 34.2872 112.749 34.517L114.981 34.8235C115.583 34.9001 115.959 35.0789 116.185 35.3087C116.436 35.5897 116.536 35.9472 116.536 36.3814C116.536 37.4285 115.684 38.0159 113.903 38.0159C112.423 38.0159 110.743 37.6839 109.79 36.7389L106.881 39.5993C108.737 41.4892 111.044 42 113.878 42C117.765 42 121 39.9824 121 36.2792C121 34.5936 120.624 33.24 119.646 32.2951ZM25.0276 35.3598C25.0276 37.0454 24.0495 38.0159 22.5449 38.0159C21.0402 38.0159 20.1123 37.0454 20.1123 35.3598V23.6628H15.5733V35.462C15.5733 39.4461 18.708 42 22.5449 42C26.3818 42 29.5666 39.4461 29.5666 35.462V23.6628H25.0276V35.3598ZM11.4856 32.5249C12.0624 32.1419 13.5169 30.9926 13.5169 28.9239C13.5169 25.7826 11.4605 23.6628 7.64871 23.6628H0V41.8468H8.02487C11.3101 41.8468 13.7677 39.9569 13.7677 36.4835C13.7677 33.9296 12.263 32.9847 11.4856 32.5249ZM4.53907 27.6725H7.37285C8.62674 27.6725 9.0029 28.4387 9.0029 29.1538C9.0029 29.8689 8.62674 30.635 7.37285 30.635H4.53907V27.6725ZM7.59855 37.8371H4.53907V34.6447H7.59855C8.85244 34.6447 9.25368 35.462 9.25368 36.2281C9.25368 36.9943 8.82736 37.8371 7.59855 37.8371ZM63.0203 41.8468H75.5592V37.8627H67.5594V34.6702H74.4056V30.6861H67.5594V27.6469H75.5592V23.6628H63.0203V41.8468ZM102.242 35.3598C102.242 37.0454 101.264 38.0159 99.7592 38.0159C98.2545 38.0159 97.3266 37.0454 97.3266 35.3598V23.6628H92.7876V35.462C92.7876 39.4461 95.9223 42 99.7592 42C103.596 42 106.781 39.4461 106.781 35.462V23.6628H102.242V35.3598ZM56.6255 35.3598C56.6255 37.0454 55.6475 38.0159 54.1428 38.0159C52.6381 38.0159 51.7103 37.0454 51.7103 35.3598V23.6628H47.1712V35.462C47.1712 39.4461 50.3059 42 54.1428 42C57.9797 42 61.1646 39.4461 61.1646 35.462V23.6628H56.6255V35.3598ZM45.3907 32.7548C45.3907 30.0221 45.4659 27.4682 43.5349 25.5527C42.1807 24.2247 40.6259 23.5096 38.3689 23.5096C36.1119 23.5096 34.5571 24.2247 33.2029 25.5527C31.2719 27.4682 31.3472 30.0221 31.3472 32.7548C31.3472 35.4875 31.2719 38.0414 33.2029 39.9569C34.5571 41.2849 36.1119 42 38.3689 42H46.4439V38.0159H44.7888C45.4158 36.4325 45.3907 34.6447 45.3907 32.7548ZM40.1745 37.1986C39.8485 37.6328 39.1965 38.0159 38.3689 38.0159C37.5413 38.0159 36.8893 37.6328 36.5633 37.1986C36.137 36.6623 35.8862 36.0749 35.8862 32.7548C35.8862 29.4347 36.137 28.8218 36.5633 28.2854C36.8893 27.8513 37.5413 27.4937 38.3689 27.4937C39.1965 27.4937 39.8485 27.8513 40.1745 28.2854C40.5758 28.8218 40.8516 29.4347 40.8516 32.7548C40.8516 36.0749 40.5758 36.6623 40.1745 37.1986Z" fill="white"/>
+</svg>
 
+    </a>
+    <nav>
+      <a href="#" style="color:#fff; text-decoration:none; margin-right:16px;">Features</a>
+      <a href="#" style="color:#fff; text-decoration:none;">Contact</a>
+    </nav>
   </header>
 
-
   <main>
-    <section>
-      <div class="container">
-        <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff" class="swiper swiperMain">
-          <div class="swiper-wrapper">
-            <div class="swiper-slide">
-              <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-            </div>
-            <div class="swiper-slide">
-              <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-            </div>
-            <div class="swiper-slide">
-              <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-            </div>
-            <div class="swiper-slide">
-              <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-            </div>
-            <div class="swiper-slide">
-              <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-            </div>
-            <div class="swiper-slide">
-              <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-            </div>
-            <div class="swiper-slide">
-              <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-            </div>
-            <div class="swiper-slide">
-              <img src="https://swiperjs.com/demos/images/nature-8.jpg" />
-            </div>
-
+    <!-- Main Swiper -->
+    <div class="swiper swiperMain">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img class="slide-img"
+            src="images/thumb-1.jpg" alt="">
+          <div class="slide-content">
+            <h2>Slide One</h2>
+            <p>Main carousel with thumbnails below</p>
+            <a class="btn" href="#">Get Started</a>
           </div>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
+        </div>
+        <div class="swiper-slide">
+          <img class="slide-img"
+            src="https://images.unsplash.com/photo-1519947486511-46149fa0a254?q=80&w=1600&auto=format&fit=crop" alt="">
+          <div class="slide-content">
+            <h2>Slide Two</h2>
+            <p>Click a thumb to jump to the slide</p>
+            <a class="btn" href="#">Learn More</a>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <img class="slide-img"
+            src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?q=80&w=1600&auto=format&fit=crop" alt="">
+          <div class="slide-content">
+            <h2>Slide Three</h2>
+            <p>Thumbs sync with the main carousel</p>
+            <a class="btn" href="#">Contact Us</a>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <img class="slide-img"
+            src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?q=80&w=1600&auto=format&fit=crop" alt="">
+          <div class="slide-content">
+            <h2>Slide Three</h2>
+            <p>Thumbs sync with the main carousel</p>
+            <a class="btn" href="#">Contact Us</a>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <img class="slide-img"
+            src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?q=80&w=1600&auto=format&fit=crop" alt="">
+          <div class="slide-content">
+            <h2>Slide Three</h2>
+            <p>Thumbs sync with the main carousel</p>
+            <a class="btn" href="#">Contact Us</a>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <img class="slide-img"
+            src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?q=80&w=1600&auto=format&fit=crop" alt="">
+          <div class="slide-content">
+            <h2>Slide Three</h2>
+            <p>Thumbs sync with the main carousel</p>
+            <a class="btn" href="#">Contact Us</a>
+          </div>
         </div>
       </div>
-        <div thumbsSlider="" class="swiper swiperThumbs" style="height: 100%;">
-          <div class="swiper-wrapper"  style="height: 100%;">
-            <div class="swiper-slide">
-              <img src="https://swiperjs.com/demos/images/nature-1.jpg" />
-            </div>
-            <div class="swiper-slide">
-              <img src="https://swiperjs.com/demos/images/nature-2.jpg" />
-            </div>
-            <div class="swiper-slide">
-              <img src="https://swiperjs.com/demos/images/nature-3.jpg" />
-            </div>
-            <div class="swiper-slide">
-              <img src="https://swiperjs.com/demos/images/nature-4.jpg" />
-            </div>
-            <div class="swiper-slide">
-              <img src="https://swiperjs.com/demos/images/nature-5.jpg" />
-            </div>
-            <div class="swiper-slide">
-              <img src="https://swiperjs.com/demos/images/nature-6.jpg" />
-            </div>
-            <div class="swiper-slide">
-              <img src="https://swiperjs.com/demos/images/nature-7.jpg" />
-            </div>
+      <!-- Controls -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
 
-          </div>
+    <!-- Thumbs Swiper -->
+    <div class="swiper swiperThumbs">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide"><img
+            src="images/thumb-1.jpg" alt="">
+        </div>
+        <div class="swiper-slide"><img
+            src="https://images.unsplash.com/photo-1520975922171-44e8879540a4?q=80&w=400&auto=format&fit=crop" alt="">
+        </div>
+        <div class="swiper-slide"><img
+            src="https://images.unsplash.com/photo-1520975922171-44e8879540a4?q=80&w=400&auto=format&fit=crop" alt="">
+        </div>
+        <div class="swiper-slide"><img
+            src="https://images.unsplash.com/photo-1520975922171-44e8879540a4?q=80&w=400&auto=format&fit=crop" alt="">
+        </div>
+        <div class="swiper-slide"><img
+            src="https://images.unsplash.com/photo-1519947486511-46149fa0a254?q=80&w=400&auto=format&fit=crop" alt="">
+        </div>
+        <div class="swiper-slide"><img
+            src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?q=80&w=400&auto=format&fit=crop" alt="">
+        </div>
+        <div class="swiper-slide"><img
+            src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?q=80&w=400&auto=format&fit=crop" alt="">
+        </div>
+       
       </div>
-    </section>
+    </div>
   </main>
-  <footer>
 
-  </footer>
-
-  </div>
-  <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
-  <script src="js/scripts-kids.js" async defer></script>
-  <script src="https://unpkg.com/swup@4"></script>
-  <script>   const swup = new Swup(); </script>
-  <!-- Initialize Swiper -->
+  <!-- Swiper JS -->
+  <script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
+  <script src="js/scripts-kids.js"></script>
   <script>
-    var swiperThumbs = new Swiper(".swiperThumbs", {
-      spaceBetween: 10,
-      slidesPerView: 8,
-      freeMode: true,
-      watchSlidesProgress: true,
-    });
-    var swiperMain = new Swiper(".swiperMain", {
-      effect: 'coverflow',
-      grabCursor: true,
-      loop: true,
 
-      centeredSlides: true,
-      slidesPerView: '1.2',
-      coverflowEffect: {
-        rotate: 0,
-        stretch: 800,
-        depth: 350,
-        modifier: 1,
-        slideShadows: false,
-      },
-      thumbs: {
-        swiper: swiperThumbs,
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-    });
   </script>
 </body>
 

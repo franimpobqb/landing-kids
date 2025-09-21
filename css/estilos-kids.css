@@ -150,116 +150,143 @@ h6 {
 }
 
 /* FIN RESET */
+html,
 body {
-  background-color: #333;
+  height: 100%;
+  margin: 0;
 }
 
-#content-wrapper {
+body {
   min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+    sans-serif;
+  background: #0b1020;
+  color: #fff;
+}
+
+.video-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+header {
+  height: 100px;
+  flex: 0 0 100px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+
+}
+
+main {
+  flex: 1 1 auto;
+  min-height: 0;
   display: flex;
   flex-direction: column;
 }
 
-header#header-main {
-  position: fixed;
-  height: 80px;
-  background-color: #3333333f;
-  z-index: 10;
-  width: 100%;
-  padding: 1rem 5% 1rem 5%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-#header-main .logo svg {
-  width: 120px;
-}
-
-#page-home main {
-  padding-top: 120px;
-  background-color: rgba(255, 0, 0, 0.433);
-          height: calc(100% - 100px);
-          min-height: 100dvh;
-
-}
-
-#video-bg {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-   
+/* Main Swiper fills remaining height minus thumbs */
 .swiper {
   width: 100%;
-  height: 300px;
-  margin-left: auto;
-  margin-right: auto;
+  height: 100%;
+}
+
+.swiper.swiperMain {
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 95%;
+  max-width: 1360px;
+  height: 100%;
+}
+
+.swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  font-size: clamp(18px, 2.5vw, 28px);
+  user-select: none;
+  overflow: hidden;
 }
 
 .swiperMain .swiper-slide {
   border-radius: 2rem;
   overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  -webkit-border-radius: 2rem;
+  -moz-border-radius: 2rem;
+  -ms-border-radius: 2rem;
+  -o-border-radius: 2rem;
 }
 
-.swiperMain {
-  height: 80%;
+.slide-img {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  -webkit-touch-callout: none;
-  /* iOS Safari */
-  -webkit-user-select: none;
-  /* Safari */
-  -khtml-user-select: none;
-  /* Konqueror HTML */
-  -moz-user-select: none;
-  /* Old versions of Firefox */
-  -ms-user-select: none;
-  /* Internet Explorer/Edge */
-  user-select: none;
-  /* Non-prefixed version, currently
-                                  supported by Chrome, Edge, Opera and Firefox */
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.7);
 }
 
+.slide-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  padding: 24px;
+  backdrop-filter: blur(2px);
+}
+
+.btn {
+  display: inline-block;
+  margin-top: 14px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: #fff;
+  color: #0b1020;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* Thumbs Swiper */
 .swiperThumbs {
-  height: 20%;
+  height: 120px;
+  /* adjust thumb bar height */
   box-sizing: border-box;
   padding: 10px 0;
+  width: 95%;
+  max-width: 1360px;
 }
 
-.mySwiper .swiperThumbs {
-  width: 25%;
+.swiperThumbs .swiper-slide {
   height: 100%;
   opacity: 0.4;
+  cursor: pointer;
 }
 
-.mySwiper .swiper-slide-thumb-active {
+.swiperThumbs .swiper-slide-thumb-active {
   opacity: 1;
 }
-.swiperMain  {
-    height: 100%;
-    background: pink;
-}
-.swiperMain .swiper-wrapper {
-    background: green;
-height: 100%;
-}
-.swiperMain .swiper-slide {
+
+.swiperThumbs img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
-height: 100%;
+  border-radius: 6px;
 }
-.swiperMain .swiper-slide img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+
+/* Controls styling */
+.swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.7);
 }
-.swiper.swiperThumbs {
-  margin: auto;
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #fff;
 }
