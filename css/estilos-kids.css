@@ -150,6 +150,9 @@ h6 {
 }
 
 /* FIN RESET */
+
+
+
 html,
 body {
   height: 100%;
@@ -166,6 +169,135 @@ body {
   background: #0b1020;
   color: #fff;
 }
+
+/* INTRO*/
+
+
+/* Transparent Intro overlay: only the stacked images */
+.intro {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  /* <- transparent background */
+  opacity: 1;
+  transition: opacity 600ms ease;
+  z-index: 999;
+  pointer-events: none;
+  /* so it never blocks clicks while visible */
+}
+
+.stack {
+  display: flex;
+  flex-direction: column;
+  gap: min(2vh, 16px);
+  align-items: center;
+  justify-content: center;
+  padding: min(6vh, 48px) min(4vw, 32px);
+  text-align: center;
+}
+
+.line-img {
+  display: block;
+  width: min(72vw, 880px);
+  height: auto;
+  max-width: 90vw;
+  opacity: 0;
+  transform: translateY(14px);
+  will-change: transform, opacity;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, .5));
+  /* readability on bright frames */
+}
+
+.line-img.in {
+  animation: fadeUp 600ms cubic-bezier(.22, 1, .36, 1) forwards;
+}
+
+.line-1.in {
+  animation-delay: 0ms;
+}
+
+.line-2.in {
+  animation-delay: 180ms;
+}
+
+.line-3.in {
+  animation-delay: 360ms;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.intro.is-hidden {
+  opacity: 0;
+}
+
+/* Page content is completely hidden until reveal */
+.page {
+  min-height: 100svh;
+  display: none;
+  /* <- no layout or paint */
+  place-items: center;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.page.is-visible {
+  display: grid;
+  /* show */
+  animation: pageIn 600ms ease forwards;
+}
+
+@keyframes pageIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.button {
+  display: inline-block;
+  padding: .9rem 1.25rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, .35);
+  background: rgba(255, 255, 255, .06);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  text-decoration: none;
+  transition: transform .15s ease, background .2s ease;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, .12);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+
+  .intro,
+  .page {
+    transition: none;
+    animation: none !important;
+  }
+
+  .line-img {
+    opacity: 1;
+    transform: none;
+  }
+
+  .line-img.in {
+    animation: none;
+  }
+}
+
+/* FIN INTRO*/
 
 .video-bg {
   position: absolute;
