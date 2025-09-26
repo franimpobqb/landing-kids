@@ -1,3 +1,61 @@
+
+@font-face {
+    font-family: 'Bronto';
+    src: url('bronto-bold-webfont.woff2') format('woff2'),
+         url('bronto-bold-webfont.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'Bronto';
+    src: url('bronto-book-webfont.woff2') format('woff2'),
+         url('bronto-book-webfont.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'Bronto';
+    src: url('../fonts/bronto-regular-webfont.woff2') format('woff2'),
+         url('../fonts/bronto-regular-webfont.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'Bronto';
+    src: url('../fonts/bronto-semibold-webfont.woff2') format('woff2'),
+         url('../fonts/bronto-semibold-webfont.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'Bronto';
+    src: url('../fonts/bronto-ultrablack-webfont.woff2') format('woff2'),
+         url('../fonts/bronto-ultrablack-webfont.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+
+}
+
 /* Modern CSS Reset — 2025 */
 
 /* 1. Box sizing reset for more predictable layouts */
@@ -151,8 +209,6 @@ h6 {
 
 /* FIN RESET */
 
-
-
 html,
 body {
   height: 100%;
@@ -164,14 +220,13 @@ body {
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
-    sans-serif;
+  font-family: 'Bronto', sans-serif;
+  font-weight: 500;
   background: #0b1020;
   color: #fff;
 }
 
 /* INTRO*/
-
 
 /* Transparent Intro overlay: only the stacked images */
 .intro {
@@ -191,7 +246,6 @@ body {
 .stack {
   display: flex;
   flex-direction: column;
-  gap: min(2vh, 16px);
   align-items: center;
   justify-content: center;
   padding: min(6vh, 48px) min(4vw, 32px);
@@ -200,18 +254,21 @@ body {
 
 .line-img {
   display: block;
-  width: min(72vw, 880px);
-  height: auto;
-  max-width: 90vw;
+  height: 180px;
+  width: auto;
   opacity: 0;
   transform: translateY(14px);
   will-change: transform, opacity;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, .5));
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5));
   /* readability on bright frames */
 }
 
+.line-img.line-2 {
+  height: 140px;
+}
+
 .line-img.in {
-  animation: fadeUp 600ms cubic-bezier(.22, 1, .36, 1) forwards;
+  animation: fadeUp 600ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .line-1.in {
@@ -240,16 +297,18 @@ body {
 /* Page content is completely hidden until reveal */
 .page {
   min-height: 100svh;
-  display: none;
   /* <- no layout or paint */
+  flex-direction: column;
   place-items: center;
   text-align: center;
+  pointer-events: none;
   opacity: 0;
   transform: translateY(10px);
 }
 
 .page.is-visible {
-  display: grid;
+  display: flex;
+  pointer-events: inherit;
   /* show */
   animation: pageIn 600ms ease forwards;
 }
@@ -263,24 +322,23 @@ body {
 
 .button {
   display: inline-block;
-  padding: .9rem 1.25rem;
+  padding: 0.9rem 1.25rem;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, .35);
-  background: rgba(255, 255, 255, .06);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(6px);
   color: #fff;
   text-decoration: none;
-  transition: transform .15s ease, background .2s ease;
+  transition: transform 0.15s ease, background 0.2s ease;
 }
 
 .button:hover {
   transform: translateY(-1px);
-  background: rgba(255, 255, 255, .12);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
-
   .intro,
   .page {
     transition: none;
@@ -299,6 +357,61 @@ body {
 
 /* FIN INTRO*/
 
+/* El Botón Pure CSS */
+.pure-css-button {
+  /* 1. Estilo Base: Texto y Forma */
+  padding: 14px 35px; /* Ajustado el padding para un botón más grande */
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+
+  /* 2. Centro Blanco y Esquinas Redondeadas */
+  background-color: #f0f0f0; /* Un blanco muy suave, casi gris claro */
+  color: #35819E; /* Color de texto más oscuro */
+  border-radius: 50px; /* Forma de píldora */
+
+  /* 3. El Borde Azul Claro de 4px (El Marco) */
+  border: 4px solid #add8e6; /* Azul Claro */
+
+  /* 4. Efecto de Relieve para la Parte Blanca Interior y Sombra Exterior */
+  box-shadow: 
+                /* Sombra superior izquierda (clara) para el efecto de "luz" */ inset
+      5px 5px 10px rgba(255, 255, 255, 0.7),
+    /* Simula luz desde arriba/izquierda */
+      /* Sombra inferior derecha (oscura) para el efecto de "sombra" */ inset -5px -5px
+      10px rgba(0, 0, 0, 0.15),
+    /* Simula sombra desde abajo/derecha */
+      /* Sombra exterior para dar profundidad al botón en general */ 0 6px 12px
+      rgba(0, 0, 0, 0.1);
+
+  /* 5. Transiciones para efectos suaves */
+  transition: all 0.25s ease-in-out;
+  outline: none; /* Elimina el contorno de enfoque predeterminado */
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+}
+
+/* Efecto al pasar el ratón: El botón se "activa" un poco */
+.pure-css-button:hover {
+  border-color: #87ceeb; /* Borde un poco más brillante */
+  background-color: #ffffff; /* El centro se ilumina un poco más */
+  box-shadow: inset 5px 5px 12px rgba(255, 255, 255, 0.9),
+    /* Luz más intensa */ inset -5px -5px 12px rgba(0, 0, 0, 0.2),
+    /* Sombra más intensa */ 0 8px 16px rgba(0, 0, 0, 0.15); /* Sombra exterior más grande */
+  transform: translateY(-2px); /* Un ligero levantamiento */
+}
+
+/* Efecto al hacer clic: Simula que el botón se "presiona" */
+.pure-css-button:active {
+  transform: translateY(1px); /* Se empuja hacia abajo */
+  box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.5),
+    /* Luz sutil */ inset -2px -2px 5px rgba(0, 0, 0, 0.1),
+    /* Sombra sutil */ 0 2px 4px rgba(0, 0, 0, 0.08); /* Sombra exterior muy suave */
+  background-color: #e8e8e8; /* El centro se oscurece un poco más al presionar */
+}
+
 .video-bg {
   position: absolute;
   inset: 0;
@@ -309,16 +422,16 @@ body {
 }
 
 header {
+  width: 100%;
   height: 100px;
   flex: 0 0 100px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 20px;
-
+  padding: 0 5%;
 }
 
-main {
+section {
   flex: 1 1 auto;
   min-height: 0;
   display: flex;
@@ -341,8 +454,9 @@ main {
 
 .swiper-slide {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
+  padding-bottom: 2rem;
   position: relative;
   font-size: clamp(18px, 2.5vw, 28px);
   user-select: none;

@@ -10,21 +10,22 @@
     <link rel="stylesheet"
       href="https://unpkg.com/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="css/estilos-kids.css">
-    <style>
-
-  </style>
+   
   </head>
 
   <body>
 
     <!-- Transparent intro: three image lines -->
     <div class="intro" id="intro" role="dialog" aria-label="Intro">
+       <video muted autoplay  class="video-bg" id="bgVideo">
+      <source src="videos/ACCION_01_CHINA_ASIENTE_A.mp4">
+    </video>
       <div class="stack">
-        <img class="line-img line-1" src="title-line-1.png" width="1600"
+        <img class="line-img line-1" src="images/subite.png" width="1600"
           height="400" alt="Title line 1">
-        <img class="line-img line-2" src="title-line-2.png" width="1600"
+        <img class="line-img line-2" src="images/temporada.png" width="1600"
           height="400" alt="Title line 2">
-        <img class="line-img line-3" src="title-line-3.png" width="1600"
+        <img class="line-img line-3" src="images/masanimada.png" width="1600"
           height="400" alt="Title line 3">
       </div>
     </div>
@@ -51,44 +52,38 @@
           </svg>
 
         </a>
-        <nav>
-          <a href="#"
-            style="color:#fff; text-decoration:none; margin-right:16px;">Features</a>
-          <a href="#" style="color:#fff; text-decoration:none;">Contact</a>
-        </nav>
+<img src="images/logo-china.svg" alt="" style="width: 220px;">
+
+          <a href="#" style="width: 70px; height: 70px;">
+          <img src="images/menu 1.png" alt=""></a>
+   
       </header>
 
-      <main>
+      <section>
         <!-- Main Swiper -->
         <div class="swiper swiperMain">
           <div class="swiper-wrapper">
             <div class="swiper-slide">
               <img class="slide-img"
-                src="images/thumb-1.jpg" alt>
+                src="images/thumb-e1.jpg" alt>
               <div class="slide-content">
-                <h2>Slide One</h2>
-                <p>Main carousel with thumbnails below</p>
-                <a class="btn" href="#">Get Started</a>
+                <button class="pure-css-button"><img src="images/btn-play.png" alt=""><span>E1 - Bienvenida China</span></button>
               </div>
             </div>
             <div class="swiper-slide">
               <img class="slide-img"
-                src="https://images.unsplash.com/photo-1519947486511-46149fa0a254?q=80&w=1600&auto=format&fit=crop"
+                src="images/thumb-e2.jpg"
                 alt>
               <div class="slide-content">
-                <h2>Slide Two</h2>
-                <p>Click a thumb to jump to the slide</p>
-                <a class="btn" href="#">Learn More</a>
+                <button class="pure-css-button"><img src="images/btn-play.png" alt=""style="opacity: .5;"><span style="opacity: .5;">E2 - Seguridad (proximamente)</span></button>
               </div>
             </div>
             <div class="swiper-slide">
               <img class="slide-img"
-                src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?q=80&w=1600&auto=format&fit=crop"
+                src="images/thumb-e3.jpg"
                 alt>
-              <div class="slide-content">
-                <h2>Slide Three</h2>
-                <p>Thumbs sync with the main carousel</p>
-                <a class="btn" href="#">Contact Us</a>
+              <div class="slide-content" >
+               <button class="pure-css-button" ><img src="images/btn-play.png" alt="" style="opacity: .5;"><span style="opacity: .5;">E3 - Historias de familia (proximamente)</span></button>
               </div>
             </div>
             <div class="swiper-slide">
@@ -131,14 +126,14 @@
         <div class="swiper swiperThumbs">
           <div class="swiper-wrapper">
             <div class="swiper-slide"><img
-                src="images/thumb-1.jpg" alt>
+                src="images/thumb-e1.jpg" alt>
             </div>
             <div class="swiper-slide"><img
-                src="https://images.unsplash.com/photo-1520975922171-44e8879540a4?q=80&w=400&auto=format&fit=crop"
+                src="images/thumb-e2.jpg"
                 alt>
             </div>
             <div class="swiper-slide"><img
-                src="https://images.unsplash.com/photo-1520975922171-44e8879540a4?q=80&w=400&auto=format&fit=crop"
+                src="images/thumb-e3.jpg"
                 alt>
             </div>
             <div class="swiper-slide"><img
@@ -153,10 +148,7 @@
                 src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?q=80&w=400&auto=format&fit=crop"
                 alt>
             </div>
-            <div class="swiper-slide"><img
-                src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?q=80&w=400&auto=format&fit=crop"
-                alt>
-            </div>
+           
 
           </div>
         </div>
@@ -210,7 +202,7 @@
           page.classList.add('is-visible');
           page.setAttribute('aria-hidden', 'false');
           // Remove intro from DOM for cleanliness
-          intro.remove();
+         intro.remove();
         };
 
         if (prefersReduced) {
