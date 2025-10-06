@@ -49,8 +49,14 @@
       </a>
     <!--   <img src="images/subite-horizontal.webp" alt="" class="claim desktop">
       <img src="images/subite-mob.webp" alt="" class="claim mobile"> -->
-      <a href="#" style="width: 70px; height: 70px;">
-        <img src="images/menu 1.png" alt></a>
+      <div>
+        <a href="#" style="width: 70px; height: 70px;">
+          <img src="images/menu 1.png" alt></a>
+        <a href="#" style="width: 70px; height: 70px;">
+          <img src="images/menu 1.png" alt></a>
+        <a href="#" style="width: 70px; height: 70px;">
+          <img src="images/menu 1.png" alt></a>
+      </div>
 
     </header>
 
@@ -59,14 +65,18 @@
       <div class="swiper swiperMain">
         <div class="swiper-wrapper">
           <div class="swiper-slide">
-            <img class="slide-img" src="images/thumb-e1.jpg" alt>
+           <video class="slide-video" muted playsinline disablepictureinpicture loop src="videos/cover-e1.mp4" preload="auto" loading="lazy">
+          
+           </video>
             <div class="slide-content">
               <button class="pure-css-button"><img src="images/btn-play.png" alt><span>E1 - Bienvenida
                   China</span></button>
             </div>
           </div>
           <div class="swiper-slide">
-            <img class="slide-img" src="images/thumb-e2.jpg" alt>
+           <video class="slide-video" muted playsinline disablepictureinpicture loop src="videos/cover-e2.mp4" preload="auto" loading="lazy">
+          
+           </video>
             <div class="slide-content">
               <button class="pure-css-button"><img src="images/btn-play.png" alt style="opacity: .5;"><span
                   style="opacity: .5;">E2 -
@@ -74,7 +84,9 @@
             </div>
           </div>
           <div class="swiper-slide">
-            <img class="slide-img" src="images/thumb-e3.jpg" alt>
+            <video class="slide-video" muted playsinline disablepictureinpicture loop src="videos/e3-cover.mp4" preload="auto" loading="lazy">
+          
+           </video>
             <div class="slide-content">
               <button class="pure-css-button"><img src="images/btn-play.png" alt style="opacity: .5;"><span
                   style="opacity: .5;">E3 -
@@ -110,7 +122,7 @@
       </div>
 
       <!-- Thumbs Swiper -->
-      <div class="swiper swiperThumbs">
+      <div class="swiper swiperThumbs desktop">
         <div class="swiper-wrapper">
           <div class="swiper-slide"><img src="images/thumb-e1.jpg" alt>
           </div>
@@ -156,65 +168,7 @@
   <!-- Swiper JS -->
   <script src="https://unpkg.com/swiper@11/swiper-bundle.min.js"></script>
   <script src="js/scripts-kids.js"></script>
-  <!--   <script>
-    document.documentElement.classList.remove('no-js');
-
-    (function () {
-      const intro = document.getElementById('intro');
-      const page = document.getElementById('page');
-      const video = document.getElementById('bgVideo');
-      const lines = Array.from(document.querySelectorAll('.line-img'));
-
-      // Stagger the line reveals
-      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if (!prefersReduced) {
-        requestAnimationFrame(() => lines.forEach(el => el.classList.add('in')));
-      } else {
-        lines.forEach(el => { el.style.opacity = 1; el.style.transform = 'none'; });
-      }
-
-      // Timing so the last line lands, then a brief dwell
-      const LAST_STAGGER_DELAY = 360;
-      const ANIM_DURATION = 600;
-      const EXTRA_PAUSE = 700;
-      const MIN_INTRO_MS = LAST_STAGGER_DELAY + ANIM_DURATION + EXTRA_PAUSE; // ~1.66s
-
-      // Wait for video to be at least minimally ready (or timeout)
-      const waitForVideoReady = new Promise((resolve) => {
-        let resolved = false;
-        const done = () => { if (!resolved) { resolved = true; resolve(); } };
-        video.addEventListener('canplay', done, { once: true });
-        video.addEventListener('loadeddata', () => setTimeout(done, 100), { once: true });
-        setTimeout(done, 1600);
-      });
-
-      const waitMinIntro = new Promise(r => setTimeout(r, MIN_INTRO_MS));
-
-      Promise.all([waitForVideoReady, waitMinIntro]).then(() => {
-        // Fade out the intro (transparent overlay)
-        intro.classList.add('is-hidden');
-
-        // Reveal page only after intro fade completes
-        const reveal = () => {
-          page.classList.add('is-visible');
-          page.setAttribute('aria-hidden', 'false');
-          // Remove intro from DOM for cleanliness
-          intro.remove();
-        };
-
-        if (prefersReduced) {
-          reveal();
-        } else {
-          intro.addEventListener('transitionend', reveal, { once: true });
-        }
-      });
-
-      // If autoplay is blocked, try on first interaction
-      document.addEventListener('pointerdown', () => {
-        if (video.paused) { video.play().catch(() => { }); }
-      }, { once: true });
-    }());
-  </script> -->
+ 
 </body>
 
 </html>

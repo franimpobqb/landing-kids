@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ferry Quiz Game 3D</title>
+    <style>
+      body { margin: 0; overflow: hidden; background: #000; }
+      #ui {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        color: white;
+        font-family: sans-serif;
+        font-size: 18px;
+        z-index: 10;
+        background: rgba(0,0,0,0.4);
+        padding: 10px 20px;
+        border-radius: 10px;
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.149.0/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="ui">Use WASD or Arrow Keys to move</div>
+
+    <script type="module">
+      import * as THREE from 'three';
+      import { Water } from 'three/addons/objects/Water.js';
+      import { Sky } from 'three/addons/objects/Sky.js';
+
+      // --- Scene setup ---
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.Fog(0x88ccee, 1, 10000);
+
+      const camera = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, 0.1, 20000);
+      const renderer = new THREE.WebGLRenderer({ antialias: true });
+      renderer.setSize(innerWidth, innerHeight);
+      renderer.setClearColor(0x88ccee);
+      document.body.appendChild(renderer.domElement);
+
+      // --- Lights ---
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+      scene.add(ambientLight);
+      const sunLight = new THREE.DirectionalLight(0xffffff, 2.5);
+      scene.add(sunLight);
+
+      // --- Ferry ---
+      const ferryGeometry = new THREE.BoxGeometry(10, 3, 20);
+      const ferryMaterial = new THREE.MeshStandardMaterial({ color: 0xffe066 });
+      const ferry = new THREE.Mesh(ferryGeometry, ferryMaterial);
+      ferry.position.y = 2;
+      scene.add(ferry);
+
+      // --- Water ---
+      const waterGeometry = new THREE.PlaneGeometry(10000, 10000);
+      const water = new Water(waterGeometry, {
+        textureWidth: 512,
+        textureHeight: 512,
+        waterNormals: new THREE.TextureLoader().load(
+          'https://threejs.org/examples/textures/waternormals.jpg',
+          tex => { tex.wrapS = tex.wrapT = THREE.RepeatWrapping; }
+        ),
+        sunDirection: new THREE.Vector3(),
+        sunColor: 0xffffff,
+        waterColor: 0x1ca3ec,
+        distortionScale: 3.5,
+        fog: scene.fog !== undefined
+      });
+      water.rotation.x = -Math.PI / 2;
+      scene.add(water);
+
+      // --- Sky ---
+      const sky = new Sky();
+      sky.scale.setScalar(10000);
+      scene.add(sky);
+
+      const skyUniforms = sky.material.uniforms;
+      skyUniforms['turbidity'].value = 10;
+      skyUniforms['rayleigh'].value = 2;
+      skyUniforms['mieCoefficient'].value = 0.005;
+      skyUniforms['mieDirectionalG'].value = 0.8;
+
+      const sun = new THREE.Vector3();
+      const sunParameters = { elevation: 10, azimuth: 180 };
+
+      function updateSun() {
+        const phi = THREE.MathUtils.degToRad(90 - sunParameters.elevation);
+        const theta = THREE.MathUtils.degToRad(sunParameters.azimuth);
+        sun.setFromSphericalCoords(1, phi, theta);
+        sky.material.uniforms['sunPosition'].value.copy(sun);
+        water.material.uniforms['sunDirection'].value.copy(sun).normalize();
+        sunLight.position.copy(sun.clone().multiplyScalar(10000));
+      }
+      updateSun();
+
+      // --- Checkpoints ---
+      const checkpointPositions = [
+        new THREE.Vector3(0, 1.5, -150),
+        new THREE.Vector3(80, 1.5, -250),
+        new THREE.Vector3(-60, 1.5, -400)
+      ];
+
+      const checkpoints = checkpointPositions.map(pos => {
+        const geo = new THREE.TorusGeometry(8, 0.6, 16, 50);
+        const mat = new THREE.MeshStandardMaterial({
+          color: 0xffaa00,
+          emissive: 0xff7700,
+          emissiveIntensity: 1,
+          transparent: true,
+          opacity: 0.8
+        });
+        const mesh = new THREE.Mesh(geo, mat);
+        mesh.rotation.x = Math.PI / 2;
+        mesh.position.copy(pos);
+        scene.add(mesh);
+        return mesh;
+      });
+
+      // --- Controls ---
+      const keys = {};
+      window.addEventListener('keydown', e => keys[e.key.toLowerCase()] = true);
+      window.addEventListener('keyup', e => keys[e.key.toLowerCase()] = false);
+
+      // --- Game constants ---
+      const PLAYER_SPEED = 0.3;
+      const ROTATION_SPEED = 0.03;
+
+      const clock = new THREE.Clock();
+
+      // --- Camera follow (smooth) ---
+      const cameraOffset = new THREE.Vector3(0, 10, 25);
+      const cameraTarget = new THREE.Vector3();
+      const currentCameraPos = new THREE.Vector3();
+
+      function updateCameraSmooth() {
+        const desiredPos = cameraOffset.clone().applyQuaternion(ferry.quaternion).add(ferry.position);
+        currentCameraPos.lerp(desiredPos, 0.08); // inertia
+        camera.position.copy(currentCameraPos);
+        camera.lookAt(ferry.position.clone().add(new THREE.Vector3(0, 2, 0)));
+      }
+
+      // --- Animation loop ---
+      function animate() {
+        requestAnimationFrame(animate);
+        const delta = clock.getDelta();
+
+        // Animate water
+        water.material.uniforms['time'].value += delta;
+
+        // Animate checkpoints (rotation)
+        checkpoints.forEach(cp => {
+          cp.rotation.y += delta * 0.5;
+        });
+
+        // Movement
+        if (keys['w'] || keys['arrowup']) ferry.translateZ(-PLAYER_SPEED * 60 * delta);
+        if (keys['s'] || keys['arrowdown']) ferry.translateZ(PLAYER_SPEED * 60 * delta);
+        if (keys['a'] || keys['arrowleft']) ferry.rotation.y += ROTATION_SPEED * 60 * delta;
+        if (keys['d'] || keys['arrowright']) ferry.rotation.y -= ROTATION_SPEED * 60 * delta;
+
+        // Simple checkpoint collision detection
+        checkpoints.forEach((cp, i) => {
+          if (cp.visible && ferry.position.distanceTo(cp.position) < 10) {
+            cp.visible = false;
+            console.log(`Checkpoint ${i+1} reached!`);
+            // Future: trigger quiz question here
+          }
+        });
+
+        updateCameraSmooth();
+        renderer.render(scene, camera);
+      }
+
+      animate();
+
+      // --- Handle resize ---
+      window.addEventListener('resize', () => {
+        camera.aspect = innerWidth / innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(innerWidth, innerHeight);
+      });
+    </script>
+  </body>
+</html>

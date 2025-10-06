@@ -283,12 +283,12 @@ body {
   flex-direction: column;
   place-items: center;
   text-align: center;
-display: flex;
+  display: flex;
   transform: translateY(10px);
 }
 
 .page.is-visible {
-  
+
   pointer-events: inherit;
   /* show */
   animation: pageIn 600ms ease forwards;
@@ -320,6 +320,7 @@ display: flex;
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
+
   .intro,
   .page {
     transition: none;
@@ -341,34 +342,40 @@ display: flex;
 /* El Botón Pure CSS */
 .pure-css-button {
   /* 1. Estilo Base: Texto y Forma */
-  padding: 14px 35px; /* Ajustado el padding para un botón más grande */
+  padding: 14px 35px;
+  /* Ajustado el padding para un botón más grande */
   font-size: 1.6rem;
   font-weight: 700;
   text-align: center;
   cursor: pointer;
 
   /* 2. Centro Blanco y Esquinas Redondeadas */
-  background-color: #f0f0f0; /* Un blanco muy suave, casi gris claro */
-  color: #35819e; /* Color de texto más oscuro */
-  border-radius: 50px; /* Forma de píldora */
+  background-color: #f0f0f0;
+  /* Un blanco muy suave, casi gris claro */
+  color: #35819e;
+  /* Color de texto más oscuro */
+  border-radius: 50px;
+  /* Forma de píldora */
 
   /* 3. El Borde Azul Claro de 4px (El Marco) */
-  border: 4px solid #add8e6; /* Azul Claro */
+  border: 4px solid #add8e6;
+  /* Azul Claro */
 
   /* 4. Efecto de Relieve para la Parte Blanca Interior y Sombra Exterior */
-  box-shadow: 
-                /* Sombra superior izquierda (clara) para el efecto de "luz" */ inset
-      5px 5px 10px rgba(255, 255, 255, 0.7),
+  box-shadow:
+    /* Sombra superior izquierda (clara) para el efecto de "luz" */
+    inset 5px 5px 10px rgba(255, 255, 255, 0.7),
     /* Simula luz desde arriba/izquierda */
-      /* Sombra inferior derecha (oscura) para el efecto de "sombra" */ inset -5px -5px
-      10px rgba(0, 0, 0, 0.15),
+    /* Sombra inferior derecha (oscura) para el efecto de "sombra" */
+    inset -5px -5px 10px rgba(0, 0, 0, 0.15),
     /* Simula sombra desde abajo/derecha */
-      /* Sombra exterior para dar profundidad al botón en general */ 0 6px 12px
-      rgba(0, 0, 0, 0.1);
+    /* Sombra exterior para dar profundidad al botón en general */
+    0 6px 12px rgba(0, 0, 0, 0.1);
 
   /* 5. Transiciones para efectos suaves */
   transition: all 0.25s ease-in-out;
-  outline: none; /* Elimina el contorno de enfoque predeterminado */
+  outline: none;
+  /* Elimina el contorno de enfoque predeterminado */
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -376,21 +383,32 @@ display: flex;
 
 /* Efecto al pasar el ratón: El botón se "activa" un poco */
 .pure-css-button:hover {
-  border-color: #87ceeb; /* Borde un poco más brillante */
-  background-color: #ffffff; /* El centro se ilumina un poco más */
+  border-color: #87ceeb;
+  /* Borde un poco más brillante */
+  background-color: #ffffff;
+  /* El centro se ilumina un poco más */
   box-shadow: inset 5px 5px 12px rgba(255, 255, 255, 0.9),
-    /* Luz más intensa */ inset -5px -5px 12px rgba(0, 0, 0, 0.2),
-    /* Sombra más intensa */ 0 8px 16px rgba(0, 0, 0, 0.15); /* Sombra exterior más grande */
-  transform: translateY(-2px); /* Un ligero levantamiento */
+    /* Luz más intensa */
+    inset -5px -5px 12px rgba(0, 0, 0, 0.2),
+    /* Sombra más intensa */
+    0 8px 16px rgba(0, 0, 0, 0.15);
+  /* Sombra exterior más grande */
+  transform: translateY(-2px);
+  /* Un ligero levantamiento */
 }
 
 /* Efecto al hacer clic: Simula que el botón se "presiona" */
 .pure-css-button:active {
-  transform: translateY(1px); /* Se empuja hacia abajo */
+  transform: translateY(1px);
+  /* Se empuja hacia abajo */
   box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.5),
-    /* Luz sutil */ inset -2px -2px 5px rgba(0, 0, 0, 0.1),
-    /* Sombra sutil */ 0 2px 4px rgba(0, 0, 0, 0.08); /* Sombra exterior muy suave */
-  background-color: #e8e8e8; /* El centro se oscurece un poco más al presionar */
+    /* Luz sutil */
+    inset -2px -2px 5px rgba(0, 0, 0, 0.1),
+    /* Sombra sutil */
+    0 2px 4px rgba(0, 0, 0, 0.08);
+  /* Sombra exterior muy suave */
+  background-color: #e8e8e8;
+  /* El centro se oscurece un poco más al presionar */
 }
 
 .video-bg {
@@ -418,10 +436,13 @@ header#header-main {
 }
 
 section {
-  flex: 1 1 auto;
+  height: calc(100vh - 300px);
+  max-width: 98%;
+  width: 1360px;
+  /*  flex: 1 1 auto;
   min-height: 0;
   display: flex;
-  flex-direction: column;
+  flex-direction: column; */
 }
 
 /* Main Swiper fills remaining height minus thumbs */
@@ -433,12 +454,11 @@ section {
 .swiper.swiperMain {
   flex: 1 1 auto;
   min-height: 0;
-  width: 95%;
-  max-width: 1360px;
+  width: 100%;
   height: 100%;
 }
 
-.swiper-slide {
+.swiperMain .swiper-slide {
   display: flex;
   align-items: flex-end;
   justify-content: center;
@@ -458,7 +478,8 @@ section {
   -o-border-radius: 2rem;
 }
 
-.slide-img {
+.swiperMain .slide-img,
+.swiperMain .slide-video {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -472,7 +493,8 @@ section {
   -ms-transition: all .2s ease;
   -o-transition: all .2s ease;
 }
-.swiperMain .swiper-slide:not(.swiper-slide-visible) {
+
+.swiperMain .swiper-slide:not(.swiper-slide-visible):not(.swiper-slide-active) {
   opacity: 0;
 }
 
@@ -484,17 +506,22 @@ section {
   -o-transform: scale(1.1);
 }
 
-.swiperMain .swiper-button-prev:after, .swiperMain .swiper-button-next:after {
+.swiperMain .swiper-button-prev:after,
+.swiperMain .swiper-button-next:after {
   content: none;
 }
-.swiperMain .swiper-button-prev, .swiperMain .swiper-button-next {
+
+.swiperMain .swiper-button-prev,
+.swiperMain .swiper-button-next {
   width: 70px;
   height: 70px;
-    transition: all .2s ease;
+  transition: all .2s ease;
   filter: brightness(.8);
   -webkit-filter: brightness(.8);
 }
-.swiperMain .swiper-button-prev:hover, .swiperMain .swiper-button-next:hover {
+
+.swiperMain .swiper-button-prev:hover,
+.swiperMain .swiper-button-next:hover {
   filter: brightness(1);
   -webkit-filter: brightness(1);
 }
@@ -558,13 +585,23 @@ section {
 
 
 @media (min-width: 1031px) {
-    .mobile {
-        display: none;
-    }
+  .mobile {
+    display: none;
+  }
 }
 
 @media (max-width: 1030px) {
-    .desktop {
-        display: none;
-    }
+  .desktop {
+    display: none;
+  }
+
+  .pure-css-button {
+    flex-direction: column;
+    padding: 15px 15px;
+    min-width: 150px;
+  }
+
+  section {
+    height: calc(100% - 200px);
+  }
 }
