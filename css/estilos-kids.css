@@ -599,6 +599,7 @@ section#main-content {
     min-width: 100px;
     max-width: 90%;
     margin: auto;
+    font-size: 1.2rem;
   }
 
   section#main-content {
