@@ -537,6 +537,28 @@ section#main-content {
     display: none;
   }
 
+  #menu-toggler {
+    width: 80px;
+    height: 80px;
+    transition: all .2s ease;
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -ms-transition: all .2s ease;
+    -o-transition: all .2s ease;
+}
+
+   body.menu-open #menu-toggler {
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    -moz-transform: rotate(135deg);
+    -ms-transform: rotate(135deg);
+    -o-transform: rotate(135deg);
+}
+
+    #menu-toggler span {
+      background-image: url(../images/);
+    }
+
   #main-menu {
     position: fixed;
     transition: all 0.2s ease;
