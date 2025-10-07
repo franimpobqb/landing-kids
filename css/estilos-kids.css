@@ -544,7 +544,8 @@ section#main-content {
     min-width: 150px;
   }
 
-  section {
+  section#main-content {
     height: calc(100% - 200px);
+    max-width: 98%;
   }
 }
