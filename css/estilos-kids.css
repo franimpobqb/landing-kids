@@ -204,11 +204,11 @@ body {
   overflow: hidden;
   font-family: "Bronto", sans-serif;
   font-weight: 500;
-background: #020024;
-background: -webkit-linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
-background: -moz-linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
-background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#00D4FF", GradientType=1);
+  background: #020024;
+  background: -webkit-linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+  background: -moz-linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+  background: linear-gradient(90deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#00D4FF", GradientType=1);
   color: #fff;
 }
 
@@ -241,6 +241,7 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endC
 
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
+
   .intro,
   .page {
     transition: none;
@@ -283,14 +284,14 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endC
 
   /* 4. Efecto de Relieve para la Parte Blanca Interior y Sombra Exterior */
   box-shadow:
-    /* Sombra superior izquierda (clara) para el efecto de "luz" */ inset
-      5px 5px 10px rgba(255, 255, 255, 0.7),
+    /* Sombra superior izquierda (clara) para el efecto de "luz" */
+    inset 5px 5px 10px rgba(255, 255, 255, 0.7),
     /* Simula luz desde arriba/izquierda */
-      /* Sombra inferior derecha (oscura) para el efecto de "sombra" */ inset -5px -5px
-      10px rgba(0, 0, 0, 0.15),
+    /* Sombra inferior derecha (oscura) para el efecto de "sombra" */
+    inset -5px -5px 10px rgba(0, 0, 0, 0.15),
     /* Simula sombra desde abajo/derecha */
-      /* Sombra exterior para dar profundidad al botón en general */ 0 6px 12px
-      rgba(0, 0, 0, 0.1);
+    /* Sombra exterior para dar profundidad al botón en general */
+    0 6px 12px rgba(0, 0, 0, 0.1);
 
   /* 5. Transiciones para efectos suaves */
   transition: all 0.25s ease-in-out;
@@ -308,8 +309,10 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endC
   background-color: #ffffff;
   /* El centro se ilumina un poco más */
   box-shadow: inset 5px 5px 12px rgba(255, 255, 255, 0.9),
-    /* Luz más intensa */ inset -5px -5px 12px rgba(0, 0, 0, 0.2),
-    /* Sombra más intensa */ 0 8px 16px rgba(0, 0, 0, 0.15);
+    /* Luz más intensa */
+    inset -5px -5px 12px rgba(0, 0, 0, 0.2),
+    /* Sombra más intensa */
+    0 8px 16px rgba(0, 0, 0, 0.15);
   /* Sombra exterior más grande */
   transform: translateY(-2px);
   /* Un ligero levantamiento */
@@ -320,8 +323,10 @@ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endC
   transform: translateY(1px);
   /* Se empuja hacia abajo */
   box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.5),
-    /* Luz sutil */ inset -2px -2px 5px rgba(0, 0, 0, 0.1),
-    /* Sombra sutil */ 0 2px 4px rgba(0, 0, 0, 0.08);
+    /* Luz sutil */
+    inset -2px -2px 5px rgba(0, 0, 0, 0.1),
+    /* Sombra sutil */
+    0 2px 4px rgba(0, 0, 0, 0.08);
   /* Sombra exterior muy suave */
   background-color: #e8e8e8;
   /* El centro se oscurece un poco más al presionar */
@@ -384,6 +389,7 @@ header#header-main {
 #main-menu ul li a:hover {
   color: yellow;
 }
+
 #main-menu ul li a:hover img {
   filter: brightness(1.1);
   -webkit-filter: brightness(1.1);
@@ -540,7 +546,7 @@ section#main-content {
 
 .video header#header-main {
   background-color: #333;
-  
+
 }
 
 section.video-container {
@@ -553,6 +559,19 @@ section.video-container {
 section.video-container iframe {
   width: 100%;
   height: 100%;
+}
+
+/* TRANSITION */
+
+/* Define a transition duration during page visits */
+html.is-changing .transition-fade {
+  transition: opacity 0.25s;
+  opacity: 1;
+}
+
+/* Define the styles for the unloaded pages */
+html.is-animating .transition-fade {
+  opacity: 0;
 }
 
 @media (min-width: 1031px) {
@@ -574,19 +593,19 @@ section.video-container iframe {
     -moz-transition: all .2s ease;
     -ms-transition: all .2s ease;
     -o-transition: all .2s ease;
-}
+  }
 
-   body.menu-open #menu-toggler {
+  body.menu-open #menu-toggler {
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
     -moz-transform: rotate(135deg);
     -ms-transform: rotate(135deg);
     -o-transform: rotate(135deg);
-}
+  }
 
-    #menu-toggler span {
-      background-image: url(../images/);
-    }
+  #menu-toggler span {
+    background-image: url(../images/);
+  }
 
   #main-menu {
     position: fixed;
@@ -607,13 +626,15 @@ section.video-container iframe {
     -ms-transition: all 0.2s ease;
     -o-transition: all 0.2s ease;
   }
- section#main-content {
+
+  section#main-content {
     transition: all .2s ease;
-  -webkit-transition: all .2s ease;
-  -moz-transition: all .2s ease;
-  -ms-transition: all .2s ease;
-  -o-transition: all .2s ease;
-}
+    -webkit-transition: all .2s ease;
+    -moz-transition: all .2s ease;
+    -ms-transition: all .2s ease;
+    -o-transition: all .2s ease;
+  }
+
   body.menu-open section#main-content {
     opacity: 0;
     visibility: hidden;

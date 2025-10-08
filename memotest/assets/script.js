@@ -23,27 +23,42 @@ class GeniusMemoryGame {
         // Use the SAME number of unique images as pairsNeeded for each level.
         this.cardImages = {
             '4x4': [
-                'img/img_1.png',
-                'img/img_2.png',
-                'img/img_3.png',
-                'img/img_4.png',
-                'img/img_5.png',
-                'img/img_6.png',
-                'img/img_7.png',
-                'img/img_8.png',
-                'img/img_9.png',
+                'img/img_01.png',
+                'img/img_02.png',
+                'img/img_03.png',
+                'img/img_04.png',
+                'img/img_05.png',
+                'img/img_06.png',
+                'img/img_07.png',
+                'img/img_08.png',
+                'img/img_09.png',
                 'img/img_10.png'
             ],
             '5x5': [
-                'img/set2/01.png','img/set2/02.png','img/set2/03.png','img/set2/04.png','img/set2/05.png',
-                'img/set2/06.png','img/set2/07.png','img/set2/08.png','img/set2/09.png','img/set2/10.png',
-                'img/set2/11.png','img/set2/12.png','img/set2/13.png'
+                'img/img_01.png',
+                'img/img_02.png',
+                'img/img_03.png',
+                'img/img_04.png',
+                'img/img_05.png',
+                'img/img_06.png',
+                'img/img_07.png',
+                'img/img_08.png',
+                'img/img_09.png',
+                'img/img_10.png'
             ],
             '6x6': [
-                'img/set3/01.png','img/set3/02.png','img/set3/03.png','img/set3/04.png','img/set3/05.png',
-                'img/set3/06.png','img/set3/07.png','img/set3/08.png','img/set3/09.png','img/set3/10.png',
-                'img/set3/11.png','img/set3/12.png','img/set3/13.png','img/set3/14.png','img/set3/15.png',
-                'img/set3/16.png','img/set3/17.png','img/set3/18.png'
+                'img/img_01.png',
+                'img/img_02.png',
+                'img/img_03.png',
+                'img/img_04.png',
+                'img/img_05.png',
+                'img/img_06.png',
+                'img/img_07.png',
+                'img/img_08.png',
+                'img/img_09.png',
+                'img/img_10.png',
+                'img/img_11.png',
+                'img/img_12.png'
             ]
         };
 
