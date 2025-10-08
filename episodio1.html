@@ -1,25 +1,55 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-    </head>
-    <body id="video-player">
-       <header id="video-header">
-        <button><</button>
-        <h1>Titulo del video</h1>
-       </header>
-        <video >
-            <source src="videos/video-bg.mp4">
-        </video>
-        <script src="" async defer></script>
-    </body>
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Landing China Kids</title>
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper@11/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="css/estilos-kids.css">
+
+</head>
+
+<body class="video">
+
+  <!-- Transparent intro: three image lines -->
+  <!--   <div class="intro" id="intro" role="dialog" aria-label="Intro">
+     <video muted autoplay class="video-bg" id="bgVideo">
+        <source src="videos/ACCION_01_CHINA_ASIENTE_A.mp4">
+      </video> 
+    <div class="stack">
+      <img class="line-img line-1" src="images/subite.png" width="1600" height="400" alt="Title line 1">
+      <img class="line-img line-2" src="images/temporada.png" width="1600" height="400" alt="Title line 2">
+      <img class="line-img line-3" src="images/masanimada.png" width="1600" height="400" alt="Title line 3">
+    </div>
+  </div> -->
+
+
+  <main class="page" id="page" aria-label="Page content" aria-hidden="true">
+
+    <header id="header-main">
+      <a href="index.html" style="display: flex; gap: .5rem; align-items: center; text-decoration: none;">
+              <img src="images/icon-download.png" alt style="transform: rotate(90deg); width: 50px; height: 50px"> <span style="color: #fff; font-weight: 700; text-decoration: none;">Volver</span></a>
+
+    </header>
+
+ <section class="video-container">
+
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/eeywigeb3bs?si=dRP1kRP-Q39SQPpm" color="white" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+ </section>
+
+
+  </main>
+
+  </div>
+
+  <!-- Swiper JS -->
+  <script src="js/scripts-kids.js"></script>
+
+</body>
+
 </html>
