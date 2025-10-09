@@ -1,191 +1,460 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Ferry Quiz Game 3D</title>
-    <style>
-      body { margin: 0; overflow: hidden; background: #000; }
-      #ui {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        color: white;
-        font-family: sans-serif;
-        font-size: 18px;
-        z-index: 10;
-        background: rgba(0,0,0,0.4);
-        padding: 10px 20px;
-        border-radius: 10px;
-      }
-    </style>
-    <script type="importmap">
-      {
-        "imports": {
-          "three": "https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.module.js",
-          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.149.0/examples/jsm/"
+
+<head>
+           
+    <meta charset="utf-8" />
+           <title>Ferry Quiz Game — Scattered Checkpoints + Tunable Speed + Inertia</title>
+           
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+           <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            background: #000;
+            overflow: hidden;
+            font-family: Arial, Helvetica, sans-serif;
         }
-      }
-    </script>
-  </head>
-  <body>
-    <div id="ui">Use WASD or Arrow Keys to move</div>
 
+        #hud {
+            position: absolute;
+            left: 16px;
+            top: 16px;
+            z-index: 20;
+            background: rgba(0, 0, 0, 0.45);
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 8px;
+        }
+
+        #hud b {
+            display: block;
+            font-size: 14px;
+        }
+
+        #question-modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.75);
+        }
+
+        #question-box {
+            width: 420px;
+            background: white;
+            color: #111;
+            border-radius: 10px;
+            padding: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            text-align: center;
+        }
+
+        .option-btn {
+            display: block;
+            width: 100%;
+            padding: 10px 12px;
+            margin-top: 10px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            background: #007bff;
+            color: white;
+            font-weight: 600;
+        }
+
+        .option-btn:hover {
+            filter: brightness(.9);
+        }
+
+        #instructions {
+            position: absolute;
+            right: 16px;
+            top: 16px;
+            z-index: 20;
+            background: rgba(0, 0, 0, 0.45);
+            color: #fff;
+            padding: 10px 14px;
+            border-radius: 8px;
+            text-align: right;
+        }
+    </style>
+
+           
+    <script type="importmap">
+            {
+                   "imports": {
+                        "three": "https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.module.js",
+                        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.149.0/examples/jsm/"
+                   }
+            }
+       </script>
+</head>
+
+<body>
+           <div id="hud">
+                    <div><b>Ferry Navigator</b></div>
+                    <div>Score: <span id="score">0</span></div>
+               </div>
+           <div id="instructions">
+                    <div><b>Controls</b></div>
+                    W / ↑ : Forward<br>
+                    S / ↓ : Back<br>
+                    A / ← : Turn left<br>
+                    D / → : Turn right
+               </div>
+
+                <div id="question-modal">
+                    <div id="question-box">
+                               <h2 id="modal-title">Checkpoint!</h2>
+                               <p id="question-text" style="min-height:48px;">Question text</p>
+                               <button class="option-btn" id="optA" onclick="checkAnswer(0)">A</button>
+                               <button class="option-btn" id="optB" onclick="checkAnswer(1)">B</button>
+                               <button class="option-btn" id="optC" onclick="checkAnswer(2)">C</button>
+                        </div>
+               </div>
+
+           
     <script type="module">
-      import * as THREE from 'three';
-      import { Water } from 'three/addons/objects/Water.js';
-      import { Sky } from 'three/addons/objects/Sky.js';
+        import * as THREE from 'three';
+        import { Water } from 'three/addons/objects/Water.js';
+        import { Sky } from 'three/addons/objects/Sky.js';
 
-      // --- Scene setup ---
-      const scene = new THREE.Scene();
-      scene.fog = new THREE.Fog(0x88ccee, 1, 10000);
+        // ----- Scene / Renderer -----
+        const scene = new THREE.Scene();
+        scene.fog = new THREE.Fog(0x87CEEB, 500, 10000);
 
-      const camera = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, 0.1, 20000);
-      const renderer = new THREE.WebGLRenderer({ antialias: true });
-      renderer.setSize(innerWidth, innerHeight);
-      renderer.setClearColor(0x88ccee);
-      document.body.appendChild(renderer.domElement);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setPixelRatio(window.devicePixelRatio ?? 1);
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
 
-      // --- Lights ---
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-      scene.add(ambientLight);
-      const sunLight = new THREE.DirectionalLight(0xffffff, 2.5);
-      scene.add(sunLight);
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 20000);
 
-      // --- Ferry ---
-      const ferryGeometry = new THREE.BoxGeometry(10, 3, 20);
-      const ferryMaterial = new THREE.MeshStandardMaterial({ color: 0xffe066 });
-      const ferry = new THREE.Mesh(ferryGeometry, ferryMaterial);
-      ferry.position.y = 2;
-      scene.add(ferry);
+        // ----- Lights -----
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+        scene.add(ambientLight);
+        const dirLight = new THREE.DirectionalLight(0xffffff, 2.2);
+        scene.add(dirLight);
 
-      // --- Water ---
-      const waterGeometry = new THREE.PlaneGeometry(10000, 10000);
-      const water = new Water(waterGeometry, {
-        textureWidth: 512,
-        textureHeight: 512,
-        waterNormals: new THREE.TextureLoader().load(
-          'https://threejs.org/examples/textures/waternormals.jpg',
-          tex => { tex.wrapS = tex.wrapT = THREE.RepeatWrapping; }
-        ),
-        sunDirection: new THREE.Vector3(),
-        sunColor: 0xffffff,
-        waterColor: 0x1ca3ec,
-        distortionScale: 3.5,
-        fog: scene.fog !== undefined
-      });
-      water.rotation.x = -Math.PI / 2;
-      scene.add(water);
+        // ----- Ferry (player) - CUSTOM DESIGN AND GEOMETRY (MODIFIED SHAPE) -----
+        const ferry = new THREE.Object3D();
 
-      // --- Sky ---
-      const sky = new Sky();
-      sky.scale.setScalar(10000);
-      scene.add(sky);
+        // Hull (Modified: Shorter, Wider, Taller for a more car-ferry look)
+        const hull = new THREE.Mesh(
+            new THREE.BoxGeometry(10, 4, 16), // WIDER (10), TALLER (4), SHORTER (16)
+            new THREE.MeshStandardMaterial({ color: 0xcc0000, metalness: 0.1, roughness: 0.5 })
+        );
+        hull.position.y = 2; // Position higher because the box is taller (half of 4 is 2)
+        ferry.add(hull);
 
-      const skyUniforms = sky.material.uniforms;
-      skyUniforms['turbidity'].value = 10;
-      skyUniforms['rayleigh'].value = 2;
-      skyUniforms['mieCoefficient'].value = 0.005;
-      skyUniforms['mieDirectionalG'].value = 0.8;
+        // Cabin (Modified: Larger and Higher)
+        const cabin = new THREE.Mesh(
+            new THREE.BoxGeometry(8, 5, 8), // WIDER (8), TALLER (5), LONGER (8)
+            new THREE.MeshStandardMaterial({ color: 0xeeeeee })
+        );
+        // Position higher (y=6: hull_height + cabin_half_height = 4+2.5) and more central (Z: 0)
+        cabin.position.set(0, 6.5, 0);
+        ferry.add(cabin);
 
-      const sun = new THREE.Vector3();
-      const sunParameters = { elevation: 10, azimuth: 180 };
+        // Tower / Mast (Cylinder - Moved slightly forward on the new hull)
+        const tower = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.5, 0.5, 12, 8), // Slightly taller mast
+            new THREE.MeshStandardMaterial({ color: 0x999999 })
+        );
+        // Moved slightly forward on the shorter hull
+        tower.position.set(0, 7, -5);
+        ferry.add(tower);
 
-      function updateSun() {
-        const phi = THREE.MathUtils.degToRad(90 - sunParameters.elevation);
-        const theta = THREE.MathUtils.degToRad(sunParameters.azimuth);
-        sun.setFromSphericalCoords(1, phi, theta);
-        sky.material.uniforms['sunPosition'].value.copy(sun);
-        water.material.uniforms['sunDirection'].value.copy(sun).normalize();
-        sunLight.position.copy(sun.clone().multiplyScalar(10000));
-      }
-      updateSun();
+        ferry.position.set(0, 0, 50); // start a bit "in" so camera has distance to work with
+        scene.add(ferry);
 
-      // --- Checkpoints ---
-      const checkpointPositions = [
-        new THREE.Vector3(0, 1.5, -150),
-        new THREE.Vector3(80, 1.5, -250),
-        new THREE.Vector3(-60, 1.5, -400)
-      ];
-
-      const checkpoints = checkpointPositions.map(pos => {
-        const geo = new THREE.TorusGeometry(8, 0.6, 16, 50);
-        const mat = new THREE.MeshStandardMaterial({
-          color: 0xffaa00,
-          emissive: 0xff7700,
-          emissiveIntensity: 1,
-          transparent: true,
-          opacity: 0.8
+        // ----- Water (shader) -----
+        const waterGeo = new THREE.PlaneGeometry(10000, 10000);
+        const water = new Water(waterGeo, {
+            textureWidth: 1024,
+            textureHeight: 1024,
+            waterNormals: new THREE.TextureLoader().load('https://threejs.org/examples/textures/waternormals.jpg', (tx) => {
+                tx.wrapS = tx.wrapT = THREE.RepeatWrapping;
+            }),
+            sunDirection: new THREE.Vector3(),
+            sunColor: 0xffffff,
+            waterColor: 0x1ca3ec,
+            distortionScale: 3.0,
+            fog: scene.fog !== undefined
         });
-        const mesh = new THREE.Mesh(geo, mat);
-        mesh.rotation.x = Math.PI / 2;
-        mesh.position.copy(pos);
-        scene.add(mesh);
-        return mesh;
-      });
+        water.rotation.x = -Math.PI / 2;
+        scene.add(water);
 
-      // --- Controls ---
-      const keys = {};
-      window.addEventListener('keydown', e => keys[e.key.toLowerCase()] = true);
-      window.addEventListener('keyup', e => keys[e.key.toLowerCase()] = false);
+        // ----- Sky -----
+        const sky = new Sky();
+        sky.scale.setScalar(10000);
+        scene.add(sky);
 
-      // --- Game constants ---
-      const PLAYER_SPEED = 0.3;
-      const ROTATION_SPEED = 0.03;
+        const skyUniforms = sky.material.uniforms;
+        skyUniforms['turbidity'].value = 10;
+        skyUniforms['rayleigh'].value = 2;
+        skyUniforms['mieCoefficient'].value = 0.005;
+        skyUniforms['mieDirectionalG'].value = 0.8;
 
-      const clock = new THREE.Clock();
+        const sunVec = new THREE.Vector3();
+        const sunParams = { elevation: 12, azimuth: 190 };
+        function updateSun() {
+            const phi = THREE.MathUtils.degToRad(90 - sunParams.elevation);
+            const theta = THREE.MathUtils.degToRad(sunParams.azimuth);
+            sunVec.setFromSphericalCoords(1, phi, theta);
+            sky.material.uniforms['sunPosition'].value.copy(sunVec);
+            water.material.uniforms['sunDirection'].value.copy(sunVec).normalize();
+            dirLight.position.copy(sunVec).multiplyScalar(10000);
+        }
+        updateSun();
 
-      // --- Camera follow (smooth) ---
-      const cameraOffset = new THREE.Vector3(0, 10, 25);
-      const cameraTarget = new THREE.Vector3();
-      const currentCameraPos = new THREE.Vector3();
+        // ******************************************************
+        // 🚢 CHECKPOINT AND QUESTION DATA 
+        // ******************************************************
 
-      function updateCameraSmooth() {
-        const desiredPos = cameraOffset.clone().applyQuaternion(ferry.quaternion).add(ferry.position);
-        currentCameraPos.lerp(desiredPos, 0.08); // inertia
-        camera.position.copy(currentCameraPos);
-        camera.lookAt(ferry.position.clone().add(new THREE.Vector3(0, 2, 0)));
-      }
+        // ----- Checkpoints (25) with questions -----
+        const QUESTIONS = [
+            { id: 1, q: "What color is the hull?", options: ["Red", "Blue", "Green"], correct: 0 },
+            { id: 2, q: "What's the right navigation side called?", options: ["Port", "Starboard", "Bow"], correct: 1 },
+            { id: 3, q: "What should you check before departure?", options: ["Weather", "Seats only", "Paint"], correct: 0 },
+            { id: 4, q: "What is 'Port' on a boat?", options: ["Right side", "Front", "Left side"], correct: 2 },
+            { id: 5, q: "What is the front of the boat called?", options: ["Stern", "Bow", "Amidships"], correct: 1 },
+            { id: 6, q: "What is a nautical mile?", options: ["1,609 meters", "1,852 meters", "2,000 meters"], correct: 1 },
+            { id: 7, q: "Which flag signals 'Man Overboard'?", options: ["Flag O", "Flag A", "Flag C"], correct: 0 },
+            { id: 8, q: "What light color is on the port side?", options: ["Red", "Green", "White"], correct: 0 },
+            { id: 9, q: "What does 'Mayday' indicate?", options: ["Routine call", "Urgent assistance", "Hazard nearby"], correct: 1 },
+            { id: 10, q: "What is the boat's main body called?", options: ["Mast", "Keel", "Hull"], correct: 2 },
+            { id: 11, q: "Which way do you pass a boat showing red and green lights equally?", options: ["Starboard to starboard", "Port to port", "Any way"], correct: 2 },
+            { id: 12, q: "How do you signal distress by sound?", options: ["Continuous horn", "Short blasts", "No signal"], correct: 0 },
+            { id: 13, q: "What is the primary danger of fog?", options: ["Low speed", "Reduced visibility", "Boat rocking"], correct: 1 },
+            { id: 14, q: "What is the best defense against sinking?", options: ["Life jackets", "Pumping water", "Stopping the leak"], correct: 2 },
+            { id: 15, q: "What is the line from the boat to the dock called?", options: ["Anchor chain", "Mooring line", "Towing cable"], correct: 1 },
+        ];
 
-      // --- Animation loop ---
-      function animate() {
-        requestAnimationFrame(animate);
-        const delta = clock.getDelta();
+        function getRandomQuestion(index) {
+            // Cycle through questions using modulo if index > list length
+            return QUESTIONS[index % QUESTIONS.length];
+        }
 
-        // Animate water
-        water.material.uniforms['time'].value += delta;
+        // checkpoint factory
+        const checkpointObjs = [];
+        const numCheckpoints = 25; // Set the desired number of checkpoints
+        const cpPositions = [];
 
-        // Animate checkpoints (rotation)
-        checkpoints.forEach(cp => {
-          cp.rotation.y += delta * 0.5;
+        // Define the area where checkpoints will be scattered
+        const SCATTER_RADIUS = 1500;
+
+        // Generate 25 positions in a randomized, scattered area (square grid)
+        for (let i = 0; i < numCheckpoints; i++) {
+            // Random X position between -SCATTER_RADIUS and SCATTER_RADIUS
+            const x = (Math.random() * 2 - 1) * SCATTER_RADIUS;
+            // Random Z position between -SCATTER_RADIUS and -50 (to keep them in front of the start position 0, 0, 50)
+            const z = -50 - (Math.random() * SCATTER_RADIUS);
+
+            cpPositions.push(new THREE.Vector3(x, 1.5, z));
+        }
+
+
+        cpPositions.forEach((pos, idx) => {
+            const geo = new THREE.TorusGeometry(8, 0.8, 16, 60);
+            const mat = new THREE.MeshStandardMaterial({
+                color: 0xffaa00,
+                emissive: 0xff6600,
+                emissiveIntensity: 0.8,
+                metalness: 0.1,
+                roughness: 0.6,
+                transparent: true,
+                opacity: 0.95
+            });
+            const mesh = new THREE.Mesh(geo, mat);
+            mesh.rotation.x = Math.PI / 2;
+            mesh.position.copy(pos);
+            scene.add(mesh);
+
+            checkpointObjs.push({
+                id: idx,
+                mesh,
+                baseY: pos.y,
+                question: getRandomQuestion(idx), // Cycle questions
+                reached: false
+            });
         });
 
-        // Movement
-        if (keys['w'] || keys['arrowup']) ferry.translateZ(-PLAYER_SPEED * 60 * delta);
-        if (keys['s'] || keys['arrowdown']) ferry.translateZ(PLAYER_SPEED * 60 * delta);
-        if (keys['a'] || keys['arrowleft']) ferry.rotation.y += ROTATION_SPEED * 60 * delta;
-        if (keys['d'] || keys['arrowright']) ferry.rotation.y -= ROTATION_SPEED * 60 * delta;
+        // ******************************************************
+        // 🚢 END CHECKPOINT AND QUESTION DATA
+        // ******************************************************
 
-        // Simple checkpoint collision detection
-        checkpoints.forEach((cp, i) => {
-          if (cp.visible && ferry.position.distanceTo(cp.position) < 10) {
-            cp.visible = false;
-            console.log(`Checkpoint ${i+1} reached!`);
-            // Future: trigger quiz question here
-          }
+
+        // ⚙️ MOVEMENT TUNING CONSTANTS - MODIFY THESE VALUES FOR SPEED AND INERTIA
+        const MAX_FORWARD_SPEED = 0.65;
+        const MAX_REVERSE_SPEED = 0.18;
+        const TURN_RATE = 0.015;
+
+        // NEW INERTIA CONSTANTS (ADJUSTED):
+        const ACCELERATION_RATE = 0.08; // Much higher for noticeable acceleration
+        const DECAY_RATE = 0.97;                // Slightly less decay for a smoother stop
+        // ⚙️ END MOVEMENT TUNING
+
+        // NEW MOVEMENT STATE VARIABLES
+        let moveForce = 0;
+        let rotForce = 0;
+
+
+        // ----- Game state / controls -----
+        let score = 0;
+        const scoreEl = document.getElementById('score');
+        let gamePaused = false;
+        const keys = {};
+        addEventListener('keydown', (e) => keys[e.key.toLowerCase()] = true);
+        addEventListener('keyup', (e) => keys[e.key.toLowerCase()] = false);
+
+        // ----- Modal handling -----
+        const modal = document.getElementById('question-modal');
+        const qText = document.getElementById('question-text');
+        const optA = document.getElementById('optA');
+        const optB = document.getElementById('optB');
+        const optC = document.getElementById('optC');
+
+        // store currently active checkpoint id in modal.dataset.cpId
+        function showQuestionModal(cp) {
+            modal.style.display = 'flex';
+            qText.textContent = cp.question.q;
+            optA.textContent = `A) ${cp.question.options[0]}`;
+            // CORRECTED LINE:
+            optB.textContent = `B) ${cp.question.options[1]}`;
+            optC.textContent = `C) ${cp.question.options[2]}`;
+            modal.dataset.correct = cp.question.correct;
+            modal.dataset.cpId = cp.id;
+            gamePaused = true;
+        }
+
+        window.checkAnswer = function (chosenIndex) {
+            const correct = parseInt(modal.dataset.correct, 10);
+            const cpId = parseInt(modal.dataset.cpId, 10);
+            modal.style.display = 'none';
+            gamePaused = false;
+
+            if (chosenIndex === correct) {
+                score++;
+                scoreEl.textContent = score;
+                alert('Correct! Full speed ahead! 🚢');
+            } else {
+                alert('Incorrect — study the charts! 🧭');
+            }
+
+            // Remove checkpoint from scene and mark reached
+            const cpIndex = checkpointObjs.findIndex(c => c.id === cpId);
+            if (cpIndex !== -1) {
+                const cp = checkpointObjs[cpIndex];
+                scene.remove(cp.mesh);
+                cp.reached = true;
+            }
+        };
+
+        // ----- Camera smoothing (fixed inertia) -----
+        const cameraOffset = new THREE.Vector3(0, 14, 34); // desired relative offset (height, behind)
+        const smoothing = 0.06; // lower = more inertia, higher = snappier
+
+        // initialize camera exactly at the desired place to avoid initial bias/drift:
+        (function initCamera() {
+            const tmp = cameraOffset.clone().applyQuaternion(ferry.quaternion).add(ferry.position);
+            camera.position.copy(tmp);
+            camera.lookAt(ferry.position);
+        })();
+
+        // ----- Animation loop -----
+        const clock = new THREE.Clock();
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const dt = clock.getDelta();
+            const t = clock.getElapsedTime();
+
+            // update water time (Water shader expects this)
+            if (water.material.uniforms.time) water.material.uniforms.time.value += dt;
+
+            // controls & movement with inertia
+            if (!gamePaused) {
+                let desiredMove = 0;
+                let desiredRot = 0;
+
+                // 1. Calculate desired movement based on keys
+                if (keys['w'] || keys['arrowup']) desiredMove = -MAX_FORWARD_SPEED;
+                if (keys['s'] || keys['arrowdown']) desiredMove = MAX_REVERSE_SPEED;
+                if (keys['a'] || keys['arrowleft']) desiredRot = TURN_RATE;
+                if (keys['d'] || keys['arrowright']) desiredRot = -TURN_RATE;
+
+                // 2. Apply Acceleration/Decay to Forces
+                if (desiredMove !== 0) {
+                    // Accelerate towards desired speed
+                    moveForce += (desiredMove - moveForce) * ACCELERATION_RATE;
+                } else {
+                    // Apply frame-rate independent decay (inertia)
+                    moveForce *= Math.pow(DECAY_RATE, dt * 60);
+                }
+
+                if (desiredRot !== 0) {
+                    // Accelerate rotation towards desired rate
+                    rotForce += (desiredRot - rotForce) * ACCELERATION_RATE;
+                } else {
+                    // Apply frame-rate independent decay (inertia) for rotation
+                    rotForce *= Math.pow(DECAY_RATE, dt * 60);
+                }
+
+                // Stop movement completely if force is very small (prevents micro-drift)
+                if (Math.abs(moveForce) < 0.001) moveForce = 0;
+                if (Math.abs(rotForce) < 0.001) rotForce = 0;
+
+                // 3. Apply Forces to Ship
+                ferry.rotation.y += rotForce;
+                if (moveForce !== 0) {
+                    ferry.translateZ(moveForce * dt * 60);
+                }
+
+                // small vertical bob for ferry to look alive
+                ferry.position.y = 0.6 + Math.sin(t * 3.5) * 0.08;
+            }
+
+            // rotate + bob checkpoints; simple visibility/collision
+            checkpointObjs.forEach((cp) => {
+                if (cp.reached) return;
+                cp.mesh.rotation.z += dt * 0.8;
+                cp.mesh.position.y = cp.baseY + Math.sin(t * 2 + cp.id) * 1.0;
+
+                // collision radius
+                const dist = ferry.position.distanceTo(cp.mesh.position);
+                if (!gamePaused && dist < 12) {
+                    showQuestionModal(cp);
+                }
+            });
+
+            // camera follow (stable approach: rotate offset by ferry quaternion, add to ferry pos, lerp)
+            const offset = cameraOffset.clone().applyQuaternion(ferry.quaternion);
+            const targetCameraPos = ferry.position.clone().add(offset);
+            camera.position.lerp(targetCameraPos, smoothing);
+            camera.lookAt(ferry.position.clone().add(new THREE.Vector3(0, 2.2, 0))); // look slightly above hull
+
+            // ensure directional light follows sky/sun behavior (optional subtle update)
+            // (we set sun earlier, but keep dirLight intensity / direction coherent)
+            dirLight.position.copy(new THREE.Vector3().setFromSphericalCoords(1, THREE.MathUtils.degToRad(90 - sunParams.elevation), THREE.MathUtils.degToRad(sunParams.azimuth)).multiplyScalar(10000));
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // ----- Resize -----
+        window.addEventListener('resize', () => {
+            camera.aspect = innerWidth / innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(innerWidth, innerHeight);
         });
 
-        updateCameraSmooth();
-        renderer.render(scene, camera);
-      }
-
-      animate();
-
-      // --- Handle resize ---
-      window.addEventListener('resize', () => {
-        camera.aspect = innerWidth / innerHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(innerWidth, innerHeight);
-      });
     </script>
-  </body>
+</body>
+
 </html>
