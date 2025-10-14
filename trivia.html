@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trivia Infantil Sostenible</title>
+  <style>
+    body {
+
+    }
+    h1 {
+      color: #ff4081;
+      margin-bottom: 10px;
+    }
+    #game-container {
+      background: white;
+      border-radius: 20px;
+      padding: 20px;
+      max-width: 700px;
+      margin: 0 auto;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    #question-area {
+      flex: 3;
+      padding-right: 20px;
+    }
+    #mascot {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #mascot img {
+      width: 180px;
+      transition: transform 0.3s;
+    }
+    #question {
+      font-size: 1.5em;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    .answer-btn {
+      display: block;
+      width: 100%;
+      margin: 10px 0;
+      padding: 12px;
+      border: none;
+      border-radius: 15px;
+      font-size: 1.1em;
+      background: #ffcc80;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    .answer-btn:hover {
+      background: #ffb74d;
+    }
+    #explanation {
+      margin-top: 15px;
+      font-size: 1em;
+      color: #555;
+      min-height: 40px;
+    }
+
+    button {
+       font-family: "Winky Sans", sans-serif;
+    }
+    #scoreboard {
+      font-size: 1.2em;
+      margin-top: 20px;
+      color: #4caf50;
+    }
+    #next-btn {
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 1.1em;
+      background: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      display: none;
+    }
+    #next-btn:hover {
+      background: #43a047;
+    }
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      top: 0;
+      left: 50%;
+      opacity: 0.7;
+      animation: fall 3s linear forwards;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(100vh) rotate(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>🌱 Trivia Infantil Sostenible 🌱</h1>
+  <div id="game-container">
+    <div id="question-area">
+      <div id="question"></div>
+      <div id="answers"></div>
+      <div id="explanation"></div>
+      <button id="next-btn">Siguiente Pregunta</button>
+      <div id="scoreboard">Puntaje: 0</div>
+    </div>
+    <div id="mascot">
+      <!-- Placeholder mascot -->
+      <img id="mascot-img" src="china-feliz.png" alt="Mascota">
+    </div>
+  </div>
+
+  <script>
+    // Preguntas en JSON con explicación
+    const questions = [
+      {
+        question: "¿Qué tipo de energía utiliza un barco 100% eléctrico?",
+        answers: ["Solar", "Eólica", "Eléctrica ⚡", "Gasolina"],
+        correct: 2,
+        explanation: "Un barco eléctrico funciona con energía eléctrica almacenada en baterías, sin contaminar el aire."
+      },
+      {
+        question: "¿Cuál de estos materiales se puede reciclar fácilmente?",
+        answers: ["Vidrio 🍶", "Plástico sucio", "Restos de comida", "Papel mojado"],
+        correct: 0,
+        explanation: "El vidrio es 100% reciclable y puede reutilizarse infinitas veces."
+      },
+      {
+        question: "¿Qué animal vive en los océanos y puede confundirse con bolsas de plástico?",
+        answers: ["Tortuga marina 🐢", "León", "Perro", "Gato"],
+        correct: 0,
+        explanation: "Las tortugas marinas confunden las bolsas de plástico con medusas y pueden enfermarse."
+      },
+      {
+        question: "¿Qué deberíamos hacer con la basura en la playa?",
+        answers: ["Tirarla al mar", "Enterrarla en la arena", "Llevarla a un cesto ♻️", "Dejarla en el suelo"],
+        correct: 2,
+        explanation: "La basura debe ir siempre a un cesto para mantener limpia la playa y proteger la vida marina."
+      },
+      {
+        question: "¿Qué transporte es más amigable con el medio ambiente?",
+        answers: ["Bicicleta 🚲", "Auto a nafta", "Moto", "Avión"],
+        correct: 0,
+        explanation: "La bicicleta no contamina y además es buena para la salud."
+      },
+      {
+        question: "¿Qué sucede si dejamos la luz encendida cuando no la necesitamos?",
+        answers: ["Ahorramos energía", "Gastamos energía innecesaria 💡", "Nada cambia", "Se apaga sola"],
+        correct: 1,
+        explanation: "Dejar luces prendidas sin usarlas significa desperdicio de energía."
+      },
+      {
+        question: "¿Cuál de estos es un recurso natural renovable?",
+        answers: ["Petróleo", "Carbón", "Sol ☀️", "Gas"],
+        correct: 2,
+        explanation: "El sol es una fuente de energía limpia e inagotable."
+      },
+      {
+        question: "¿Qué animal ayuda a las flores a reproducirse al llevar polen?",
+        answers: ["Abeja 🐝", "Perro", "Gato", "Ratón"],
+        correct: 0,
+        explanation: "Las abejas polinizan flores, lo que permite que crezcan más plantas y alimentos."
+      },
+      {
+        question: "¿Qué deberíamos usar para llevar nuestras compras y evitar bolsas plásticas?",
+        answers: ["Bolsas reutilizables 🛍️", "Bolsas descartables", "Papel aluminio", "Cajas de cartón siempre"],
+        correct: 0,
+        explanation: "Las bolsas reutilizables se pueden usar muchas veces y reducen el plástico."
+      },
+      {
+        question: "¿Qué color de contenedor usamos normalmente para el vidrio?",
+        answers: ["Azul", "Verde 🍏", "Amarillo", "Rojo"],
+        correct: 1,
+        explanation: "El contenedor verde se usa normalmente para reciclar vidrio."
+      }
+    ];
+
+    let shuffledQuestions = [];
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    const questionEl = document.getElementById('question');
+    const answersEl = document.getElementById('answers');
+    const explanationEl = document.getElementById('explanation');
+    const nextBtn = document.getElementById('next-btn');
+    const scoreboardEl = document.getElementById('scoreboard');
+    const mascotImg = document.getElementById('mascot-img');
+
+    function startGame() {
+      shuffledQuestions = questions.sort(() => Math.random() - 0.5);
+      currentQuestionIndex = 0;
+      score = 0;
+      scoreboardEl.textContent = `Puntaje: ${score}`;
+      showQuestion();
+    }
+
+    function showQuestion() {
+      resetState();
+      let currentQuestion = shuffledQuestions[currentQuestionIndex];
+      questionEl.textContent = currentQuestion.question;
+      currentQuestion.answers.forEach((answer, index) => {
+        const button = document.createElement('button');
+        button.textContent = answer;
+        button.classList.add('answer-btn');
+        button.addEventListener('click', () => selectAnswer(index));
+        answersEl.appendChild(button);
+      });
+    }
+
+    function resetState() {
+      nextBtn.style.display = 'none';
+      answersEl.innerHTML = '';
+      explanationEl.textContent = '';
+      mascotImg.src = "china-feliz.png";
+    }
+
+    function selectAnswer(index) {
+      const currentQuestion = shuffledQuestions[currentQuestionIndex];
+      const buttons = document.querySelectorAll('.answer-btn');
+      if (index === currentQuestion.correct) {
+        score++;
+        scoreboardEl.textContent = `Puntaje: ${score}`;
+        mascotImg.src = "images/china-feliz.png";
+        launchConfetti();
+      } else {
+        mascotImg.src = "images/china-triste.png";
+      }
+      explanationEl.textContent = currentQuestion.explanation;
+      buttons.forEach((btn, i) => {
+        if (i === currentQuestion.correct) {
+          btn.style.background = '#81c784'; // correcto = verde
+        } else if (i === index) {
+          btn.style.background = '#e57373'; // incorrecto = rojo
+        }
+        btn.disabled = true;
+      });
+      nextBtn.style.display = 'inline-block';
+    }
+
+    function launchConfetti() {
+      for (let i = 0; i < 20; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 3000);
+      }
+    }
+
+    nextBtn.addEventListener('click', () => {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < shuffledQuestions.length) {
+        showQuestion();
+      } else {
+        questionEl.textContent = `¡Juego terminado! 🎉 Tu puntaje fue ${score}/${shuffledQuestions.length}`;
+        answersEl.innerHTML = '';
+        explanationEl.textContent = '';
+        nextBtn.style.display = 'none';
+        mascotImg.src = "https://via.placeholder.com/120?text=🏆";
+      }
+    });
+
+    startGame();
+  </script>
+</body>
+</html>
