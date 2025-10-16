@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Netflix-Style Video Player</title>
+<style>
+  body {
+    margin: 0;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-family: "Open Sans", sans-serif;
+    color: #fff;
+  }
+
+  .video-container {
+    position: relative;
+    width: 90%;
+    max-width: 960px;
+    background: #000;
+    overflow: hidden;
+  }
+
+  video {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* --- TOP OVERLAY --- */
+  .top-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
+    padding: 12px 20px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 5;
+    pointer-events: none; /* Initially ignore clicks */
+  }
+
+  .video-container:hover .top-overlay,
+  .video-container.paused .top-overlay {
+    opacity: 1;
+    pointer-events: auto; /* Enable clicks when visible */
+  }
+
+  .top-overlay button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .top-overlay h2 {
+    font-size: 1.2rem;
+    margin: 0;
+    font-weight: 500;
+  }
+
+  /* --- CENTER CONTROLS --- */
+  .center-controls {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 4;
+  }
+
+  .video-container:hover .center-controls,
+  .video-container.paused .center-controls {
+    opacity: 1;
+  }
+
+  .center-controls button {
+    /* background: rgba(0, 0, 0, 0.6); */
+    background: none;
+    border: none;
+/*     color: white; */
+    font-size: 2rem;
+   /*  padding: 15px 20px; */
+   /*  border-radius: 50%; */
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+
+  .center-controls button:active {
+    transform: scale(0.9);
+  }
+
+  /* --- BOTTOM CONTROLS --- */
+  .controls {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.75);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    transition: opacity 0.4s;
+    z-index: 3;
+  }
+
+  .controls.hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .controls button {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .controls button#play svg {
+    width: 24px;
+    height: 24px;
+  } 
+  .controls button:active {
+    transform: scale(0.9);
+  }
+
+  .progress {
+    flex: 1;
+    height: 5px;
+    background: #333;
+    border-radius: 2px;
+    position: relative;
+    cursor: pointer;
+    margin: 0 8px;
+  }
+
+  .progress-filled {
+    height: 100%;
+    background: #fbff00;
+    width: 0%;
+    border-radius: 2px;
+  }
+
+  .volume-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  input[type="range"] {
+    width: 70px;
+    accent-color: #fbff00;
+    cursor: pointer;
+  }
+
+  .time {
+    font-size: 0.9rem;
+    color: #ccc;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 600px) {
+    .controls {
+      gap: 8px;
+      padding: 10px;
+    }
+
+    .center-controls {
+      gap: 40px;
+    }
+
+    .center-controls button {
+      font-size: 1.8rem;
+      padding: 10px 14px;
+    }
+
+    input[type="range"] {
+      width: 60px;
+    }
+
+    .time {
+      font-size: 0.8rem;
+    }
+
+    .top-overlay h2 {
+      font-size: 1rem;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="video-container" id="video-container">
+    <!-- Top overlay -->
+    <div class="top-overlay" id="topOverlay">
+      <button id="goBack">← Volver</button>
+      <h2 id="videoTitle">E1 - Bienvenida China</h2>
+    </div>
+
+    <video id="video" src="videos/e3-historias-de-familia.mp4"></video>
+
+    <!-- Center controls -->
+    <div class="center-controls">
+      <button id="backward"><svg width="65" height="65" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12H4C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C9.25022 4 6.82447 5.38734 5.38451 7.50024L8 7.5V9.5H2V3.5H4L3.99989 5.99918C5.82434 3.57075 8.72873 2 12 2ZM15.5 13.25C15.5 13.8023 15.0523 14.25 14.5 14.25C13.9477 14.25 13.5 13.8023 13.5 13.25V10.75C13.5 10.1977 13.9477 9.75 14.5 9.75C15.0523 9.75 15.5 10.1977 15.5 10.75V13.25ZM14.5 8.25C13.1193 8.25 12 9.36929 12 10.75V13.25C12 14.6307 13.1193 15.75 14.5 15.75C15.8807 15.75 17 14.6307 17 13.25V10.75C17 9.36929 15.8807 8.25 14.5 8.25ZM8.5 15.5V8.5H10V15.5H8.5Z" fill="white"/>
+</svg>
+</button>
+      <button id="centerPlay"><svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M8 18.3915V5.60846L18.2264 12L8 18.3915ZM6 3.80421V20.1957C6 20.9812 6.86395 21.46 7.53 21.0437L20.6432 12.848C21.2699 12.4563 21.2699 11.5436 20.6432 11.152L7.53 2.95621C6.86395 2.53993 6 3.01878 6 3.80421Z" fill="white"/>
+</svg>
+</button>
+      <button id="forward"><svg width="65" height="65" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.3228 2.77777C6.7999 2.77777 2.32275 7.25492 2.32275 12.7778C2.32275 18.3006 6.7999 22.7778 12.3228 22.7778C17.8456 22.7778 22.3228 18.3006 22.3228 12.7778H20.3228C20.3228 17.1961 16.7411 20.7778 12.3228 20.7778C7.90447 20.7778 4.32275 17.1961 4.32275 12.7778C4.32275 8.35949 7.90447 4.77777 12.3228 4.77777C15.0726 4.77777 17.4983 6.16511 18.9383 8.27801L16.3228 8.27777V9.52759C15.905 9.21374 15.3856 9.02777 14.8228 9.02777C13.4421 9.02777 12.3228 10.1471 12.3228 11.5278V14.0278C12.3228 15.4085 13.4421 16.5278 14.8228 16.5278C16.2035 16.5278 17.3228 15.4085 17.3228 14.0278V11.5278C17.3228 11.0724 17.2011 10.6455 16.9883 10.2778H22.3228V4.27777H20.3228L20.3229 6.77695C18.4985 4.34852 15.5941 2.77777 12.3228 2.77777ZM15.8228 11.5278V14.0278C15.8228 14.5801 15.3751 15.0278 14.8228 15.0278C14.2705 15.0278 13.8228 14.5801 13.8228 14.0278V11.5278C13.8228 10.9755 14.2705 10.5278 14.8228 10.5278C15.3751 10.5278 15.8228 10.9755 15.8228 11.5278ZM10.3228 9.27777H8.82275V16.2778H10.3228V9.27777Z" fill="white"/>
+</svg>
+</button>
+    </div>
+
+    <!-- Bottom control bar -->
+    <div class="controls" id="controls">
+      <button id="play">▶️</button>
+      <div class="progress" id="progress">
+        <div class="progress-filled" id="progress-filled"></div>
+      </div>
+
+      <div class="volume-container">
+        🔊 <input type="range" id="volume" min="0" max="1" step="0.05" value="1">
+      </div>
+
+      <div class="time" id="time">00:00 / 00:00</div>
+      <button id="fullscreen">⛶</button>
+    </div>
+  </div>
+
+<script>
+const video = document.getElementById("video");
+const playBtn = document.getElementById("play");
+const centerPlayBtn = document.getElementById("centerPlay");
+const forwardBtn = document.getElementById("forward");
+const backwardBtn = document.getElementById("backward");
+const progress = document.getElementById("progress");
+const progressFilled = document.getElementById("progress-filled");
+const timeDisplay = document.getElementById("time");
+const volumeSlider = document.getElementById("volume");
+const container = document.getElementById("video-container");
+const controls = document.getElementById("controls");
+const fullscreenBtn = document.getElementById("fullscreen");
+const goBackBtn = document.getElementById("goBack");
+
+let hideControlsTimeout;
+
+// --- Go Back ---
+goBackBtn.addEventListener("click", () => {
+  window.history.back();
+});
+
+// --- Play/Pause (shared by both play buttons) ---
+function togglePlay() {
+  if (video.paused) {
+    video.play();
+    container.classList.remove("paused");
+    playBtn.innerHTML = '<svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20ZM9 9H11V15H9V9ZM13 9H15V15H13V9Z" fill="white"/></svg>';
+    centerPlayBtn.innerHTML = '<svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22ZM12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20ZM9 9H11V15H9V9ZM13 9H15V15H13V9Z" fill="white"/></svg>';
+  } else {
+    video.pause();
+    container.classList.add("paused");
+    playBtn.innerHTML = '<svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 18.3915V5.60846L18.2264 12L8 18.3915ZM6 3.80421V20.1957C6 20.9812 6.86395 21.46 7.53 21.0437L20.6432 12.848C21.2699 12.4563 21.2699 11.5436 20.6432 11.152L7.53 2.95621C6.86395 2.53993 6 3.01878 6 3.80421Z" fill="white"/></svg>';
+    centerPlayBtn.innerHTML = '<svg width="80" height="80" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8 18.3915V5.60846L18.2264 12L8 18.3915ZM6 3.80421V20.1957C6 20.9812 6.86395 21.46 7.53 21.0437L20.6432 12.848C21.2699 12.4563 21.2699 11.5436 20.6432 11.152L7.53 2.95621C6.86395 2.53993 6 3.01878 6 3.80421Z" fill="white"/></svg>';
+  }
+}
+
+playBtn.addEventListener("click", togglePlay);
+centerPlayBtn.addEventListener("click", togglePlay);
+video.addEventListener("click", togglePlay);
+
+// --- Skip 10s ---
+forwardBtn.addEventListener("click", () => (video.currentTime += 10));
+backwardBtn.addEventListener("click", () => (video.currentTime -= 10));
+
+// --- Progress Bar ---
+video.addEventListener("timeupdate", () => {
+  const percent = (video.currentTime / video.duration) * 100;
+  progressFilled.style.width = percent + "%";
+  timeDisplay.textContent = formatTime(video.currentTime) + " / " + formatTime(video.duration);
+});
+
+progress.addEventListener("click", (e) => {
+  const newTime = (e.offsetX / progress.offsetWidth) * video.duration;
+  video.currentTime = newTime;
+});
+
+// --- Volume ---
+volumeSlider.addEventListener("input", () => {
+  video.volume = volumeSlider.value;
+});
+
+// --- Fullscreen ---
+fullscreenBtn.addEventListener("click", () => {
+  if (!document.fullscreenElement) {
+    container.requestFullscreen();
+  } else {
+    document.exitFullscreen();
+  }
+});
+
+// --- Auto-hide Controls ---
+container.addEventListener("mousemove", () => {
+  controls.classList.remove("hide");
+  clearTimeout(hideControlsTimeout);
+  hideControlsTimeout = setTimeout(() => {
+    if (!video.paused) controls.classList.add("hide");
+  }, 2500);
+});
+
+// --- Time Formatting ---
+function formatTime(sec) {
+  if (isNaN(sec)) return "00:00";
+  const m = Math.floor(sec / 60).toString().padStart(2, "0");
+  const s = Math.floor(sec % 60).toString().padStart(2, "0");
+  return `${m}:${s}`;
+}
+
+// --- Keyboard Shortcuts ---
+document.addEventListener("keydown", (e) => {
+  if (e.code === "Space") {
+    e.preventDefault();
+    togglePlay();
+  } else if (e.code === "ArrowRight") {
+    video.currentTime += 10;
+  } else if (e.code === "ArrowLeft") {
+    video.currentTime -= 10;
+  } else if (e.code === "KeyF") {
+    fullscreenBtn.click();
+  }
+});
+</script>
+</body>
+</html>
