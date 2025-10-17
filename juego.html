@@ -1,467 +1,343 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-   <meta charset="utf-8" />
-   <title>Ferry Quiz Game — Custom Ship Design</title>
-   <meta name="viewport" content="width=device-width,initial-scale=1" />
-   <style>
-      html,body { height:100%; margin:0; background:#000; overflow:hidden; font-family:Arial,Helvetica,sans-serif; }
-      #hud {
-         position: absolute; left: 16px; top: 16px; z-index: 20;
-         background: rgba(0,0,0,0.45); color: #fff; padding: 10px 14px; border-radius: 8px;
-      }
-      #hud b { display:block; font-size:14px; }
-      #question-modal {
-         position: fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:100;
-         background: rgba(0,0,0,0.75);
-      }
-      #question-box {
-         width: 420px; background:white; color:#111; border-radius:10px; padding:24px; box-shadow:0 10px 30px rgba(0,0,0,0.6);
-         text-align:center;
-      }
-      .option-btn {
-         display:block; width:100%; padding:10px 12px; margin-top:10px; border-radius:6px; border:none; cursor:pointer;
-         background:#007bff; color:white; font-weight:600;
-      }
-      .option-btn:hover { filter:brightness(.9); }
-      #instructions { position:absolute; right:16px; top:16px; z-index:20; background:rgba(0,0,0,0.45); color:#fff; padding:10px 14px; border-radius:8px; text-align:right; }
-   </style>
-
-   <script type="importmap">
-      {
-         "imports": {
-            "three": "https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.module.js",
-            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.149.0/examples/jsm/"
+  <head>
+    <meta charset="utf-8" />
+    <title>Ferry Quiz Game — Checkpoint Icons</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <style>
+         html,body { height:100%; margin:0; background:#000; overflow:hidden; font-family:Arial,Helvetica,sans-serif; }
+         #hud {
+              position: absolute; left: 16px; top: 16px; z-index: 20;
+              background: rgba(0,0,0,0.45); color: #fff; padding: 10px 14px; border-radius: 8px;
          }
-      }
-   </script>
-</head>
-<body>
-   <div id="hud">
+         #hud b { display:block; font-size:14px; }
+         #question-modal {
+              position: fixed; inset:0; display:none; align-items:center; justify-content:center; z-index:100;
+              background: rgba(0,0,0,0.75);
+         }
+         #question-box {
+              width: 420px; background:white; color:#111; border-radius:10px; padding:24px; box-shadow:0 10px 30px rgba(0,0,0,0.6);
+              text-align:center;
+         }
+         .option-btn {
+              display:block; width:100%; padding:10px 12px; margin-top:10px; border-radius:6px; border:none; cursor:pointer;
+              background:#007bff; color:white; font-weight:600;
+         }
+         .option-btn:hover { filter:brightness(.9); }
+         #instructions { position:absolute; right:16px; top:16px; z-index:20; background:rgba(0,0,0,0.45); color:#fff; padding:10px 14px; border-radius:8px; text-align:right; }
+     </style>
+
+    <script type="importmap">
+         {
+              "imports": {
+                  "three": "https://cdn.jsdelivr.net/npm/three@0.149.0/build/three.module.js",
+                  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.149.0/examples/jsm/"
+              }
+         }
+     </script>
+  </head>
+  <body>
+    <div id="hud">
       <div><b>Ferry Navigator</b></div>
       <div>Score: <span id="score">0</span></div>
-   </div>
-   <div id="instructions">
+    </div>
+    <div id="instructions">
       <div><b>Controls</b></div>
       W / ↑ : Forward<br>
       S / ↓ : Back<br>
       A / ← : Turn left<br>
       D / → : Turn right
-   </div>
+    </div>
 
-      <div id="question-modal">
+    <div id="question-modal">
       <div id="question-box">
-         <h2 id="modal-title">Checkpoint!</h2>
-         <p id="question-text" style="min-height:48px;">Question text</p>
-         <button class="option-btn" id="optA" onclick="checkAnswer(0)">A</button>
-         <button class="option-btn" id="optB" onclick="checkAnswer(1)">B</button>
-         <button class="option-btn" id="optC" onclick="checkAnswer(2)">C</button>
+        <h2 id="modal-title">Checkpoint!</h2>
+        <p id="question-text" style="min-height:48px;">Question text</p>
+        <button class="option-btn" id="optA" onclick="checkAnswer(0)">A</button>
+        <button class="option-btn" id="optB" onclick="checkAnswer(1)">B</button>
+        <button class="option-btn" id="optC" onclick="checkAnswer(2)">C</button>
       </div>
-   </div>
+    </div>
 
-   <script type="module">
-      import * as THREE from 'three';
-      import { Water } from 'three/addons/objects/Water.js';
-      import { Sky } from 'three/addons/objects/Sky.js';
+    <script type="module">
+         import * as THREE from 'three';
+         import { Water } from 'three/addons/objects/Water.js';
+         import { Sky } from 'three/addons/objects/Sky.js';
 
-      // ----- Scene / Renderer -----
-      const scene = new THREE.Scene();
-      scene.fog = new THREE.Fog(0x87CEEB, 500, 10000);
+         // ----- Scene / Renderer -----
+         const scene = new THREE.Scene();
+         scene.fog = new THREE.Fog(0x87CEEB, 500, 10000);
 
-      const renderer = new THREE.WebGLRenderer({ antialias: true });
-      renderer.setPixelRatio(window.devicePixelRatio ?? 1);
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      document.body.appendChild(renderer.domElement);
+         const renderer = new THREE.WebGLRenderer({ antialias: true });
+         renderer.setPixelRatio(window.devicePixelRatio ?? 1);
+         renderer.setSize(window.innerWidth, window.innerHeight);
+         document.body.appendChild(renderer.domElement);
 
-      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 20000);
+         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 20000);
 
-      // ----- Lights -----
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
-      scene.add(ambientLight);
-      const dirLight = new THREE.DirectionalLight(0xffffff, 2.2);
-      scene.add(dirLight);
+         // ----- Lights -----
+         const ambientLight = new THREE.AmbientLight(0xffffff, 0.8);
+         scene.add(ambientLight);
+         const dirLight = new THREE.DirectionalLight(0xffffff, 2.2);
+         scene.add(dirLight);
 
       // ----- Ferry (player) - Custom Ship Design -----
       const ferry = new THREE.Object3D();
       
-      // Main Hull Dimensions
-      const shipLength = 70; // Z-axis
-      const shipWidth = 25;  // X-axis
-      const shipHeight = 15; // Y-axis
+      const shipLength = 70; const shipWidth = 25; const shipHeight = 15;
+      const superstructureWidth = 10; const superstructureHeight = 8; const superstructureLength = 25;
+      const antennaRadius = 0.5; const antennaHeight = 10;
+      const radarRadius = 2; const radarHeight = 0.2;
 
-      // Superstructure Dimensions (the part on top of the deck)
-      const superstructureWidth = 10; // X-axis - Smaller
-      const superstructureHeight = 8; // Y-axis - Shorter
-      const superstructureLength = 25; // Z-axis - Shorter
-
-      // Antenna Dimensions
-      const antennaRadius = 0.5;
-      const antennaHeight = 10;
-
-      // Radar Dimensions
-      const radarRadius = 2;
-      const radarHeight = 0.2;
-
-
-      // Create the main hull box shape
       const shipGeometry = new THREE.BoxGeometry(shipWidth, shipHeight, shipLength);
-
-      // Create the superstructure box shape
       const superstructureGeometry = new THREE.BoxGeometry(superstructureWidth, superstructureHeight, superstructureLength);
-
-      // Create antenna geometry (cylinder)
       const antennaGeometry = new THREE.CylinderGeometry(antennaRadius, antennaRadius, antennaHeight, 16);
       const antennaMaterial = new THREE.MeshStandardMaterial({ color: 0x555555, metalness: 0.8, roughness: 0.4 });
-
-      // Create radar dish geometry (thin cylinder)
       const radarGeometry = new THREE.CylinderGeometry(radarRadius, radarRadius, radarHeight, 32);
       const radarMaterial = new THREE.MeshStandardMaterial({ color: 0x333333, metalness: 0.9, roughness: 0.3 });
 
-
-      // Load your PNG images
       const textureLoader = new THREE.TextureLoader();
-      
-      // Main Hull Textures
-      const rightSideTexture = textureLoader.load('images/left.png'); // <-- PASTE YOUR RIGHT SIDE IMAGE URL HERE
-      const leftSideTexture = textureLoader.load('images/right.png');  // <-- PASTE YOUR LEFT SIDE IMAGE URL HERE
-      const backTexture = textureLoader.load('images/back.png');      // <-- PASTE YOUR BACK IMAGE URL HERE
-      const mainTopTexture = textureLoader.load('images/top.png');   // <-- PASTE YOUR MAIN DECK TOP IMAGE URL HERE
+      const rightSideTexture = textureLoader.load('images/left.png'); const leftSideTexture = textureLoader.load('images/right.png');
+      const backTexture = textureLoader.load('images/back.png'); const mainTopTexture = textureLoader.load('images/top.png');
+      const superstructureSideTexture = textureLoader.load('https://i.imgur.com/gK2J37N.png'); const superstructureTopTexture = textureLoader.load('https://i.imgur.com/gK2J37N.png');
+      const superstructureBackTexture = textureLoader.load('https://i.imgur.com/gK2J37N.png');
 
-      // Superstructure Textures
-      const superstructureSideTexture = textureLoader.load('https://i.imgur.com/gK2J37N.png'); // <-- PASTE YOUR SUPERSTRUCTURE SIDE IMAGE URL HERE
-      const superstructureTopTexture = textureLoader.load('https://i.imgur.com/gK2J37N.png');  // <-- PASTE YOUR SUPERSTRUCTURE TOP IMAGE URL HERE
-      const superstructureBackTexture = textureLoader.load('https://i.imgur.com/gK2J37N.png'); // <-- PASTE YOUR SUPERSTRUCTURE BACK IMAGE URL HERE
-
-      // A helper function to create a textured material
       const createTextureMaterial = (texture) => {
           texture.encoding = THREE.sRGBEncoding;
-          return new THREE.MeshStandardMaterial({
-              map: texture,
-              transparent: true,
-              alphaTest: 0.1,
-              metalness: 0.1,
-              roughness: 0.7
-          });
+          return new THREE.MeshStandardMaterial({ map: texture, transparent: true, alphaTest: 0.1, metalness: 0.1, roughness: 0.7 });
       };
 
-      // Create an invisible material for the faces we want to hide
       const invisibleMaterial = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0 });
-      
-      // Create materials for the main hull's visible faces
-      const rightSideMaterial = createTextureMaterial(rightSideTexture);
-      const leftSideMaterial = createTextureMaterial(leftSideTexture);
-      const backMaterial = createTextureMaterial(backTexture);
-      const mainTopMaterial = createTextureMaterial(mainTopTexture);
+      const rightSideMaterial = createTextureMaterial(rightSideTexture); const leftSideMaterial = createTextureMaterial(leftSideTexture);
+      const backMaterial = createTextureMaterial(backTexture); const mainTopMaterial = createTextureMaterial(mainTopTexture);
 
-      // The order for a BoxGeometry is: [Right, Left, Top, Bottom, Back, Front]
-      const shipMaterials = [
-          rightSideMaterial,    // Right side (+X)
-          leftSideMaterial,     // Left side (-X)
-          mainTopMaterial,      // Top (+Y) - Main deck
-          invisibleMaterial,    // Bottom (-Y)
-          backMaterial,         // Back (+Z) - The stern of the main hull
-          invisibleMaterial     // Front (-Z) - The bow of the main hull
-      ];
-
+      const shipMaterials = [ rightSideMaterial, leftSideMaterial, mainTopMaterial, invisibleMaterial, backMaterial, invisibleMaterial ];
       const shipMesh = new THREE.Mesh(shipGeometry, shipMaterials);
-      shipMesh.position.y = shipHeight / 2 - 2; // Adjust position to sit on the water
-      ferry.add(shipMesh);
+      shipMesh.position.y = shipHeight / 2 - 2; ferry.add(shipMesh);
 
-      // Create materials for the superstructure's visible faces
-      const superstructureSideMaterial = createTextureMaterial(superstructureSideTexture);
-      const superstructureTopMaterial = createTextureMaterial(superstructureTopTexture);
-      const superstructureBackMaterial = createTextureMaterial(superstructureBackTexture);
-
-      const superstructureMaterials = [
-          superstructureSideMaterial,   // Right side (+X)
-          superstructureSideMaterial,   // Left side (-X)
-          superstructureTopMaterial,    // Top (+Y)
-          invisibleMaterial,            // Bottom (-Y)
-          superstructureBackMaterial,   // Back (+Z)
-          invisibleMaterial             // Front (-Z)
-      ];
-
+      const superstructureSideMaterial = createTextureMaterial(superstructureSideTexture); const superstructureTopMaterial = createTextureMaterial(superstructureTopTexture); const superstructureBackMaterial = createTextureMaterial(superstructureBackTexture);
+      const superstructureMaterials = [ superstructureSideMaterial, superstructureSideMaterial, superstructureTopMaterial, invisibleMaterial, superstructureBackMaterial, invisibleMaterial ];
       const superstructureMesh = new THREE.Mesh(superstructureGeometry, superstructureMaterials);
-      // Position on top of the main hull, centered along Z
-      superstructureMesh.position.y = shipHeight + superstructureHeight / 2 - 2;
-      superstructureMesh.position.z = - (shipLength / 2 - superstructureLength / 2 - 5); // Shift slightly forward
-      ferry.add(superstructureMesh);
+      superstructureMesh.position.y = shipHeight + superstructureHeight / 2 - 2; superstructureMesh.position.z = - (shipLength / 2 - superstructureLength / 2 - 5); ferry.add(superstructureMesh);
 
-      // Create antenna mesh
       const antennaMesh = new THREE.Mesh(antennaGeometry, antennaMaterial);
-      // Position on top of the superstructure
-      antennaMesh.position.y = shipHeight + superstructureHeight + (antennaHeight / 2) - 2;
-      antennaMesh.position.z = superstructureMesh.position.z + superstructureLength / 4; // Towards the front of the superstructure
-      ferry.add(antennaMesh);
+      antennaMesh.position.y = shipHeight + superstructureHeight + (antennaHeight / 2) - 2; antennaMesh.position.z = superstructureMesh.position.z + superstructureLength / 4; ferry.add(antennaMesh);
 
-      // Create radar mesh
       const radarMesh = new THREE.Mesh(radarGeometry, radarMaterial);
-      // Position on top of the antenna
-      radarMesh.position.y = antennaMesh.position.y + (antennaHeight / 2) + (radarHeight / 2);
-      radarMesh.position.z = antennaMesh.position.z;
-      ferry.add(radarMesh);
+      radarMesh.position.y = antennaMesh.position.y + (antennaHeight / 2) + (radarHeight / 2); radarMesh.position.z = antennaMesh.position.z; ferry.add(radarMesh);
 
-      ferry.position.set(0, 0, 50);
-      scene.add(ferry);
+         ferry.position.set(0, 0, 50); scene.add(ferry);
 
-      // ----- Water (shader) -----
-      const waterGeo = new THREE.PlaneGeometry(10000, 10000);
-      const water = new Water(waterGeo, {
-         textureWidth: 1024,
-         textureHeight: 1024,
-         waterNormals: new THREE.TextureLoader().load('https://threejs.org/examples/textures/waternormals.jpg', (tx) => {
-            tx.wrapS = tx.wrapT = THREE.RepeatWrapping;
-         }),
-         sunDirection: new THREE.Vector3(),
-         sunColor: 0xffffff,
-         waterColor: 0x1ca3ec,
-         distortionScale: 3.0,
-         fog: scene.fog !== undefined
-      });
-      water.rotation.x = -Math.PI / 2;
-      scene.add(water);
+         // ----- Water (shader) -----
+         const waterGeo = new THREE.PlaneGeometry(10000, 10000);
+         const water = new Water(waterGeo, {
+              textureWidth: 1024, textureHeight: 1024,
+              waterNormals: new THREE.TextureLoader().load('https://threejs.org/examples/textures/waternormals.jpg', (tx) => { tx.wrapS = tx.wrapT = THREE.RepeatWrapping; }),
+              sunDirection: new THREE.Vector3(), sunColor: 0xffffff, waterColor: 0x1ca3ec, distortionScale: 3.0, fog: scene.fog !== undefined
+         });
+         water.rotation.x = -Math.PI / 2; scene.add(water);
 
-      // ----- Sky -----
-      const sky = new Sky();
-      sky.scale.setScalar(10000);
-      scene.add(sky);
+         // ----- Sky -----
+         const sky = new Sky();
+         sky.scale.setScalar(10000); scene.add(sky);
+         const skyUniforms = sky.material.uniforms;
+         skyUniforms['turbidity'].value = 10; skyUniforms['rayleigh'].value = 2; skyUniforms['mieCoefficient'].value = 0.005; skyUniforms['mieDirectionalG'].value = 0.8;
+         const sunVec = new THREE.Vector3(); const sunParams = { elevation: 12, azimuth: 190 };
+         function updateSun() {
+              const phi = THREE.MathUtils.degToRad(90 - sunParams.elevation); const theta = THREE.MathUtils.degToRad(sunParams.azimuth);
+              sunVec.setFromSphericalCoords(1, phi, theta);
+              sky.material.uniforms['sunPosition'].value.copy(sunVec); water.material.uniforms['sunDirection'].value.copy(sunVec).normalize(); dirLight.position.copy(sunVec).multiplyScalar(10000);
+         }
+         updateSun();
 
-      const skyUniforms = sky.material.uniforms;
-      skyUniforms['turbidity'].value = 10;
-      skyUniforms['rayleigh'].value = 2;
-      skyUniforms['mieCoefficient'].value = 0.005;
-      skyUniforms['mieDirectionalG'].value = 0.8;
+         // ----- Checkpoints and Questions -----
+         const CATEGORY_ICONS = { // <-- ADD YOUR CATEGORIES AND ICON URLS HERE
+        'Navigation': 'images/category-buque.png', // Compass icon
+        'Safety': 'images/category-electric.png',     // Lifebuoy icon
+        'General': 'images/category-ambiente.png',    // Anchor icon
+      };
 
-      const sunVec = new THREE.Vector3();
-      const sunParams = { elevation: 12, azimuth: 190 };
-      function updateSun() {
-         const phi = THREE.MathUtils.degToRad(90 - sunParams.elevation);
-         const theta = THREE.MathUtils.degToRad(sunParams.azimuth);
-         sunVec.setFromSphericalCoords(1, phi, theta);
-         sky.material.uniforms['sunPosition'].value.copy(sunVec);
-         water.material.uniforms['sunDirection'].value.copy(sunVec).normalize();
-         dirLight.position.copy(sunVec).multiplyScalar(10000);
-      }
-      updateSun();
+         const QUESTIONS = [
+              { id: 1, q: "What is the boat's main body called?", options: ["Mast", "Keel", "Hull"], correct: 2, category: 'General' },
+              { id: 2, q: "What's the right navigation side called?", options: ["Port", "Starboard", "Bow"], correct: 1, category: 'Navigation' },
+              { id: 3, q: "What should you check before departure?", options: ["Weather", "Seats only", "Paint"], correct: 0, category: 'Safety' },
+              { id: 4, q: "What is 'Port' on a boat?", options: ["Right side", "Front", "Left side"], correct: 2, category: 'Navigation' },
+              { id: 5, q: "Which flag signals 'Man Overboard'?", options: ["Flag O", "Flag A", "Flag C"], correct: 0, category: 'Safety' },
+              { id: 6, q: "What is a nautical mile?", options: ["1,609 meters", "1,852 meters", "2,000 meters"], correct: 1, category: 'General' },
+         ];
 
-      // ----- Checkpoints and Questions -----
-      const QUESTIONS = [
-         { id: 1, q: "What color is the hull?", options: ["White", "Blue", "Green"], correct: 0 },
-         { id: 2, q: "What's the right navigation side called?", options: ["Port", "Starboard", "Bow"], correct: 1 },
-         { id: 3, q: "What should you check before departure?", options: ["Weather", "Seats only", "Paint"], correct: 0 },
-         { id: 4, q: "What is 'Port' on a boat?", options: ["Right side", "Front", "Left side"], correct: 2 },
-         { id: 5, q: "What is the front of the boat called?", options: ["Stern", "Bow", "Amidships"], correct: 1 },
-         { id: 6, q: "What is a nautical mile?", options: ["1,609 meters", "1,852 meters", "2,000 meters"], correct: 1 },
-         { id: 7, q: "Which flag signals 'Man Overboard'?", options: ["Flag O", "Flag A", "Flag C"], correct: 0 },
-      ];
+         function getRandomQuestion(index) { return QUESTIONS[index % QUESTIONS.length]; }
 
-      function getRandomQuestion(index) {
-         return QUESTIONS[index % QUESTIONS.length];
-      }
+         const checkpointObjs = []; const numCheckpoints = 25; const cpPositions = []; const SCATTER_RADIUS = 1500;  
+         for (let i = 0; i < numCheckpoints; i++) {
+                  const x = (Math.random() * 2 - 1) * SCATTER_RADIUS;   const z = -50 - (Math.random() * SCATTER_RADIUS);  
+                  cpPositions.push(new THREE.Vector3(x, 1.5, z));
+         }
 
-      const checkpointObjs = [];
-      const numCheckpoints = 25;
-      const cpPositions = [];
-      const SCATTER_RADIUS = 1500; 
+         cpPositions.forEach((pos, idx) => {
+              const geo = new THREE.TorusGeometry(8, 0.8, 16, 60);
+        const mat = new THREE.MeshStandardMaterial({ color: 0xffaa00, emissive: 0xff6600, emissiveIntensity: 0.8, metalness: 0.1, roughness: 0.6, transparent: true, opacity: 0.95 });
+              const mesh = new THREE.Mesh(geo, mat);
+        mesh.rotation.x = Math.PI / 2; mesh.position.copy(pos); scene.add(mesh);
+        
+        const question = getRandomQuestion(idx);
+        let iconSprite = null;
 
-      for (let i = 0; i < numCheckpoints; i++) {
-            const x = (Math.random() * 2 - 1) * SCATTER_RADIUS; 
-            const z = -50 - (Math.random() * SCATTER_RADIUS); 
-            cpPositions.push(new THREE.Vector3(x, 1.5, z));
-      }
+        if (question.category && CATEGORY_ICONS[question.category]) {
+            const iconUrl = CATEGORY_ICONS[question.category];
+            const iconTexture = new THREE.TextureLoader().load(iconUrl);
+            const iconMaterial = new THREE.SpriteMaterial({ map: iconTexture, transparent: true });
+            iconSprite = new THREE.Sprite(iconMaterial);
+            iconSprite.scale.set(12, 12, 1);
+            iconSprite.position.copy(mesh.position).add(new THREE.Vector3(0, 22, 0)); // Float above
+            scene.add(iconSprite);
+        }
 
-      cpPositions.forEach((pos, idx) => {
-         const geo = new THREE.TorusGeometry(8, 0.8, 16, 60);
-         const mat = new THREE.MeshStandardMaterial({ color: 0xffaa00, emissive: 0xff6600, emissiveIntensity: 0.8, metalness: 0.1, roughness: 0.6, transparent: true, opacity: 0.95 });
-         const mesh = new THREE.Mesh(geo, mat);
-         mesh.rotation.x = Math.PI / 2;
-         mesh.position.copy(pos);
-         scene.add(mesh);
-         checkpointObjs.push({ id: idx, mesh, baseY: pos.y, question: getRandomQuestion(idx), reached: false });
-      });
+              checkpointObjs.push({ id: idx, mesh, icon: iconSprite, baseY: pos.y, question: question, reached: false });
+         });
 
     // ----- Movement Tuning -----
-    const MAX_FORWARD_SPEED = 0.65; 
-    const MAX_REVERSE_SPEED = 0.18; 
-    const TURN_RATE = 0.015; 
-    const ACCELERATION_RATE = 0.08;
-    const DECAY_RATE = 0.97;
-    let moveForce = 0;
-    let rotForce = 0;
+    const MAX_FORWARD_SPEED = 0.65;  const MAX_REVERSE_SPEED = 0.18;  const TURN_RATE = 0.015;  
+    const ACCELERATION_RATE = 0.08; const DECAY_RATE = 0.97;
+    let moveForce = 0; let rotForce = 0;
 
-      // ----- Game state / controls -----
-      let score = 0;
-      const scoreEl = document.getElementById('score');
-      let gamePaused = false;
-      const keys = {};
-      addEventListener('keydown', (e) => keys[e.key.toLowerCase()] = true);
-      addEventListener('keyup', (e) => keys[e.key.toLowerCase()] = false);
+         // ----- Game state / controls -----
+         let score = 0; const scoreEl = document.getElementById('score'); let gamePaused = false;
+         const keys = {};
+         addEventListener('keydown', (e) => keys[e.key.toLowerCase()] = true); addEventListener('keyup', (e) => keys[e.key.toLowerCase()] = false);
 
-      // ----- Modal handling -----
-      const modal = document.getElementById('question-modal');
-      const qText = document.getElementById('question-text');
-      const optA = document.getElementById('optA');
-      const optB = document.getElementById('optB');
-      const optC = document.getElementById('optC');
-
+         // ----- Modal handling -----
+         const modal = document.getElementById('question-modal'); const qText = document.getElementById('question-text');
+         const optA = document.getElementById('optA'); const optB = document.getElementById('optB'); const optC = document.getElementById('optC');
     function showQuestionModal(cp) {
-        modal.style.display = 'flex';
-        qText.textContent = cp.question.q;
-        optA.textContent = `A) ${cp.question.options[0]}`;
-        optB.textContent = `B) ${cp.question.options[1]}`; 
-        optC.textContent = `C) ${cp.question.options[2]}`;
-        modal.dataset.correct = cp.question.correct;
-        modal.dataset.cpId = cp.id;
-        gamePaused = true;
+          modal.style.display = 'flex'; qText.textContent = cp.question.q; optA.textContent = `A) ${cp.question.options[0]}`; optB.textContent = `B) ${cp.question.options[1]}`;  optC.textContent = `C) ${cp.question.options[2]}`;
+          modal.dataset.correct = cp.question.correct; modal.dataset.cpId = cp.id; gamePaused = true;
     }
-
-      window.checkAnswer = function(chosenIndex) {
-         const correct = parseInt(modal.dataset.correct, 10);
-         const cpId = parseInt(modal.dataset.cpId, 10);
-         modal.style.display = 'none';
-         gamePaused = false;
-         if (chosenIndex === correct) {
-            score++;
-            scoreEl.textContent = score;
-            alert('Correct! Full speed ahead! 🚢');
-         } else {
-            alert('Incorrect — study the charts! 🧭');
-         }
-         const cpIndex = checkpointObjs.findIndex(c => c.id === cpId);
-         if (cpIndex !== -1) {
+         window.checkAnswer = function(chosenIndex) {
+              const correct = parseInt(modal.dataset.correct, 10); const cpId = parseInt(modal.dataset.cpId, 10);
+              modal.style.display = 'none'; gamePaused = false;
+              if (chosenIndex === correct) { score++; scoreEl.textContent = score; alert('Correct! Full speed ahead! 🚢'); } else { alert('Incorrect — study the charts! 🧭'); }
+              const cpIndex = checkpointObjs.findIndex(c => c.id === cpId);
+              if (cpIndex !== -1) {
             const cp = checkpointObjs[cpIndex];
             scene.remove(cp.mesh);
+            if (cp.icon) scene.remove(cp.icon); // <-- REMOVE THE ICON
             cp.reached = true;
+        }
+         };
+
+         // ----- Camera smoothing -----
+         const cameraOffset = new THREE.Vector3(0, 32, 75); const smoothing = 0.06;
+         (function initCamera() {
+              const tmp = cameraOffset.clone().applyQuaternion(ferry.quaternion).add(ferry.position); camera.position.copy(tmp); camera.lookAt(ferry.position);
+         })();
+
+         // ----- Wave/Wash Effect Setup -----
+         const MAX_PARTICLES = 400; const allParticles = []; const particleLifetime = 1.8;
+      const WAKE_MIN_EMIT = 10; const WAKE_MAX_EMIT = 80; const WAKE_MIN_SPREAD = 1.5; const WAKE_MAX_SPREAD = 4.0;
+      const BOW_MIN_EMIT = 10; const BOW_MAX_EMIT = 100;
+         const particleGeometry = new THREE.SphereGeometry(0.3, 8, 8);
+         const particleMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.7 });
+         for (let i = 0; i < MAX_PARTICLES; i++) {
+              const p = new THREE.Mesh(particleGeometry, particleMaterial.clone());
+              p.visible = false; p.userData.life = 0; p.userData.speed = new THREE.Vector3(); p.userData.gravity = 0;
+              scene.add(p); allParticles.push(p);
          }
-      };
+         let particleIndex = 0; let sternEmitTimer = 0; let bowEmitTimer = 0;
 
-      // ----- Camera smoothing -----
-      const cameraOffset = new THREE.Vector3(0, 28, 65);
-      const smoothing = 0.06;
-      (function initCamera() {
-         const tmp = cameraOffset.clone().applyQuaternion(ferry.quaternion).add(ferry.position);
-         camera.position.copy(tmp);
-         camera.lookAt(ferry.position);
-      })();
-
-      // ----- Wave/Wash Effect Setup -----
-      const washParticles = [];
-      const MAX_WASH_PARTICLES = 100;
-      const PARTICLE_LIFETIME = 1.5;
-      const PARTICLE_EMIT_RATE = 5;
-      const particleGeometry = new THREE.SphereGeometry(0.3, 8, 8);
-      const particleMaterial = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0.6 });
-      for (let i = 0; i < MAX_WASH_PARTICLES; i++) {
-         const particle = new THREE.Mesh(particleGeometry, particleMaterial.clone());
-         particle.visible = false;
-         particle.userData.life = 0;
-         particle.userData.speed = new THREE.Vector3();
-         scene.add(particle);
-         washParticles.push(particle);
-      }
-      let particleIndex = 0;
-      let emitTimer = 0;
-
-      function emitParticle(dt) {
-         emitTimer += dt;
-         if (emitTimer < 1 / PARTICLE_EMIT_RATE) return;
-         emitTimer = 0;
-         const particle = washParticles[particleIndex];
-         particleIndex = (particleIndex + 1) % MAX_WASH_PARTICLES;
-         const offset = new THREE.Vector3((Math.random() - 0.5) * shipWidth, -1, (shipLength / 2) + 2);
-         offset.applyQuaternion(ferry.quaternion);
-         particle.position.copy(ferry.position).add(offset);
-         const speed = new THREE.Vector3((Math.random() - 0.5) * 0.5, 0, 1 + Math.random() * 0.5);
-         speed.applyQuaternion(ferry.quaternion);
-         particle.userData.speed.copy(speed);
-         particle.userData.life = PARTICLE_LIFETIME;
-         particle.scale.set(1, 1, 1);
-         particle.material.opacity = 0.6;
-         particle.visible = true;
-      }
-
-      // ----- Animation loop -----
-      const clock = new THREE.Clock();
-      function animate() {
-         requestAnimationFrame(animate);
-         const dt = clock.getDelta();
-         const t = clock.getElapsedTime();
-         if (water.material.uniforms.time) water.material.uniforms.time.value += dt;
-
-         if (!gamePaused) {
-            let desiredMove = 0;
-            let desiredRot = 0;
-            
-            if (keys['w'] || keys['arrowup']) desiredMove = -MAX_FORWARD_SPEED;
-            if (keys['s'] || keys['arrowdown']) desiredMove = MAX_REVERSE_SPEED;
-            if (keys['a'] || keys['arrowleft']) desiredRot = TURN_RATE;
-            if (keys['d'] || keys['arrowright']) desiredRot = -TURN_RATE;
-
-            if (desiredMove !== 0) {
-                moveForce += (desiredMove - moveForce) * ACCELERATION_RATE;
-            } else {
-                moveForce *= Math.pow(DECAY_RATE, dt * 60); 
-            }
-            if (desiredRot !== 0) {
-                rotForce += (desiredRot - rotForce) * ACCELERATION_RATE;
-            } else {
-                rotForce *= Math.pow(DECAY_RATE, dt * 60);
-            }
-        
-            if (Math.abs(moveForce) < 0.001) moveForce = 0;
-            if (Math.abs(rotForce) < 0.001) rotForce = 0;
-            
-            ferry.rotation.y += rotForce;
-            ferry.translateZ(moveForce * dt * 60); 
-
-            ferry.position.y = 0.6 + Math.sin(t * 3.5) * 0.08;
-            if (moveForce < -0.05) { // Emit when moving forward
-               emitParticle(dt);
-            }
+         function emitWakeParticle(speedRatio) {
+              const p = allParticles[particleIndex]; particleIndex = (particleIndex + 1) % MAX_PARTICLES;
+        const currentSpread = shipWidth * (WAKE_MIN_SPREAD + (WAKE_MAX_SPREAD - WAKE_MIN_SPREAD) * speedRatio);
+              const offset = new THREE.Vector3((Math.random() - 0.5) * currentSpread, -1, (shipLength / 2) + 2);
+              offset.applyQuaternion(ferry.quaternion); p.position.copy(ferry.position).add(offset);
+        const sideVel = (0.5 + speedRatio * 1.5) * (Math.random() - 0.5); const backVel = 1.0 + speedRatio * 1.5 + Math.random();
+              const speed = new THREE.Vector3(sideVel, 0, backVel);
+              speed.applyQuaternion(ferry.quaternion); p.userData.speed.copy(speed);
+              p.userData.life = particleLifetime * (1 + speedRatio * 0.5); p.material.opacity = 0.5 + speedRatio * 0.3; p.userData.gravity = 0;
+              p.scale.set(1, 1, 1); p.visible = true;
          }
 
-         // Rotate the radar mesh
-         radarMesh.rotation.y += 0.05; // Adjust speed as needed
+      function emitBowParticle(speedRatio) {
+          const p = allParticles[particleIndex]; particleIndex = (particleIndex + 1) % MAX_PARTICLES;
+          const side = Math.sign(Math.random() - 0.5);
+          const offset = new THREE.Vector3(side * (shipWidth / 2), 0, -shipLength / 2);
+          offset.applyQuaternion(ferry.quaternion); p.position.copy(ferry.position).add(offset);
+          const sideVel = side * (1.0 + speedRatio * 2.0); const upVel = 2.0 + speedRatio * 4.0; const backVel = -(1.0 + speedRatio);
+          const speed = new THREE.Vector3(sideVel, upVel, backVel);
+          speed.applyQuaternion(ferry.quaternion); p.userData.speed.copy(speed);
+          p.userData.life = particleLifetime * (0.5 + speedRatio * 0.5); p.material.opacity = 0.8 + speedRatio * 0.2;
+          p.userData.gravity = -9.8; p.scale.set(1, 1, 1); p.visible = true;
+      }
 
-         washParticles.forEach(p => {
-            if (p.visible) {
-               p.userData.life -= dt;
-               if (p.userData.life <= 0) {
-                  p.visible = false;
-               } else {
-                  p.position.addScaledVector(p.userData.speed, dt);
-                  const lifeRatio = p.userData.life / PARTICLE_LIFETIME;
-                  p.material.opacity = lifeRatio * 0.6;
-                  p.scale.setScalar(lifeRatio);
-               }
+         // ----- Animation loop -----
+         const clock = new THREE.Clock();
+         function animate() {
+              requestAnimationFrame(animate);
+              const dt = clock.getDelta(); const t = clock.getElapsedTime();
+              if (water.material.uniforms.time) water.material.uniforms.time.value += dt;
+
+              if (!gamePaused) {
+                  let desiredMove = 0; let desiredRot = 0;
+                  if (keys['w'] || keys['arrowup']) desiredMove = -MAX_FORWARD_SPEED; if (keys['s'] || keys['arrowdown']) desiredMove = MAX_REVERSE_SPEED;
+                  if (keys['a'] || keys['arrowleft']) desiredRot = TURN_RATE; if (keys['d'] || keys['arrowright']) desiredRot = -TURN_RATE;
+
+            if (desiredMove !== 0) { moveForce += (desiredMove - moveForce) * ACCELERATION_RATE; } else { moveForce *= Math.pow(DECAY_RATE, dt * 60);  }
+            if (desiredRot !== 0) { rotForce += (desiredRot - rotForce) * ACCELERATION_RATE; } else { rotForce *= Math.pow(DECAY_RATE, dt * 60); }
+             
+                  if (Math.abs(moveForce) < 0.001) moveForce = 0; if (Math.abs(rotForce) < 0.001) rotForce = 0;
+                   
+                  ferry.rotation.y += rotForce; ferry.translateZ(moveForce * dt * 60);  
+                  ferry.position.y = 0.6 + Math.sin(t * 3.5) * 0.08;
+                  
+            if (moveForce < -0.05) {
+                const speedRatio = Math.abs(moveForce) / MAX_FORWARD_SPEED;
+                const sternEmitRate = WAKE_MIN_EMIT + (WAKE_MAX_EMIT - WAKE_MIN_EMIT) * speedRatio;
+                sternEmitTimer += dt;
+                if (sternEmitTimer > 1 / sternEmitRate) { emitWakeParticle(speedRatio); sternEmitTimer = 0; }
+                const bowEmitRate = BOW_MIN_EMIT + (BOW_MAX_EMIT - BOW_MIN_EMIT) * speedRatio;
+                bowEmitTimer += dt;
+                if (bowEmitTimer > 1 / bowEmitRate) { emitBowParticle(speedRatio); bowEmitTimer = 0; }
             }
-         });
+              }
 
-         checkpointObjs.forEach((cp) => {
-            if (cp.reached) return;
-            cp.mesh.rotation.z += dt * 0.8;
+              radarMesh.rotation.y += 0.05;
+
+              allParticles.forEach(p => {
+                  if (p.visible) {
+                       p.userData.life -= dt;
+                       if (p.userData.life <= 0 || p.position.y < -1) { p.visible = false; } else {
+                    if (p.userData.gravity !== 0) { p.userData.speed.y += p.userData.gravity * dt; }
+                           p.position.addScaledVector(p.userData.speed, dt);
+                           const lifeRatio = p.userData.life / particleLifetime;
+                           p.material.opacity = lifeRatio * 0.9; p.scale.setScalar(lifeRatio);
+                       }
+                  }
+              });
+
+              checkpointObjs.forEach((cp) => {
+                  if (cp.reached) return;
+                  cp.mesh.rotation.z += dt * 0.8;
             cp.mesh.position.y = cp.baseY + Math.sin(t * 2 + cp.id) * 1.0;
-            const dist = ferry.position.distanceTo(cp.mesh.position);
-            if (!gamePaused && dist < shipWidth) {
-               showQuestionModal(cp);
+            if (cp.icon) { // <-- MAKE THE ICON BOB WITH THE CHECKPOINT
+                cp.icon.position.y = cp.mesh.position.y + 12;
             }
+                  const dist = ferry.position.distanceTo(cp.mesh.position);
+                  if (!gamePaused && dist < shipWidth) { showQuestionModal(cp); }
+              });
+
+              const offset = cameraOffset.clone().applyQuaternion(ferry.quaternion);
+              const targetCameraPos = ferry.position.clone().add(offset);
+              camera.position.lerp(targetCameraPos, smoothing);
+              camera.lookAt(ferry.position.clone().add(new THREE.Vector3(0, 4, 0)));
+              dirLight.position.copy(new THREE.Vector3().setFromSphericalCoords(1, THREE.MathUtils.degToRad(90 - sunParams.elevation), THREE.MathUtils.degToRad(sunParams.azimuth)).multiplyScalar(10000));
+              renderer.render(scene, camera);
+         }
+         animate();
+
+         // ----- Resize -----
+         window.addEventListener('resize', () => {
+              camera.aspect = innerWidth / innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth, innerHeight);
          });
-
-         const offset = cameraOffset.clone().applyQuaternion(ferry.quaternion);
-         const targetCameraPos = ferry.position.clone().add(offset);
-         camera.position.lerp(targetCameraPos, smoothing);
-         camera.lookAt(ferry.position.clone().add(new THREE.Vector3(0, 2.2, 0)));
-         dirLight.position.copy(new THREE.Vector3().setFromSphericalCoords(1, THREE.MathUtils.degToRad(90 - sunParams.elevation), THREE.MathUtils.degToRad(sunParams.azimuth)).multiplyScalar(10000));
-         renderer.render(scene, camera);
-      }
-      animate();
-
-      // ----- Resize -----
-      window.addEventListener('resize', () => {
-         camera.aspect = innerWidth / innerHeight;
-         camera.updateProjectionMatrix();
-         renderer.setSize(innerWidth, innerHeight);
-      });
-   </script>
-</body>
+     </script>
+  </body>
 </html>
