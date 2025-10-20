@@ -556,6 +556,12 @@ section#main-content {
   align-items: center;
 }
 
+.video-container iframe {
+  width: 100%;
+  margin-top: 50px;
+  height: calc(100dvh - 50px);
+}
+
 video {
   width: 100%;
   height: auto;
@@ -564,27 +570,25 @@ video {
 
 /* --- Overlays hidden state --- */
 .overlay-hidden .top-overlay,
-.overlay-hidden .center-controls,
-.overlay-hidden .controls {
-  opacity: 0;
-  pointer-events: none;
-}
+
 
 /* --- TOP OVERLAY --- */
 .top-overlay {
   position: absolute;
   top: 0;
+  height: 50px;
   left: 0;
   width: 100%;
   display: flex;
   align-items: center;
   gap: 12px;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), transparent);
   padding: 12px 20px;
   box-sizing: border-box;
   opacity: 1;
   transition: opacity 0.4s;
   z-index: 5;
+  background: #161616;
+  border-bottom: solid 1px #333;
 }
 
 .top-overlay button {
