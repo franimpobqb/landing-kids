@@ -125,10 +125,7 @@ svg {
 }
 
 /* 8. Form element reset */
-input,
-button,
-textarea,
-select {
+button {
   font: inherit;
   background: none;
   border: none;
