@@ -1,0 +1,412 @@
+@font-face {
+  font-family: "Bronto";
+  src: url("../../fonts/bronto-bold-webfont.woff2") format("woff2"),
+    url("../../fonts/bronto-bold-webfont.woff") format("woff");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Bronto";
+  src: url("../../fonts/bronto-book-webfont.woff2") format("woff2"),
+    url("../../fonts/bronto-book-webfont.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Bronto";
+  src: url("../../fonts/bronto-regular-webfont.woff2") format("woff2"),
+    url("../../fonts/bronto-regular-webfont.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Bronto";
+  src: url("../../fonts/bronto-semibold-webfont.woff2") format("woff2"),
+    url("../../fonts/bronto-semibold-webfont.woff") format("woff");
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Bronto";
+  src: url("../../fonts/bronto-ultrablack-webfont.woff2") format("woff2"),
+    url("../../fonts/bronto-ultrablack-webfont.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+}
+
+/* Modern CSS Reset — 2025 */
+
+/* 1. Box sizing reset for more predictable layouts */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 2. Prevent font size adjustments after orientation changes (esp. iOS) */
+html {
+  -webkit-text-size-adjust: 100%;
+  /* Safari, older iOS browsers */
+  -moz-text-size-adjust: 100%;
+  /* Firefox Mobile */
+  text-size-adjust: 100%;
+}
+
+/* 3. Remove default margins and paddings */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd,
+ul,
+ol,
+fieldset,
+legend {
+  margin: 0;
+  padding: 0;
+}
+
+/* 4. Remove list styles for lists with “role=list”, or all lists if you prefer */
+ul[role="list"],
+ol[role="list"],
+ul,
+ol {
+  list-style: none;
+}
+
+/* 5. Set core body defaults */
+body {
+  min-height: 100vh;
+  line-height: 1.5;
+  background-color: #333;
+  /* optional—change as needed */
+  color: #000;
+  /* optional—change */
+  font-family: system-ui, sans-serif;
+  /* or your preferred stack */
+}
+
+/* 6. Headings & interactive elements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+button,
+input,
+label,
+select,
+textarea {
+  font: inherit;
+  line-height: 1.1;
+}
+
+/* 7. Media / images defaults */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* 8. Form element reset */
+button {
+  font: inherit;
+  background: none;
+  border: none;
+  margin: 0;
+  padding: 0;
+  /* optionally you can reset appearance */
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* 9. Avoid text overflow and improve wrapping */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  /* “pretty” wrapping if supported; fallback is ignored if not */
+  text-wrap: pretty;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  text-wrap: balance;
+}
+
+/* 10. Accessibility & behavior defaults */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    interpolate-size: allow-keywords;
+    /* Enables transitions for “auto” etc., where supported */
+  }
+}
+
+/* Scroll behavior, target offsets */
+:root {
+  scroll-behavior: smooth;
+  /* optional, can be conditional via prefers-reduced-motion */
+}
+
+:target {
+  scroll-margin-block: 5ex;
+}
+
+/* 11. Root stacking context (useful in component-based/web apps) */
+#root,
+#__next,
+#app {
+  isolation: isolate;
+}
+
+/* FIN RESET */
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background: #000;
+  overflow: hidden;
+  font-family: "Bronto", sans-serif;
+}
+
+#hud {
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  left: 0;
+  top: 0;
+  z-index: 20;
+  color: #fff;
+  padding: 5px 14px;
+  padding-bottom: 4rem;
+  border-radius: 0;
+  font-size: 16px;
+  background: #0088ba;
+  background: linear-gradient(
+    360deg,
+    rgba(0, 136, 186, 0) 9%,
+    rgba(0, 136, 186, 0.49) 100%
+  );
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+}
+
+#hud b {
+  display: block;
+  font-size: 2rem;
+  margin-bottom: 4px;
+}
+
+.score-container {
+  font-weight: 500;
+  font-size: 2rem;
+}
+
+.score-container span {
+  color: yellow;
+  font-weight: 800;
+}
+
+#timer {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #fff;
+  margin-top: 8px;
+}
+
+/* Generic Modal Overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  /* Hidden by default */
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+#intro-modal {
+  display: flex;
+}
+
+/* --- NEW: Question Modal Styles --- */
+#modal-category-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: -10px 0 5px 0;
+}
+#modal-category-icon {
+  width: 80px;
+  height: 80px;
+  margin: -10px auto 10px;
+  display: none;
+}
+#answer-feedback p {
+  font-size: 18px;
+  font-weight: bold;
+  min-height: 48px; /* Match question text height */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#answer-feedback .correct {
+  color: #28a745;
+}
+#answer-feedback .incorrect {
+  color: #dc3545;
+}
+/* --- END: New Styles --- */
+
+/* Generic Modal Box */
+.modal-box {
+  width: 420px;
+  max-width: 90%;
+  background: white;
+  color: #111;
+  border-radius: 10px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  text-align: center;
+}
+
+.modal-box h2 {
+  margin-top: 0;
+}
+
+.modal-box p {
+  line-height: 1.6;
+}
+
+#question-text {
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.option-btn {
+}
+
+/* NEW: Style for the icon inside the modal */
+#modal-category-icon {
+  width: 80px;
+  height: 80px;
+  margin: -10px auto 10px;
+  display: none;
+  /* Hide by default */
+}
+
+/* Button styles */
+.option-btn,
+.modal-btn {
+  display: block;
+  width: 100%;
+  padding: 12px 14px;
+  margin-top: 10px;
+  border-radius: 50px;
+  background-color: #f0f0f0;
+  color: #35819e;
+  border-radius: 1rem;
+  border: 4px solid #add8e6;
+  box-shadow: inset 5px 5px 10px rgba(255, 255, 255, 0.7),
+    inset -5px -5px 10px rgba(0, 0, 0, 0.15), 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.25s ease-in-out;
+  outline: none;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  -ms-border-radius: 50px;
+  -o-border-radius: 50px;
+  font-family: "Bronto", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.option-btn:hover,
+.modal-btn:hover {
+  background-color: #35819e;
+  color: #fff;
+  box-shadow: inset 5px 5px 10px rgba(0, 105, 204, 0.7),
+    inset -5px -5px 10px rgba(0, 0, 0, 0.15), 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.modal-btn.secondary {
+  background: #6c757d;
+}
+
+#instructions {
+  position: absolute;
+  right: 16px;
+  top: 16px;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  padding: 10px 14px;
+  border-radius: 8px;
+  text-align: right;
+}
+
+#joystick-area {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  width: 150px;
+  height: 150px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  z-index: 50;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#joystick-handle {
+  position: absolute;
+  width: 70px;
+  height: 70px;
+  background: rgba(255, 255, 255, 0.5);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
