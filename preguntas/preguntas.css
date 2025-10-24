@@ -203,7 +203,7 @@ body {
   font-family: "Bronto", sans-serif;
 }
 
-#hud {
+header {
   position: absolute;
   width: 100%;
   display: flex;
@@ -228,13 +228,36 @@ body {
   -o-border-radius: 0;
 }
 
-#hud b {
-  display: block;
-  font-size: 2rem;
-  margin-bottom: 4px;
+
+header #hud {
+  display: flex;
+  gap: 1rem;
+  background-color: #0000008c;
+  border-radius: 1.5rem;
+  border: solid 3px #ffffff83;
+  padding: 1rem 2rem;
+  width: 270px;
 }
 
-.score-container {
+header #hud span {
+  font-size: 1rem;
+  color: #fff;
+  font-weight: 600;
+  line-height: 1;
+}
+header #hud span#timer,
+header #hud span#score {
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: yellow;
+}
+
+.score-container, .timer-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
   font-weight: 500;
   font-size: 2rem;
 }
@@ -242,13 +265,6 @@ body {
 .score-container span {
   color: yellow;
   font-weight: 800;
-}
-
-#timer {
-  font-size: 3rem;
-  font-weight: 800;
-  color: #fff;
-  margin-top: 8px;
 }
 
 /* Generic Modal Overlay */
@@ -363,14 +379,19 @@ body {
 
 .option-btn:hover,
 .modal-btn:hover {
-  background-color: #35819e;
-  color: #fff;
-  box-shadow: inset 5px 5px 10px rgba(0, 105, 204, 0.7),
+  background-color: rgb(255, 238, 0);
+  box-shadow: inset 5px 5px 10px rgba(255, 196, 0, 0.7),
     inset -5px -5px 10px rgba(0, 0, 0, 0.15), 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
 .modal-btn.secondary {
-  background: #6c757d;
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+.modal-btn.secondary:hover {
+  color: rgb(255, 238, 0);
+  opacity: .8;
 }
 
 #instructions {

@@ -6,16 +6,10 @@ export const ACCELERATION_RATE = 0.18;
 export const DECAY_RATE = 0.97;
 
 // Ferry Model
-export const SHIP_LENGTH = 70;
+export const SHIP_LENGTH = 100; // CHANGED: Was 140, originally 70
 export const SHIP_WIDTH = 25;
 export const SHIP_HEIGHT = 15;
-export const SUPERSTRUCTURE_WIDTH = 10;
-export const SUPERSTRUCTURE_HEIGHT = 8;
-export const SUPERSTRUCTURE_LENGTH = 25;
-export const ANTENNA_RADIUS = 0.5;
-export const ANTENNA_HEIGHT = 10;
-export const RADAR_RADIUS = 2;
-export const RADAR_HEIGHT = 0.2;
+export const SUPERSTRUCTURE_HEIGHT = 4; // Shortened cabin
 
 // Particles
 export const MAX_PARTICLES = 400;
@@ -28,7 +22,7 @@ export const BOW_MIN_EMIT = 50;
 export const BOW_MAX_EMIT = 100;
 
 // Game
-export const SCATTER_RADIUS = 1000;
+export const SCATTER_RADIUS = 2000;
 export const NUM_CHECKPOINTS = 25;
 
 // Questions

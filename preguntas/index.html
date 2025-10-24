@@ -2,10 +2,10 @@
 <html lang="es">
 
 <head>
-  <meta charset="utf--8" />
+  <meta charset="utf-8" />
   <title>Ferry Quiz Game — Modular</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
- <link rel="stylesheet" href="preguntas.css">
+ <link rel="stylesheet" href="preguntas.css"> 
 
   <script type="importmap">
       {
@@ -18,26 +18,21 @@
 </head>
 
 <body>
-  <div id="hud">
-    <div class="score-container">
-      <div>Puntaje: <span id="score">0</span></div>
-    </div>
-    <div class="timer-container">
-      <div id="timer">02:00</div>
+  <header>
+    <div id="hud">
+      <div class="score-container">
+          <span>Puntaje</span> <span id="score">0</span>
+      </div>
+      <div class="timer-container">
+        <span>Tiempo restante</span>
+        <span id="timer">02:00</span>
+      </div>
     </div>
     <div class="menu-container" style="display: flex; justify-content:center; align-items: center; gap: .5rem;">
-      <img src="images/restart-icon.png" alt="" style="width: 75px; height: auto;">
-      <img src="images/icon-close.png" alt="" style="width: 75px; height: auto;">
+      <button id="restart-btn-game" class="game-btn" title="Restart Game"><img src="images/restart-icon.png" alt="Restart" style="width: 75px; height: auto;"></button>
+      <button id="exit-btn-game" class="game-btn" title="Exit Game"><img src="images/icon-close.png" alt="Exit" style="width: 75px; height: auto;"></button>
     </div>
-  </div>
-
-  <!-- <div id="instructions">
-      <div><b>Controls</b></div>
-      W / ↑ : Forward<br />
-      S / ↓ : Back<br />
-      A / ← : Turn left<br />
-      D / → : Turn right
-    </div> -->
+  </header>
 
   <div id="joystick-area">
     <div id="joystick-handle"></div>
@@ -60,31 +55,56 @@
       <p>
         Great run! Your final score is <span id="final-score">0</span>.
       </p>
-      <button class="modal-btn" id="restart-btn">Restart Game</button>
+      <button class="modal-btn" id="restart-btn-final">Restart Game</button>
       <a href="/" class="modal-btn secondary" id="homepage-btn">Return to Homepage</a>
     </div>
   </div>
 
  <div class="modal-overlay" id="question-modal">
-      <div class="modal-box" id="question-box">
-        
-        <h4 id="modal-category-name">Category</h4>
-        
-        <img id="modal-category-icon" src="" alt="Category Icon" />
-            <p id="question-text">Question text</p>
-        
-        <div id="answer-options">
-          <button class="option-btn" id="optA">A</button>
-          <button class="option-btn" id="optB">B</button>
-          <button class="option-btn" id="optC">C</button>
-        </div>
+    <div class="modal-box" id="question-box">
+      
+      <h4 id="modal-category-name">Category</h4>
+      
+      <img id="modal-category-icon" src="" alt="Category Icon" />
+        <p id="question-text">Question text</p>
+      
+      <div id="answer-options">
+        <button class="option-btn" id="optA">A</button>
+        <button class="option-btn" id="optB">B</button>
+        <button class="option-btn" id="optC">C</button>
+      </div>
 
-        <div id="answer-feedback" style="display: none;">
-          <p id="feedback-text">Correct!</p>
-          <button class="modal-btn" id="continue-btn">Seguir navegando</button>
+     <div id="answer-feedback" style="display: none;">
+        <img id="feedback-image" src="" alt="Feedback Status" />
+        <p id="feedback-text">Correct!</p>
+        <div id="feedback-details">
+            <span id="user-answer-text"></span>
+            <span id="correct-answer-text"></span>
         </div>
+        <button class="modal-btn" id="continue-btn">Seguir navegando</button>
       </div>
     </div>
+  </div>
+
+  <div class="modal-overlay" id="exit-modal">
+    <div class="modal-box">
+      <h2>¿Querés volver al inicio?</h2>
+      <div class="confirm-buttons">
+        <button class="modal-btn danger" id="exit-confirm-btn">Salir del juego</button>
+        <button class="modal-btn secondary cancel-btn">Seguir jugando</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal-overlay" id="restart-modal">
+    <div class="modal-box">
+      <h2>¿Reiniciar la partida?</h2>
+      <div class="confirm-buttons">
+        <button class="modal-btn danger" id="restart-confirm-btn">Reiniciar juego</button>
+        <button class="modal-btn secondary cancel-btn">Seguir jugando</button>
+      </div>
+    </div>
+  </div>
 
   <script type="module" src="main.js"></script>
 </body>
