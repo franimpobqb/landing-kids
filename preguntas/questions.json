@@ -1,52 +1,453 @@
 [
-    { "id": 1, "q": "What's the right navigation side called?", "options": ["Port", "Starboard", "Bow"], "correct": 1, "category": "Navigation" },
-    { "id": 2, "q": "What is 'Port' on a boat?", "options": ["Right side", "Front", "Left side"], "correct": 2, "category": "Navigation" },
-    { "id": 3, "q": "A red buoy marks which side of the channel when returning from sea?", "options": ["Starboard (Right)", "Port (Left)", "Center"], "correct": 0, "category": "Navigation" },
-    { "id": 4, "q": "A green buoy marks which side of the channel?", "options": ["Starboard (Right)", "Port (Left)", "Center"], "correct": 1, "category": "Navigation" },
-    { "id": 5, "q": "What does 'Bow' refer to?", "options": ["Front", "Back", "Left"], "correct": 0, "category": "Navigation" },
-    { "id": 6, "q": "What does 'Stern' refer to?", "options": ["Front", "Back", "Right"], "correct": 1, "category": "Navigation" },
-    { "id": 7, "q": "What does one short blast from a horn mean?", "options": ["Turning Starboard", "Turning Port", "Going Astern"], "correct": 0, "category": "Navigation" },
-    { "id": 8, "q": "What do two short blasts from a horn mean?", "options": ["Turning Starboard", "Turning Port", "Going Astern"], "correct": 1, "category": "Navigation" },
-    { "id": 9, "q": "What do three short blasts from a horn mean?", "options": ["Danger", "Turning Port", "Going Astern"], "correct": 2, "category": "Navigation" },
-    { "id": 10, "q": "What is the 'stand-on' vessel?", "options": ["Must give way", "Must maintain course", "Must stop"], "correct": 1, "category": "Navigation" },
-    { "id": 11, "q": "What is the 'give-way' vessel?", "options": ["Must give way", "Must maintain course", "Must stop"], "correct": 0, "category": "Navigation" },
-    { "id": 12, "q": "At night, a green light indicates which side?", "options": ["Starboard", "Port", "Stern"], "correct": 0, "category": "Navigation" },
-    { "id": 13, "q": "At night, a red light indicates which side?", "options": ["Starboard", "Port", "Stern"], "correct": 1, "category": "Navigation" },
-    { "id": 14, "q": "What color is a masthead light?", "options": ["Red", "Green", "White"], "correct": 2, "category": "Navigation" },
-    { "id": 15, "q": "What is a 'Fathom'?", "options": ["6 feet", "6 meters", "10 feet"], "correct": 0, "category": "Navigation" },
-    { "id": 16, "q": "What is a 'Knot'?", "options": ["Nautical mile per hour", "Statute mile per hour", "Kilometer per hour"], "correct": 0, "category": "Navigation" },
-    { "id": 17, "q": "What is 'Leeway'?", "options": ["Forward speed", "Sideways drift", "Vertical movement"], "correct": 1, "category": "Navigation" },
-    { "id": 18, "q": "What should you check before departure?", "options": ["Weather", "Seats only", "Paint"], "correct": 0, "category": "Safety" },
-    { "id": 19, "q": "Which flag signals 'Man Overboard'?", "options": ["Flag O", "Flag A", "Flag C"], "correct": 0, "category": "Safety" },
-    { "id": 20, "q": "What does PFD stand for?", "options": ["Personal Flotation Device", "Port Ferry Duty", "Primary Fire Damper"], "correct": 0, "category": "Safety" },
-    { "id": 21, "q": "Where should fire extinguishers be stored?", "options": ["In a locked box", "Accessible location", "In the engine room only"], "correct": 1, "category": "Safety" },
-    { "id": 22, "q": "What is a 'bilge pump' used for?", "options": ["Removing water", "Pumping fuel", "Inflating life rafts"], "correct": 0, "category": "Safety" },
-    { "id": 23, "q": "What does 'Mayday' signal?", "options": ["Urgency", "Distress", "Safety"], "correct": 1, "category": "Safety" },
-    { "id": 24, "q": "What does 'Pan-Pan' signal?", "options": ["Urgency", "Distress", "Safety"], "correct": 0, "category": "Safety" },
-    { "id": 25, "q": "What does 'Sécurité' signal?", "options": ["Urgency", "Distress", "Safety (e.g., weather)"], "correct": 2, "category": "Safety" },
-    { "id": 26, "q": "What is the primary cause of boating fatalities?", "options": ["Speeding", "Collisions", "Drowning"], "correct": 2, "category": "Safety" },
-    { "id": 27, "q": "What does a Type B fire extinguisher handle?", "options": ["Wood/Paper", "Flammable Liquids", "Electrical"], "correct": 1, "category": "Safety" },
-    { "id": 28, "q": "What does a Type C fire extinguisher handle?", "options": ["Wood/Paper", "Flammable Liquids", "Electrical"], "correct": 2, "category": "Safety" },
-    { "id": 29, "q": "What is 'Hypothermia'?", "options": ["Low body temperature", "Sunstroke", "Dehydration"], "correct": 0, "category": "Safety" },
-    { "id": 30, "q": "Which of these is a visual distress signal?", "options": ["Red Flare", "White Flag", "Loud Music"], "correct": 0, "category": "Safety" },
-    { "id": 31, "q": "What is a 'VHF' radio used for?", "options": ["Music", "Communication", "Radar"], "correct": 1, "category": "Safety" },
-    { "id": 32, "q": "What is VHF Channel 16?", "options": ["Weather", "Distress/Calling", "Ship-to-Ship"], "correct": 1, "category": "Safety" },
-    { "id": 33, "q": "What is an 'EPIRB'?", "options": ["Engine Overheat Sensor", "Distress Beacon", "Navigation Light"], "correct": 1, "category": "Safety" },
-    { "id": 34, "q": "How many PFDs should be on board?", "options": ["One for each person", "Two total", "One for the captain"], "correct": 0, "category": "Safety" },
-    { "id": 35, "q": "What is the boat's main body called?", "options": ["Mast", "Keel", "Hull"], "correct": 2, "category": "General" },
-    { "id": 36, "q": "What is a nautical mile?", "options": ["1,609 meters", "1,852 meters", "2,000 meters"], "correct": 1, "category": "General" },
-    { "id": 37, "q": "What is the 'Galley'?", "options": ["Kitchen", "Bathroom", "Engine Room"], "correct": 0, "category": "General" },
-    { "id": 38, "q": "What is the 'Head'?", "options": ["Kitchen", "Bathroom", "Captain's chair"], "correct": 1, "category": "General" },
-    { "id": 39, "q": "What is the 'Keel'?", "options": ["Main sail", "Steering wheel", "Boat's 'backbone'"], "correct": 2, "category": "General" },
-    { "id": 40, "q": "What does 'Aft' mean?", "options": ["Toward the front", "Toward the back", "On the left"], "correct": 1, "category": "General" },
-    { "id": 41, "q": "What is the 'Helm'?", "options": ["Steering equipment", "Anchor", "Main sail"], "correct": 0, "category": "General" },
-    { "id": 42, "q": "What is 'Beam'?", "options": ["Vessel's width", "Vessel's length", "Mast height"], "correct": 0, "category": "General" },
-    { "id": 43, "q": "What is 'Draft'?", "options": ["Wind speed", "Depth of water needed", "Fuel capacity"], "correct": 1, "category": "General" },
-    { "id": 44, "q": "What is a 'Cleat' used for?", "options": ["Securing ropes", "Starting engine", "Cooking food"], "correct": 0, "category": "General" },
-    { "id": 45, "q": "What is a 'Fender'?", "options": ["A cushion for the hull", "A type of sail", "A navigation tool"], "correct": 0, "category": "General" },
-    { "id": 46, "q": "Who is the captain of the ferry?", "options": ["Captain Smith", "Captain Jack", "Captain placeholder"], "correct": 2, "category": "General" },
-    { "id": 47, "q": "What is the 'Rudder'?", "options": ["Steering device", "Engine part", "Rope"], "correct": 0, "category": "General" },
-    { "id": 48, "q": "What is the 'Anchor' used for?", "options": ["Mooring", "Steering", "Signaling"], "correct": 0, "category": "General" },
-    { "id": 49, "q": "What is 'Freeboard'?", "options": ["Distance from water to deck", "Onboard Wi-Fi", "Free food"], "correct": 0, "category": "General" },
-    { "id": 50, "q": "What is a 'Propeller'?", "options": ["Steering wheel", "Radio antenna", "Propulsion device"], "correct": 2, "category": "General" }
+    {
+        "id": 1,
+        "q": "¿Cómo se nombra la parte de adelante de un barco?",
+        "options": [
+            "proa",
+            "popa",
+            "estribor"
+        ],
+        "correct": 0,
+        "category": "Navegacion"
+    },
+    {
+        "id": 2,
+        "q": "¿Cómo se nombra la parte de atrás de un barco?",
+        "options": [
+            "estribor",
+            "popa",
+            "babor"
+        ],
+        "correct": 1,
+        "category": "Navegacion"
+    },
+    {
+        "id": 3,
+        "q": "¿Cómo se nombra la parte izquierda de un barco?",
+        "options": [
+            "diestra",
+            "estribor",
+            "babor"
+        ],
+        "correct": 2,
+        "category": "Navegacion"
+    },
+    {
+        "id": 4,
+        "q": "¿Cómo se nombra la parte derecha de un barco?",
+        "options": [
+            "diestra",
+            "estribor",
+            "siniestra"
+        ],
+        "correct": 1,
+        "category": "Navegacion"
+    },
+    {
+        "id": 5,
+        "q": "Navegacion es un catamarán, ¿cual es la principal característica de un catamarán?",
+        "options": [
+            "navega a vela",
+            "tiene dos cascos",
+            "es eléctrico"
+        ],
+        "correct": 1,
+        "category": "Navegacion"
+    },
+    {
+        "id": 6,
+        "q": "¿Dónde se construyó Navegacion?",
+        "options": [
+            "Brasil",
+            "Japón",
+            "Australia"
+        ],
+        "correct": 2,
+        "category": "Navegacion"
+    },
+    {
+        "id": 7,
+        "q": "Navegacion es la nueva incorporación a la flota de Buquebus, ¿conoces el nombre de los otros barcos de la flota actual de Buquebus?",
+        "options": [
+            "Francisco, Pepito y Juanito",
+            "Eladia, Francisco y Nacho",
+            "Francisco, Silvia Ana L y Atlantic III"
+        ],
+        "correct": 2,
+        "category": "Navegacion"
+    },
+    {
+        "id": 8,
+        "q": "¿Cómo se nombra lo que es el largo de un barco?",
+        "options": [
+            "Eslora",
+            "Manga",
+            "Largo"
+        ],
+        "correct": 0,
+        "category": "Navegacion"
+    },
+    {
+        "id": 9,
+        "q": "¿Cómo se nombra lo que es el ancho de un barco?",
+        "options": [
+            "Ancho",
+            "Manga",
+            "Grosor"
+        ],
+        "correct": 1,
+        "category": "Navegacion"
+    },
+    {
+        "id": 10,
+        "q": "¿Sabes cuánto mide la eslora y la manga del Navegacion?",
+        "options": [
+            "65 m de eslora y 15 m de manga",
+            "130 m de eslora y 32 m de manga",
+            "90 m de eslora y 29 m de manga"
+        ],
+        "correct": 2,
+        "category": "Navegacion"
+    },
+    {
+        "id": 11,
+        "q": "¿Qué tipo de energía usará Navegacion para navegar?",
+        "options": [
+            "Gas Natural",
+            "Eléctrica",
+            "Nafta"
+        ],
+        "correct": 1,
+        "category": "Navegacion"
+    },
+    {
+        "id": 12,
+        "q": "¿Cuántos pasajeros y cuantas bodegas podrá llevar China?",
+        "options": [
+            "2100 pasajeros y 225 bodegas",
+            "2000 pasajeros y 150 bodegas",
+            "1750 pasajeros y 147 bodegas"
+        ],
+        "correct": 0,
+        "category": "Navegacion"
+    },
+    {
+        "id": 13,
+        "q": "¿Que homenajea el nombre Navegacion?",
+        "options": [
+            "A un tipo de barco chino",
+            "Una calle de Montevideo",
+            "Una actriz uruguaya muy querida en Argentina"
+        ],
+        "correct": 2,
+        "category": "Navegacion"
+    },
+    {
+        "id": 14,
+        "q": "¿Cómo se denomina el peso del barco en el lenguaje naval?",
+        "options": [
+            "Peso",
+            "Desplazamiento",
+            "Fuerza"
+        ],
+        "correct": 1,
+        "category": "Navegacion"
+    },
+    {
+        "id": 15,
+        "q": "¿Cómo se llama la parte más baja de la estructura de un barco?",
+        "options": [
+            "Quilla",
+            "Mástil",
+            "Timón"
+        ],
+        "correct": 0,
+        "category": "Navegacion"
+    },
+    {
+        "id": 16,
+        "q": "¿Qué significa que un barco sea más ecológico?",
+        "options": [
+            "Que navega sin hacer olas",
+            "Que es más grande que los demás",
+            "Que no libera emisiones directas a la atmósfera"
+        ],
+        "correct": 2,
+        "category": "Sustentabilidad"
+    },
+    {
+        "id": 17,
+        "q": "¿Cuál de estos combustibles utilizados para la combustión móvil es más amigable con el planeta?",
+        "options": [
+            "Energía eléctrica",
+            "Gas Natural Licuado",
+            "Diesel o Marine Gasoil"
+        ],
+        "correct": 0,
+        "category": "Sustentabilidad"
+    },
+    {
+        "id": 18,
+        "q": "¿Qué podemos hacer los pasajeros para que el viaje sea más ecológico?",
+        "options": [
+            "Tirar la basura al mar",
+            "Separar los residuos y reciclar",
+            "Usar más plástico"
+        ],
+        "correct": 1,
+        "category": "Sustentabilidad"
+    },
+    {
+        "id": 19,
+        "q": "¿Qué significa cero emisiones móviles directas?",
+        "options": [
+            "Que no hace ruido",
+            "Que no genera olas",
+            "Que no emite gases contaminantes al navegar"
+        ],
+        "correct": 2,
+        "category": "Sustentabilidad"
+    },
+    {
+        "id": 20,
+        "q": "¿Qué pasaría si todos utilizaramos barcos eléctricos en lugar de barcos que naveguen a marine gasoil o combustible convencional?",
+        "options": [
+            "El mar cambia de color",
+            "Sube la marea",
+            "Se reducirían las emisiones sonoras y las emisiones directas a la atmósfera"
+        ],
+        "correct": 2,
+        "category": "Sustentabilidad"
+    },
+    {
+        "id": 21,
+        "q": "¿Qué significa reciclar?",
+        "options": [
+            "Reutilizar los materiales al menos una vez",
+            "Descartar residuos recurrentemente",
+            "Comprar cosas nuevas"
+        ],
+        "correct": 0,
+        "category": "Sustentabilidad"
+    },
+    {
+        "id": 22,
+        "q": "¿Qué significa energía renovable?",
+        "options": [
+            "Energía que se termina rápido",
+            "Energía que se obtiene se fuentes naturales fácilmente y de fácil reposición",
+            "Energia solo para barcos"
+        ],
+        "correct": 1,
+        "category": "Sustentabilidad"
+    },
+    {
+        "id": 23,
+        "q": "¿Cuál es la función de los paneles solares?",
+        "options": [
+            "Guardan la lluvia",
+            "Transforman la luz del sol en energía",
+            "Fabrican viento"
+        ],
+        "correct": 1,
+        "category": "Sustentabilidad"
+    },
+    {
+        "id": 24,
+        "q": "¿Por qué es importante separar la basura?",
+        "options": [
+            "Para que sea más fácil poder reciclar",
+            "Porque se ve más linda",
+            "Porque ocupa menos espacio"
+        ],
+        "correct": 0,
+        "category": "Sustentabilidad"
+    },
+    {
+        "id": 25,
+        "q": "De las siguientes opciones ¿qué energía se considera renovable?",
+        "options": [
+            "Petróleo",
+            "Solar",
+            "Gas natural"
+        ],
+        "correct": 1,
+        "category": "Sustentabilidad"
+    },
+    {
+        "id": 26,
+        "q": "¿Qué países une el Medio ambiente?",
+        "options": [
+            "Uruguay y Paraguay",
+            "Argentina y Brasil",
+            "Argentina y Uruguay"
+        ],
+        "correct": 2,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 27,
+        "q": "¿A qué ciudades de Uruguay llegan los ferries de Buquebus desde el Puerto Buenos Aires?",
+        "options": [
+            "Colonia y Punta del Este",
+            "Colonia y Montevideo",
+            "Montevideo y Punta del Este"
+        ],
+        "correct": 1,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 28,
+        "q": "¿Cuál es la ciudad más grande a orillas del Medio ambiente?",
+        "options": [
+            "Buenos Aires",
+            "Colonia",
+            "Montevideo"
+        ],
+        "correct": 0,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 29,
+        "q": "¿Cuál es la profundidad máxima del Medio ambiente?",
+        "options": [
+            "6 metros",
+            "50 metros",
+            "28 metros"
+        ],
+        "correct": 2,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 30,
+        "q": "¿Qué tipo de agua tiene el Medio ambiente?",
+        "options": [
+            "Salada",
+            "Agua con gas",
+            "Es un estuario, con agua mas dulce o más salada dependiendo de la altura a la que se mida la salinidad."
+        ],
+        "correct": 2,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 31,
+        "q": "¿Qué es el Medio ambiente?",
+        "options": [
+            "Un Estuario",
+            "Una Cascada",
+            "Un Lago"
+        ],
+        "correct": 0,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 32,
+        "q": "¿Qué ríos principales lo alimentan?",
+        "options": [
+            "Paraná y Uruguay",
+            "Amazonas y Negro",
+            "Nilo y Sena"
+        ],
+        "correct": 0,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 33,
+        "q": "¿Cuál es el ancho máximo del Medio ambiente?",
+        "options": [
+            "10 km",
+            "270 km",
+            "220 km"
+        ],
+        "correct": 2,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 34,
+        "q": "¿Qué deporte se practica mucho en el Medio ambiente?",
+        "options": [
+            "Surf",
+            "Vela",
+            "Tenis"
+        ],
+        "correct": 1,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 35,
+        "q": "¿Qué pez es famoso para la pesca deportiva en el Río?",
+        "options": [
+            "Pejerrey",
+            "Tiburón",
+            "Salmón"
+        ],
+        "correct": 0,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 36,
+        "q": "¿Qué ave de cuello largo se puede ver en el Medio ambiente?",
+        "options": [
+            "Flamenco",
+            "Condor",
+            "Cisne de cuello negro"
+        ],
+        "correct": 2,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 37,
+        "q": "¿Qué animal peludo y nadador vive a orillas del río?",
+        "options": [
+            "Conejo",
+            "Nutria",
+            "Zorro"
+        ],
+        "correct": 1,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 38,
+        "q": "¿Qué reptil de caparazón se encuentra en el agua del río?",
+        "options": [
+            "Iguana",
+            "Tortuga de agua dulce",
+            "Cocodrilo"
+        ],
+        "correct": 1,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 39,
+        "q": "¿Qué pez tiene bigotes largos y vive en el río?",
+        "options": [
+            "Bagre",
+            "Pez payaso",
+            "Sardina"
+        ],
+        "correct": 0,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 40,
+        "q": "¿Qué moluscos se pueden encontrar en el río?",
+        "options": [
+            "Caracoles de mar",
+            "Pulpos",
+            "Mejillones y almejas"
+        ],
+        "correct": 2,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 41,
+        "q": "¿Qué pez saltarín y cazador se encuentra en el río?",
+        "options": [
+            "Atún",
+            "Tiburon Blanco",
+            "Tararira"
+        ],
+        "correct": 2,
+        "category": "Medio ambiente"
+    }
 ]
