@@ -643,7 +643,7 @@ video {
 }
 
 /* --- BOTTOM CONTROLS --- */
-.controls {
+/* .controls {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -665,7 +665,7 @@ video {
   font-size: 1.3rem;
   cursor: pointer;
   transition: transform 0.2s;
-}
+} */
 
 .controls button#play svg {
   width: 24px;
@@ -736,19 +736,19 @@ input[type="range"] {
 
 
 /* CARDS */
-.card {
+.card-download {
   border-radius: 1rem;
   background-color: #ffffff3f;
   overflow: hidden;
   transition: all .2s ease;
 }
 
-.card a {
+.card-download a {
   text-decoration: none;
   color: #fff;
 }
 
-.card .text {
+.card-download .text {
   padding: 1rem;
   text-align: left;
   display: flex;
@@ -757,12 +757,12 @@ input[type="range"] {
   gap: .7rem;
 }
 
-.card h2 {
+.card-download h2 {
   font-size: 1.6rem;
   font-weight: 600;
 }
 
-.card:hover {
+.card-download:hover {
   transform: translateY(-4px);
 }
 
