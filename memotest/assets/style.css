@@ -688,7 +688,6 @@ button.modal-btn {
 /* Card Styles */
 .card {
     aspect-ratio: 1;
-    min-width: 80px;
     position: relative;
     cursor: pointer;
     transform-style: preserve-3d;
@@ -930,6 +929,12 @@ background-color: rgb(255, 238, 0);
     background: rgba(0, 0, 0, 0.75);
 }
 
+/* Responsive Design */
+@media (min-width: 1031px) {
+    .card {
+        min-width: 80px;
+    }
+}
 /* Responsive Design */
 @media (max-width: 768px) {
     .controls {
