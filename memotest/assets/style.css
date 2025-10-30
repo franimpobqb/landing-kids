@@ -462,6 +462,8 @@ header {
 }
 
 .title {
+    display: flex;
+    justify-content: center;
     font-size: clamp(1.5rem, 5vw, 4rem);
     font-weight: 700;
     margin-bottom: 10px;
@@ -895,6 +897,12 @@ button.modal-btn {
     position: relative;
 }
 
+.modal-content h2 {
+    color: #002f5c;
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
 .close-btn {
     color: #aaa;
     position: absolute;
@@ -942,6 +950,12 @@ background-color: rgb(255, 238, 0);
         text-align: center;
     }
 
+    header {
+        position: relative;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
     .stats {
         justify-content: center;
     }
@@ -980,7 +994,8 @@ background-color: rgb(255, 238, 0);
 
 @media (max-width: 480px) {
     .game-container {
-        padding: 15px;
+        padding: 0;
+        margin: 0 10px;
     }
 
     .controls {

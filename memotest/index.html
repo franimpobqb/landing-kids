@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Genius Memory Game 2025</title>
-        <link rel="icon" type="image/x-icon" href="assets/memory.png">
-        <link href="assets/style.css" rel='stylesheet'>
-        <link rel="stylesheet" href="../css/estilos-kids.css">
-    </head>
-    <body>
-        <video muted autoplay loop class="video-bg" id="bgVideo">
-            <source src="../videos/video-bg.mp4">
-        </video>
-        <div class="preloader" id="preloader">
-            <!--  <div class="particles">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memotest</title>
+    <link rel="icon" type="image/x-icon" href="assets/memory.png">
+    <link href="assets/style.css" rel='stylesheet'>
+    <link rel="stylesheet" href="../css/estilos-kids.css">
+</head>
+
+<body>
+    <video muted autoplay loop class="video-bg" id="bgVideo">
+        <source src="../videos/video-bg.mp4">
+    </video>
+    <div class="preloader" id="preloader">
+        <!--  <div class="particles">
                 <div class="particle"></div>
                 <div class="particle"></div>
                 <div class="particle"></div>
@@ -25,75 +27,67 @@
                 <div class="particle"></div>
                 <div class="particle"></div>
             </div> -->
-            <div class="memory-loader">
-                <div class="loader-card">
-                    <div class="loader-card-face loader-card-back"></div>
-                    <div class="loader-card-face loader-card-front"><img
-                            src="images/img_07.png" alt></div>
-                </div>
-                <div class="loader-card">
-                    <div class="loader-card-face loader-card-back"></div>
-                    <div class="loader-card-face loader-card-front"><img
-                            src="images/img_04.png" alt></div>
-                </div>
-                <div class="loader-card">
-                    <div class="loader-card-face loader-card-back"></div>
-                    <div class="loader-card-face loader-card-front"><img
-                            src="images/img_14.png" alt></div>
-                </div>
-                <div class="loader-card">
-                    <div class="loader-card-face loader-card-back"></div>
-                    <div class="loader-card-face loader-card-front"><img
-                            src="images/img_06.png" alt></div>
-                </div>
+        <div class="memory-loader">
+            <div class="loader-card">
+                <div class="loader-card-face loader-card-back"></div>
+                <div class="loader-card-face loader-card-front"><img src="images/img_07.png" alt></div>
             </div>
-            <div class="spinner-container">
-                <div class="spinner-glow"></div>
-                <div class="spinner"></div>
+            <div class="loader-card">
+                <div class="loader-card-face loader-card-back"></div>
+                <div class="loader-card-face loader-card-front"><img src="images/img_04.png" alt></div>
             </div>
-            <div class="preloader-text">
-                <img src="images/memotest-title.png" alt="Memotest"
-                    style="max-width: 100%; width: 450px;">
+            <div class="loader-card">
+                <div class="loader-card-face loader-card-back"></div>
+                <div class="loader-card-face loader-card-front"><img src="images/img_14.png" alt></div>
             </div>
-            <div class="preloader-subtitle">¡Poné a prueba tu memoria!</div>
-            <div class="loading-progress">
-                <div class="progress-bar"></div>
-            </div>
-
-            <div class="loading-dots">
-                <div class="dot"></div>
-                <div class="dot"></div>
-                <div class="dot"></div>
+            <div class="loader-card">
+                <div class="loader-card-face loader-card-back"></div>
+                <div class="loader-card-face loader-card-front"><img src="images/img_06.png" alt></div>
             </div>
         </div>
+        <div class="spinner-container">
+            <div class="spinner-glow"></div>
+            <div class="spinner"></div>
+        </div>
+        <div class="preloader-text">
+            <img src="images/memotest-title.png" alt="Memotest" style="max-width: 100%; width: 450px;">
+        </div>
+        <div class="preloader-subtitle">¡Poné a prueba tu memoria!</div>
+        <div class="loading-progress">
+            <div class="progress-bar"></div>
+        </div>
 
-        <header>
+        <div class="loading-dots">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
 
-            <div class="menu-container"
-                style="display: flex; justify-content:center; align-items: center; gap: .5rem;">
-                <button id="soundToggle">
-                    <img src="images/icon-sound-on.png" alt="Restart"
-                        style="width: 75px; height: auto;">
-                </button>
-                <!-- <button id="restart-btn-game" class="game-btn"
+    <header>
+
+        <div class="menu-container" style="display: flex; justify-content:center; align-items: center; gap: .5rem;">
+            <button id="soundToggle">
+                <img src="images/icon-sound-on.png" alt="Restart" style="width: 75px; height: auto;">
+            </button>
+            <!-- <button id="restart-btn-game" class="game-btn"
                     title="Restart Game"><img src="images/restart-icon.png"
                         alt="Restart"
                         style="width: 75px; height: auto;"></button> -->
-                <button id="exit-btn-game" class="game-btn"
-                    title="Exit Game"><img src="images/icon-close.png"
-                        alt="Exit" style="width: 75px; height: auto;"></button>
-            </div>
-        </header>
+            <button id="exit-btn-game" class="game-btn" title="Exit Game"><img src="images/icon-close.png" alt="Exit"
+                    style="width: 75px; height: auto;"></button>
+        </div>
+    </header>
 
-        <div class="game-container" id="gameContainer">
-            <div class="header">
-                <h1 class="title" style="margin: auto; text-align: center;">
-                    <img src="images/memotest-title.png" alt="Memotest" style="width: 350px; max-width: 90%;">
-                </h1>
-                <p class="subtitle">¡Pone a prueba tu memoria!</p>
-            </div>
+    <div class="game-container" id="gameContainer">
+        <div class="header">
+            <h1 class="title" style="margin: auto; text-align: center;">
+                <img src="images/memotest-title.png" alt="Memotest" style="width: 350px; max-width: 90%;">
+            </h1>
+            <p class="subtitle">¡Pone a prueba tu memoria!</p>
+        </div>
 
-          <!--   <div class="difficulty-selector">
+        <!--   <div class="difficulty-selector">
                 <div class="difficulty-title">Choose Your Challenge</div>
                 <div class="difficulty-buttons">
                     <button class="difficulty-btn active" data-level="4x4">Easy
@@ -105,77 +99,76 @@
                 </div>
             </div> -->
 
-            <div class="controls">
-                <div class="stats">
-                    <div class="stat">
-                        <span class="stat-value" id="moves">0</span>
-                        <span class="stat-label">Moves</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value" id="time">00:00</span>
-                        <span class="stat-label">Time</span>
-                    </div>
-                    <div class="stat">
-                        <span class="stat-value" id="matches">0</span>
-                        <span class="stat-label">Matches</span>
-                    </div>
+        <div class="controls">
+            <div class="stats">
+                <div class="stat">
+                    <span class="stat-value" id="moves">0</span>
+                    <span class="stat-label">Movimientos</span>
                 </div>
-                <div class="control-buttons">
-                    <button id="difficultyBtn" style="color: #fff; cursor: pointer;">Cambiar dificultad</button>
-                    <button class="btn btn-primary" style="margin: 0;" id="restartBtn">Reiniciar</button>
+                <div class="stat">
+                    <span class="stat-value" id="time">00:00</span>
+                    <span class="stat-label">Tiempo</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value" id="matches">0</span>
+                    <span class="stat-label">Matches</span>
                 </div>
             </div>
-
-            <div class="game-board grid-4x4" id="gameBoard"></div>
-        </div>
-
-        <div class="win-modal" id="winModal">
-            <div class="win-content">
-                <div class="win-title">¡Felicitaciones! 🎉</div>
-                <p>Completaste el desafio</p>
-                <img src="images/china-lamp.webp" alt="China te felicita">
-                <div class="win-stats">
-                    <div class="win-stat">
-                        <div class="win-stat-value" id="winMoves">0</div>
-                        <div class="win-stat-label">Movimientos</div>
-                    </div>
-                    <div class="win-stat">
-                        <div class="win-stat-value" id="winTime">00:00</div>
-                        <div class="win-stat-label">Tiempo</div>
-                    </div>
-                </div>
-                <button class="btn btn-primary" id="playAgainBtn">Jugar de
-                    nuevo</button>
+            <div class="control-buttons">
+                <button class="btn btn-primary" style="margin: 0;" id="difficultyBtn">Cambiar dificultad</button>
+                <button id="restartBtn" style="color: #fff;  cursor: pointer;">Reiniciar</button>
             </div>
         </div>
 
-        <div id="difficultyModal" class="modal">
-            <div class="modal-content">
-                <span class="close-btn" id="closeDifficultyBtn">&times;</span>
-                <h2>Select Difficulty</h2>
-                <div class="difficulty-options">
-                    <button class="modal-difficulty-btn option-btn active"
-                        data-level="4x4">Easy (4x4)</button>
-                    <button class="modal-difficulty-btn option-btn" data-level="5x4">Medium
-                        (5x4)</button>
-                    <button class="modal-difficulty-btn option-btn" data-level="6x5">Hard
-                        (6x5)</button>
-                </div>
-            </div>
-        </div>
-
-          <div class="modal-overlay" id="exit-modal">
-    <div class="modal-box">
-      <h2>¿Querés volver al inicio?</h2>
-      <div class="confirm-buttons">
-        <button class="modal-btn danger" id="exit-confirm-btn">Salir del juego</button>
-        <button class="modal-btn secondary cancel-btn">Seguir jugando</button>
-      </div>
+        <div class="game-board grid-4x4" id="gameBoard"></div>
     </div>
-  </div>
 
-        <script type="text/javascript" src="assets/script.js"></script>
+    <div class="win-modal" id="winModal">
+        <div class="win-content">
+            <div class="win-title">¡Felicitaciones! 🎉</div>
+            <p>Completaste el desafio</p>
+            <img src="images/china-lamp.webp" alt="China te felicita">
+            <div class="win-stats">
+                <div class="win-stat">
+                    <div class="win-stat-value" id="winMoves">0</div>
+                    <div class="win-stat-label">Movimientos</div>
+                </div>
+                <div class="win-stat">
+                    <div class="win-stat-value" id="winTime">00:00</div>
+                    <div class="win-stat-label">Tiempo</div>
+                </div>
+            </div>
+            <button class="btn btn-primary" id="playAgainBtn">Jugar de
+                nuevo</button>
+        </div>
+    </div>
 
-    </body>
+    <div id="difficultyModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closeDifficultyBtn">&times;</span>
+            <h2>Seleccionar dificultad</h2>
+            <div class="difficulty-options">
+                <button class="modal-difficulty-btn option-btn active" data-level="4x4">Fácil (4x4)</button>
+                <button class="modal-difficulty-btn option-btn" data-level="5x4">Intermedio
+                    (5x4)</button>
+                <button class="modal-difficulty-btn option-btn" data-level="6x5">Díficil
+                    (6x5)</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="exit-modal">
+        <div class="modal-content">
+            <h2>¿Querés salir del juego?</h2>
+            <div class="confirm-buttons">
+                <button class="modal-btn option-btn" id="go-back">Salir</button>
+                <button class="modal-btn option-btn cancel-btn" id="cancel-btn">Seguir jugando</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="assets/script.js"></script>
+
+</body>
 
 </html>

@@ -453,6 +453,12 @@ section#main-content {
   -o-transition: all 0.2s ease;
 }
 
+.swiperMain .swiper-slide-prev,
+.swiperMain .swiper-slide-next {
+  filter: brightness(.8);
+  -webkit-filter: brightness(.8);
+}
+
 .swiperMain .swiper-slide:not(.swiper-slide-visible):not(.swiper-slide-active) {
   opacity: 0;
 }
@@ -510,6 +516,11 @@ section#main-content {
   padding: 10px 0;
   width: 95%;
   max-width: 1360px;
+}
+
+.swiperThumbs .swiper-wrapper {
+  display: flex;
+  justify-content: center;
 }
 
 .swiperThumbs .swiper-slide {
