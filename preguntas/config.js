@@ -1,9 +1,9 @@
 // Physics
-export const MAX_FORWARD_SPEED = 1.25;
+export const MAX_FORWARD_SPEED = 1.75;
 export const MAX_REVERSE_SPEED = 0.18;
-export const TURN_RATE = 0.007;
-export const ACCELERATION_RATE = 0.18;
-export const DECAY_RATE = 0.97;
+export const TURN_RATE = 0.02; // 🔻 Further decreased from 0.009 to reduce steering amount
+export const ACCELERATION_RATE = 0.05; // (Kept low for heavy feel)
+export const DECAY_RATE = 0.96; // (Kept high for heavy feel)
 
 // Ferry Model
 export const SHIP_LENGTH = 100; // CHANGED: Was 140, originally 70
