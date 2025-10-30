@@ -1,30 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Episodio 3: Historias de familia</title>
-        <link rel="stylesheet" href="css/estilos-kids.css">
-    </head>
-    <body>
-        <div class="video-container overlay-hidden" id="video-container">
-            <!-- Top overlay -->
-            <div class="top-overlay" id="topOverlay">
-                <button id="goBack">← Volver</button>
-                <h2 id="videoTitle">Episodio 3: Historias de familia</h2>
-            </div>
-            <iframe 
-                src="https://www.youtube.com/embed/yINBWll_uZ8?si=k-3SbE92v13wMIYo&rel=0"
-                title="Historias de familia" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen></iframe>
-          
-                <!--   <video id="video"
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Episodio 3: Historias de familia</title>
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="icon" href="images/favicon-92x92.png" sizes="96x96" type="image/png">
+    <link rel="icon" href="images/favicon-48x48.png" sizes="48x48" type="image/png">
+    <link rel="icon" href="images/avicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="images/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="images/manifest.json">
+    <link rel="icon" href="images/favicon.ico">
+
+    <link rel="stylesheet" href="css/estilos-kids.css">
+</head>
+
+<body>
+    <div class="video-container overlay-hidden" id="video-container">
+        <!-- Top overlay -->
+        <div class="top-overlay" id="topOverlay">
+            <button id="goBack">← Volver</button>
+            <h2 id="videoTitle">Episodio 3: Historias de familia</h2>
+        </div>
+        <iframe src="https://www.youtube.com/embed/yINBWll_uZ8?si=k-3SbE92v13wMIYo&rel=0" title="Historias de familia"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+        <!--   <video id="video"
                 src="videos/e1-introduccion.mp4"></video> -->
 
-            <!-- Center controls -->
-            <!-- <div class="center-controls">
+        <!-- Center controls -->
+        <!-- <div class="center-controls">
                 <button id="backward"><svg width="65" height="65"
                         viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -51,8 +59,8 @@
                 </button>
             </div>
  -->
-            <!-- Bottom control bar -->
-            <!--  <div class="controls" id="controls">
+        <!-- Bottom control bar -->
+        <!--  <div class="controls" id="controls">
                 <button id="play"><svg width="80" height="80"
                         viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
@@ -72,13 +80,14 @@
                 <div class="time" id="time">00:00 / 00:00</div>
                 <button id="fullscreen">⛶</button>
             </div> -->
-        </div>
+    </div>
 
-       <!--  <script src="js/video-player.js"></script> -->
-         <script>
-            const goBackBtn = document.getElementById("goBack");
-goBackBtn.addEventListener("click", () => window.location.href = "index.html");
+    <!--  <script src="js/video-player.js"></script> -->
+    <script>
+        const goBackBtn = document.getElementById("goBack");
+        goBackBtn.addEventListener("click", () => window.location.href = "index.html");
 
-         </script>
-    </body>
+    </script>
+</body>
+
 </html>
