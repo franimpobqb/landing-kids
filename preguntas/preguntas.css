@@ -352,6 +352,7 @@ header .menu-container button:hover {
 #question-text {
   font-weight: 700;
   font-size: 1.2rem;
+  margin-bottom: 1rem;
 }
 
 .option-btn {}
@@ -360,7 +361,7 @@ header .menu-container button:hover {
 #modal-category-icon {
   width: 80px;
   height: 80px;
-  margin: -10px auto 10px;
+  margin: 10px auto 10px;
   display: none;
   /* Hide by default */
 }

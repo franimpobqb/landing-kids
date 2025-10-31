@@ -1,62 +1,62 @@
 [
     {
         "id": 1,
-        "q": "¿Cómo se nombra la parte de adelante de un barco?",
+        "q": "¿Cómo se denomina la parte delantera de un barco?",
         "options": [
-            "proa",
-            "popa",
-            "estribor"
+            "Proa",
+            "Popa",
+            "Estribor"
         ],
         "correct": 0,
         "category": "Navegacion"
     },
     {
         "id": 2,
-        "q": "¿Cómo se nombra la parte de atrás de un barco?",
+        "q": "¿Cómo se denomina la parte trasera de un barco?",
         "options": [
-            "estribor",
-            "popa",
-            "babor"
+            "Estribor",
+            "Popa",
+            "Babor"
         ],
         "correct": 1,
         "category": "Navegacion"
     },
     {
         "id": 3,
-        "q": "¿Cómo se nombra la parte izquierda de un barco?",
+        "q": "¿Cómo se denomina el lado izquierdo de un barco?",
         "options": [
-            "diestra",
-            "estribor",
-            "babor"
+            "Diestra",
+            "Estribor",
+            "Babor"
         ],
         "correct": 2,
         "category": "Navegacion"
     },
     {
         "id": 4,
-        "q": "¿Cómo se nombra la parte derecha de un barco?",
+        "q": "¿Cómo se nombra el lado derecho de un barco?",
         "options": [
-            "diestra",
-            "estribor",
-            "siniestra"
+            "Diestra",
+            "Estribor",
+            "Siniestra"
         ],
         "correct": 1,
         "category": "Navegacion"
     },
     {
         "id": 5,
-        "q": "Navegacion es un catamarán, ¿cual es la principal característica de un catamarán?",
+        "q": "'China Zorrilla' es un catamarán, ¿cual es la principal característica de los catamaranes?",
         "options": [
-            "navega a vela",
-            "tiene dos cascos",
-            "es eléctrico"
+            "Navega a vela",
+            "Tiene dos cascos",
+            "Es eléctrico"
         ],
         "correct": 1,
         "category": "Navegacion"
     },
     {
         "id": 6,
-        "q": "¿Dónde se construyó Navegacion?",
+        "q": "¿Dónde se construyó 'China Zorrilla'?",
         "options": [
             "Brasil",
             "Japón",
@@ -67,7 +67,7 @@
     },
     {
         "id": 7,
-        "q": "Navegacion es la nueva incorporación a la flota de Buquebus, ¿conoces el nombre de los otros barcos de la flota actual de Buquebus?",
+        "q": "'China Zorrilla' es la nueva incorporación a la flota de Buquebus. ¿Conocés el nombre de los otros barcos de la flota actual de Buquebus?",
         "options": [
             "Francisco, Pepito y Juanito",
             "Eladia, Francisco y Nacho",
@@ -78,7 +78,7 @@
     },
     {
         "id": 8,
-        "q": "¿Cómo se nombra lo que es el largo de un barco?",
+        "q": "¿Cómo se denomina lo que es el largo de un barco?",
         "options": [
             "Eslora",
             "Manga",
@@ -89,7 +89,7 @@
     },
     {
         "id": 9,
-        "q": "¿Cómo se nombra lo que es el ancho de un barco?",
+        "q": "¿Cómo se denomina lo que es el ancho de un barco?",
         "options": [
             "Ancho",
             "Manga",
@@ -100,18 +100,18 @@
     },
     {
         "id": 10,
-        "q": "¿Sabes cuánto mide la eslora y la manga del Navegacion?",
+        "q": "¿Sabes cuánto mide la eslora y la manga de 'China Zorrilla'?",
         "options": [
             "65 m de eslora y 15 m de manga",
             "130 m de eslora y 32 m de manga",
             "90 m de eslora y 29 m de manga"
         ],
-        "correct": 2,
+        "correct": 1,
         "category": "Navegacion"
     },
     {
         "id": 11,
-        "q": "¿Qué tipo de energía usará Navegacion para navegar?",
+        "q": "¿Qué tipo de energía usará 'China Zorrilla' para navegar?",
         "options": [
             "Gas Natural",
             "Eléctrica",
@@ -125,15 +125,15 @@
         "q": "¿Cuántos pasajeros y cuantas bodegas podrá llevar China?",
         "options": [
             "2100 pasajeros y 225 bodegas",
-            "2000 pasajeros y 150 bodegas",
-            "1750 pasajeros y 147 bodegas"
+            "800 pasajeros y 70 bodegas",
+            "1500 pasajeros y 100 bodegas"
         ],
         "correct": 0,
         "category": "Navegacion"
     },
     {
         "id": 13,
-        "q": "¿Que homenajea el nombre Navegacion?",
+        "q": "¿Que homenajea el nombre 'China Zorrilla'?",
         "options": [
             "A un tipo de barco chino",
             "Una calle de Montevideo",
@@ -155,7 +155,7 @@
     },
     {
         "id": 15,
-        "q": "¿Cómo se llama la parte más baja de la estructura de un barco?",
+        "q": "¿Cómo se denomina la parte más baja de la estructura de un barco?",
         "options": [
             "Quilla",
             "Mástil",
@@ -177,7 +177,7 @@
     },
     {
         "id": 17,
-        "q": "¿Cuál de estos combustibles utilizados para la combustión móvil es más amigable con el planeta?",
+        "q": "¿Cuál de estos combustibles utilizados para la impulsar un barco es más amigable con el planeta?",
         "options": [
             "Energía eléctrica",
             "Gas Natural Licuado",
@@ -276,7 +276,7 @@
     },
     {
         "id": 26,
-        "q": "¿Qué países une el Medio ambiente?",
+        "q": "¿Qué países une el Río de la Plata?",
         "options": [
             "Uruguay y Paraguay",
             "Argentina y Brasil",
@@ -287,7 +287,7 @@
     },
     {
         "id": 27,
-        "q": "¿A qué ciudades de Uruguay llegan los ferries de Buquebus desde el Puerto Buenos Aires?",
+        "q": "¿A qué ciudades de Uruguay llegan los ferries de Buquebus desde el Puerto de Buenos Aires?",
         "options": [
             "Colonia y Punta del Este",
             "Colonia y Montevideo",
@@ -298,7 +298,7 @@
     },
     {
         "id": 28,
-        "q": "¿Cuál es la ciudad más grande a orillas del Medio ambiente?",
+        "q": "¿Cuál es la ciudad más grande a orillas del Río de la Plata?",
         "options": [
             "Buenos Aires",
             "Colonia",
@@ -309,7 +309,7 @@
     },
     {
         "id": 29,
-        "q": "¿Cuál es la profundidad máxima del Medio ambiente?",
+        "q": "¿Cuál es la profundidad máxima del Río de la Plata?",
         "options": [
             "6 metros",
             "50 metros",
@@ -320,7 +320,7 @@
     },
     {
         "id": 30,
-        "q": "¿Qué tipo de agua tiene el Medio ambiente?",
+        "q": "¿Qué tipo de agua tiene el Río de la Plata?",
         "options": [
             "Salada",
             "Agua con gas",
@@ -331,18 +331,18 @@
     },
     {
         "id": 31,
-        "q": "¿Qué es el Medio ambiente?",
+        "q": "¿Qué es el Río de la Plata?",
         "options": [
-            "Un Estuario",
-            "Una Cascada",
-            "Un Lago"
+            "Un estuario",
+            "Un mar",
+            "Un lago"
         ],
         "correct": 0,
         "category": "Medio ambiente"
     },
     {
         "id": 32,
-        "q": "¿Qué ríos principales lo alimentan?",
+        "q": "¿Qué ríos principales confluyen en el Río de la Plata?",
         "options": [
             "Paraná y Uruguay",
             "Amazonas y Negro",
@@ -353,7 +353,7 @@
     },
     {
         "id": 33,
-        "q": "¿Cuál es el ancho máximo del Medio ambiente?",
+        "q": "¿Cuál es el ancho máximo del Río de la Plata?",
         "options": [
             "10 km",
             "270 km",
@@ -364,9 +364,9 @@
     },
     {
         "id": 34,
-        "q": "¿Qué deporte se practica mucho en el Medio ambiente?",
+        "q": "¿Qué deporte se practica mucho en el Río de la Plata?",
         "options": [
-            "Surf",
+            "Buceo a alta profundidad",
             "Vela",
             "Tenis"
         ],
@@ -375,7 +375,7 @@
     },
     {
         "id": 35,
-        "q": "¿Qué pez es famoso para la pesca deportiva en el Río?",
+        "q": "¿Qué pez es famoso para la pesca deportiva en el Río de la Plata?",
         "options": [
             "Pejerrey",
             "Tiburón",
@@ -386,7 +386,7 @@
     },
     {
         "id": 36,
-        "q": "¿Qué ave de cuello largo se puede ver en el Medio ambiente?",
+        "q": "¿Qué ave de cuello largo se puede ver en el Río de la Plata?",
         "options": [
             "Flamenco",
             "Condor",
@@ -397,7 +397,7 @@
     },
     {
         "id": 37,
-        "q": "¿Qué animal peludo y nadador vive a orillas del río?",
+        "q": "¿Qué animal peludo y nadador vive a orillas del Río de la Plata?",
         "options": [
             "Conejo",
             "Nutria",
@@ -408,7 +408,7 @@
     },
     {
         "id": 38,
-        "q": "¿Qué reptil de caparazón se encuentra en el agua del río?",
+        "q": "¿Qué reptil de caparazón se encuentra en el agua del Río de la Plata?",
         "options": [
             "Iguana",
             "Tortuga de agua dulce",
@@ -419,7 +419,7 @@
     },
     {
         "id": 39,
-        "q": "¿Qué pez tiene bigotes largos y vive en el río?",
+        "q": "¿Qué pez de bigotes largos vive en el Río de la Plata?",
         "options": [
             "Bagre",
             "Pez payaso",
@@ -430,7 +430,7 @@
     },
     {
         "id": 40,
-        "q": "¿Qué moluscos se pueden encontrar en el río?",
+        "q": "¿Qué moluscos se pueden encontrar en el Río de la Plata?",
         "options": [
             "Caracoles de mar",
             "Pulpos",
@@ -441,7 +441,7 @@
     },
     {
         "id": 41,
-        "q": "¿Qué pez saltarín y cazador se encuentra en el río?",
+        "q": "¿Qué pez saltarín y cazador se encuentra en el Río de la Plata?",
         "options": [
             "Atún",
             "Tiburon Blanco",

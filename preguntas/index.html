@@ -12,10 +12,18 @@
   gtag('config', 'G-Q51V3S05D4');
 </script>
   <meta charset="utf-8" />
-  <title>Ferry Quiz Game — Modular</title>
+  <title>Preguntas en el Río</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <link rel="stylesheet" href="../css/bootstrap-grid.css" />
  <link rel="stylesheet" href="preguntas.css"> 
-
+ 
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png" >
+<link rel="icon" href="images/favicon-92x92.png" sizes="96x96" type="image/png" >
+<link rel="icon" href="images/favicon-48x48.png" sizes="48x48" type="image/png" >
+<link rel="icon" href="images/avicon-32x32.png" sizes="32x32" type="image/png" >
+<link rel="icon" href="images/favicon-16x16.png" sizes="16x16" type="image/png" >
+<link rel="manifest" href="images/manifest.json" >
+<link rel="icon" href="images/favicon.ico" >
   <script type="importmap">
       {
         "imports": {
@@ -49,37 +57,53 @@
 
   <div class="modal-overlay" id="intro-modal">
     <div class="modal-box">
-      <h2 style="font-size: 2rem; font-weight: 600;">Bienvenidos a Preguntas en el Rio</h2>
-      <p style="margin-bottom: 1rem;">
-        <strong>¡China te lleva a aprender navegando el Río de la Plata!</strong> Para averiguar cuánto sabes, alcanzá todos los checkpoints que puedas en 2 minutos y respondé las preguntas sobre Sustentabilidad, Medio ambiente y Navegación
+      <h2 style="font-size: 2rem; font-weight: 600; color: #35819e;">¡Aprendé navegando con China en el Río de la Plata!</h2>
+      <img src="images/china-intro.webp" alt="China Zorrilla">
+
+     
+      
+    
+           <p style="margin-bottom: 1rem;">Para averiguar cuánto sabes, alcanzá todos los checkpoints que puedas en <strong>2 minutos</strong> y respondé las preguntas sobre Medio ambiente del <strong>Rio de la Plata, Sustentabilidad, y Navegación.</strong>
+      
       </p>
-      <p></p>
+     <!--  <div style="display: flex; align-items: center; justify-content: center; gap: 1rem; margin-bottom: 2rem;">
+        <img src="images/category-ambiente.png" alt="Medio Ambiente" style="width: 70px;">
+        <img src="images/category-electric.png" alt="Sustentabilidad" style="width: 70px;">
+        <img src="images/category-buque.png" alt="Navegacion" style="width: 70px;">
+      </div> -->
         <p style="margin-bottom: 1rem;">
-      Para moverte podés usar las teclas ↑ ↓ → ← en tu teclado, o con el pad en la esquina inferior izquierda.
+      Para moverte podés usar las <strong>flechas</strong> de navegación de tu teclado o  el <strong>pad</strong> en la esquina inferior izquierda.
       </p>
+<div style="display: flex; align-items: center; justify-content: center; gap: 2rem;">
+  <img src="images/teclado.png" alt="Teclado" style="width: 30%;">
+  o
+  <img src="images/pad.png" alt="Pad" style="width: 30%;">
+</div>
       <button class="modal-btn" id="start-game-btn">Empezar a navegar</button>
     </div>
   </div>
 
   <div class="modal-overlay" id="final-modal">
     <div class="modal-box">
-      <h2>¡Llegamos!</h2>
-      <p>
-        ¡Gracias por aprender con China! Tu puntaje final es <span id="final-score">0</span>.
+       <h2 style="font-size: 2rem; font-weight: 600; color: #35819e;">¡Llegamos a destino!</h2>
+       <img src="images/china-cierre.webp" alt="China Zorrilla">
+      <p style="font-size: 1.3rem;">
+        ¡Gracias por navegar y aprender con China! .
       </p>
+      <p style="font-size: 1.3rem;">Tu puntaje final es <strong><span id="final-score">0</span></strong></p>
       <button class="modal-btn" id="restart-btn-final">Jugar de nuevo</button>
-      <a href="/" class="modal-btn secondary" id="homepage-btn">Volver al inicio</a>
+      <a href="/" class="modal-btn secondary" id="homepage-btn" style="text-decoration: none;">Volver al inicio</a>
     </div>
   </div>
 
  <div class="modal-overlay" id="question-modal">
     <div class="modal-box" id="question-box">
       
-      <h4 id="modal-category-name">Category</h4>
+      <h4 id="modal-category-name">Categoria</h4>
       
       <img id="modal-category-icon" src="" alt="Category Icon" />
-        <p id="question-text">Question text</p>
-      
+        <p id="question-text">Texto de la pregunta</p>
+     
       <div id="answer-options">
         <button class="option-btn" id="optA">A</button>
         <button class="option-btn" id="optB">B</button>
@@ -87,11 +111,11 @@
       </div>
 
      <div id="answer-feedback" style="display: none;">
-        <img id="feedback-image" src="" alt="Feedback Status" />
-        <p id="feedback-text">Correct!</p>
+        <img id="feedback-image" src="" alt="Feedback Status" style="width: 90px; margin: auto;"/>
+        <p id="feedback-text">¡Correcto!</p>
         <div id="feedback-details">
-            <span id="user-answer-text"></span>
-            <span id="correct-answer-text"></span>
+            <span id="user-answer-text"></span><br>
+             <span id="correct-answer-text"></span>
         </div>
         <button class="modal-btn" id="continue-btn">Seguir navegando</button>
       </div>
