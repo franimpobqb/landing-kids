@@ -201,25 +201,8 @@ body {
   overflow: hidden;
   font-family: "Bronto", sans-serif;
   font-weight: 500;
-  background: #020024;
-  background: -webkit-linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 9, 121, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
-  );
-  background: -moz-linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 9, 121, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
-  );
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(9, 9, 121, 1) 35%,
-    rgba(0, 212, 255, 1) 100%
-  );
+  background-image: url(../images/bg-placeholder.webp);
+  background-size: cover;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#020024", endColorstr="#00D4FF", GradientType=1);
   color: #fff;
 }
