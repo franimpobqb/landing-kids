@@ -271,8 +271,9 @@ header .menu-container button {
   cursor: pointer;
   transition: all .2s ease;
 }
+
 header .menu-container button:hover {
-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 /* Generic Modal Overlay */
@@ -330,7 +331,7 @@ transform: scale(1.1);
 
 /* Generic Modal Box */
 .modal-box {
-  width: 420px;
+  width: 600px;
   max-width: 90%;
   background: white;
   color: #111;
@@ -429,7 +430,7 @@ transform: scale(1.1);
   background-image: url(images/gamepad.svg);
   background-size: cover;
   background-position: center;
-  
+
   border-radius: 50%;
   z-index: 50;
   user-select: none;
@@ -448,8 +449,8 @@ transform: scale(1.1);
   position: absolute;
   width: 70px;
   height: 70px;
-background-image: url(images/stick.png);
-background-size: cover;
+  background-image: url(images/stick.png);
+  background-size: cover;
   border: 2px solid rgba(255, 255, 255, 0.7);
   border-radius: 50%;
   left: 50%;

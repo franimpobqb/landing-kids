@@ -106,7 +106,7 @@ function initPage() {
       },
          slidesPerView: 1.2,
       spaceBetween: 20,
-  
+  autoHeight: true,
       keyboard: { enabled: true },
       mousewheel: { forceToAxis: true },
     });

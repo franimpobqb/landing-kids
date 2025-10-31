@@ -463,6 +463,21 @@ section#main-content {
   -o-transition: all 0.2s ease;
 }
 
+.swiperMain .swiper-slide .titulo {
+  position: absolute;
+  top: 2rem;
+  left: 0;
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.swiperMain .swiper-slide .titulo img {
+  width: 600px;
+  max-width: 80%;
+}
+
 .swiperMain .swiper-slide-prev,
 .swiperMain .swiper-slide-next {
   filter: brightness(0.8);
@@ -547,6 +562,7 @@ section#main-content {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top;
   border-radius: 6px;
 }
 
@@ -792,6 +808,11 @@ input[type="range"] {
   transform: translateY(-4px);
 }
 
+.swiperInfo .swiper-slide,
+.swiperInfo .swiper-slide .card-download {
+  height: 100%;
+}
+
 /* TRANSITION */
 
 /* Define a transition duration during page visits */
@@ -885,11 +906,13 @@ html.is-animating .transition-fade {
   }
 
   .pure-css-button {
-    flex-direction: column;
     padding: 7px 15px;
-    min-width: 100px;
+    min-width: 150px;
     margin: auto;
     font-size: 1.2rem;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
   }
 
   section#main-content {

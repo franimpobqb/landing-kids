@@ -1,17 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <!-- Google tag (gtag.js) -->
+        <script async
+            src="https://www.googletagmanager.com/gtag/js?id=G-Q51V3S05D4"></script>
+        <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q51V3S05D4');
+</script>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-
-        <link rel="apple-touch-icon" href="images/apple-touch-icon.png" >
-<link rel="icon" href="images/favicon-92x92.png" sizes="96x96" type="image/png" >
-<link rel="icon" href="images/favicon-48x48.png" sizes="48x48" type="image/png" >
-<link rel="icon" href="images/avicon-32x32.png" sizes="32x32" type="image/png" >
-<link rel="icon" href="images/favicon-16x16.png" sizes="16x16" type="image/png" >
-<link rel="manifest" href="images/manifest.json" >
-<link rel="icon" href="images/favicon.ico" >
+        <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+        <link rel="icon" href="images/favicon-92x92.png" sizes="96x96"
+            type="image/png">
+        <link rel="icon" href="images/favicon-48x48.png" sizes="48x48"
+            type="image/png">
+        <link rel="icon" href="images/avicon-32x32.png" sizes="32x32"
+            type="image/png">
+        <link rel="icon" href="images/favicon-16x16.png" sizes="16x16"
+            type="image/png">
+        <link rel="manifest" href="images/manifest.json">
+        <link rel="icon" href="images/favicon.ico">
 
         <title>Episodio 1: ¡Hola, soy China!</title>
         <link rel="stylesheet" href="css/estilos-kids.css">
@@ -23,14 +36,14 @@
                 <button id="goBack">← Volver</button>
                 <h2 id="videoTitle">Episodio 1: ¡Hola, soy China!</h2>
             </div>
-            <iframe 
+            <iframe
                 src="https://www.youtube.com/embed/FWXpmh3ooUA?si=DJSxaFSXzhtZjHQ9&rel=0"
                 title="¡Hola, soy China!" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerpolicy="strict-origin-when-cross-origin"
                 allowfullscreen></iframe>
-          
-                <!--   <video id="video"
+
+            <!--   <video id="video"
                 src="videos/e1-introduccion.mp4"></video> -->
 
             <!-- Center controls -->
@@ -84,8 +97,8 @@
             </div> -->
         </div>
 
-       <!--  <script src="js/video-player.js"></script> -->
-         <script>
+        <!--  <script src="js/video-player.js"></script> -->
+        <script>
             const goBackBtn = document.getElementById("goBack");
 goBackBtn.addEventListener("click", () => window.location.href = "index.html");
 

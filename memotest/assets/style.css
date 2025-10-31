@@ -918,12 +918,12 @@ button.modal-btn {
 }
 
 .difficulty-options button:hover {
-opacity: .8;
+    opacity: .8;
 }
 
 .difficulty-options button.active {
     color: #35819e;
-background-color: rgb(255, 238, 0);
+    background-color: rgb(255, 238, 0);
     box-shadow: inset 5px 5px 10px rgba(255, 196, 0, 0.7), inset -5px -5px 10px rgba(0, 0, 0, 0.15), 0 6px 12px rgba(0, 0, 0, 0.1);
 }
 
@@ -937,17 +937,27 @@ background-color: rgb(255, 238, 0);
     background: rgba(0, 0, 0, 0.75);
 }
 
+button.btn-secondary {
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+
 /* Responsive Design */
 @media (min-width: 1031px) {
     .card {
         min-width: 80px;
     }
 }
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .controls {
         flex-direction: column;
         text-align: center;
+    }
+    .control-buttons {
+        flex-direction: row;
     }
 
     header {

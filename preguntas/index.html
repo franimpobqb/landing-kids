@@ -2,6 +2,15 @@
 <html lang="es">
 
 <head>
+  <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Q51V3S05D4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Q51V3S05D4');
+</script>
   <meta charset="utf-8" />
   <title>Ferry Quiz Game — Modular</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -40,10 +49,13 @@
 
   <div class="modal-overlay" id="intro-modal">
     <div class="modal-box">
-      <h2>Welcome to the Ferry Navigator!</h2>
-      <p>
-        (Here is where your introduction content will go. You can explain the
-        rules, the objective, or the story.)
+      <h2 style="font-size: 2rem; font-weight: 600;">Bienvenidos a Preguntas en el Rio</h2>
+      <p style="margin-bottom: 1rem;">
+        <strong>¡China te lleva a aprender navegando el Río de la Plata!</strong> Para averiguar cuánto sabes, alcanzá todos los checkpoints que puedas en 2 minutos y respondé las preguntas sobre Sustentabilidad, Medio ambiente y Navegación
+      </p>
+      <p></p>
+        <p style="margin-bottom: 1rem;">
+      Para moverte podés usar las teclas ↑ ↓ → ← en tu teclado, o con el pad en la esquina inferior izquierda.
       </p>
       <button class="modal-btn" id="start-game-btn">Empezar a navegar</button>
     </div>
