@@ -217,11 +217,9 @@ header {
   border-radius: 0;
   font-size: 16px;
   background: #0088ba;
-  background: linear-gradient(
-    360deg,
-    rgba(0, 136, 186, 0) 9%,
-    rgba(0, 136, 186, 0.49) 100%
-  );
+  background: linear-gradient(360deg,
+      rgba(0, 136, 186, 0) 9%,
+      rgba(0, 136, 186, 0.49) 100%);
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   -ms-border-radius: 0;
@@ -245,6 +243,7 @@ header #hud span {
   font-weight: 600;
   line-height: 1;
 }
+
 header #hud span#timer,
 header #hud span#score {
   font-size: 3.5rem;
@@ -252,7 +251,8 @@ header #hud span#score {
   color: yellow;
 }
 
-.score-container, .timer-container {
+.score-container,
+.timer-container {
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -265,6 +265,14 @@ header #hud span#score {
 .score-container span {
   color: yellow;
   font-weight: 800;
+}
+
+header .menu-container button {
+  cursor: pointer;
+  transition: all .2s ease;
+}
+header .menu-container button:hover {
+transform: scale(1.1);
 }
 
 /* Generic Modal Overlay */
@@ -292,26 +300,32 @@ header #hud span#score {
   letter-spacing: 0.5px;
   margin: -10px 0 5px 0;
 }
+
 #modal-category-icon {
   width: 80px;
   height: 80px;
   margin: -10px auto 10px;
   display: none;
 }
+
 #answer-feedback p {
   font-size: 18px;
   font-weight: bold;
-  min-height: 48px; /* Match question text height */
+  min-height: 48px;
+  /* Match question text height */
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
 #answer-feedback .correct {
   color: #28a745;
 }
+
 #answer-feedback .incorrect {
   color: #dc3545;
 }
+
 /* --- END: New Styles --- */
 
 /* Generic Modal Box */
@@ -339,8 +353,7 @@ header #hud span#score {
   font-size: 1.2rem;
 }
 
-.option-btn {
-}
+.option-btn {}
 
 /* NEW: Style for the icon inside the modal */
 #modal-category-icon {
@@ -389,6 +402,7 @@ header #hud span#score {
   border: none;
   box-shadow: none;
 }
+
 .modal-btn.secondary:hover {
   color: rgb(255, 238, 0);
   opacity: .8;
@@ -412,18 +426,30 @@ header #hud span#score {
   left: 30px;
   width: 150px;
   height: 150px;
-  background: rgba(255, 255, 255, 0.2);
+  background-image: url(images/gamepad.svg);
+  background-size: cover;
+  background-position: center;
+  
   border-radius: 50%;
   z-index: 50;
   user-select: none;
   -webkit-user-select: none;
+  cursor: pointer;
+  opacity: .8;
+  transition: all .2s ease;
+}
+
+#joystick-area:hover,
+#joystick-area:active {
+  opacity: 1;
 }
 
 #joystick-handle {
   position: absolute;
   width: 70px;
   height: 70px;
-  background: rgba(255, 255, 255, 0.5);
+background-image: url(images/stick.png);
+background-size: cover;
   border: 2px solid rgba(255, 255, 255, 0.7);
   border-radius: 50%;
   left: 50%;

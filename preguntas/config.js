@@ -1,7 +1,7 @@
 // Physics
-export const MAX_FORWARD_SPEED = 1.25;
+export const MAX_FORWARD_SPEED = 2.75;
 export const MAX_REVERSE_SPEED = 0.18;
-export const TURN_RATE = 0.007;
+export const TURN_RATE = 0.010;
 export const ACCELERATION_RATE = 0.18;
 export const DECAY_RATE = 0.97;
 
