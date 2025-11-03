@@ -343,10 +343,11 @@ header .menu-container button:hover {
 
 .modal-box h2 {
   margin-top: 0;
+  font-size: 2rem;
 }
 
 .modal-box p {
-  line-height: 1.6;
+  line-height: 1.2;
 }
 
 #question-text {
@@ -470,6 +471,10 @@ header #hud span#score {
   font-size: 2rem;
   font-weight: 800;
   color: yellow;
+}
+
+.modal-box h2 {
+  font-size: 1.4rem;
 }
 
 }
