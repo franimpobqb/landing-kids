@@ -791,11 +791,11 @@ input[type="range"] {
   transform: translateY(-4px);
 }
 
-.swiperInfo .swiper-slide,
+/* .swiperInfo .swiper-slide,
 .swiperInfo .swiper-slide .card-download {
   height: 100%;
 }
-
+ */
 /* TRANSITION */
 
 /* Define a transition duration during page visits */

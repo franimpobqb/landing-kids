@@ -85,9 +85,9 @@ export function setupUI() {
        	}
 
        	qText.textContent = cp.question.q;
-       	optA.textContent = `A) ${cp.question.options[0]}`;
-       	optB.textContent = `B) ${cp.question.options[1]}`;
-       	optC.textContent = `C) ${cp.question.options[2]}`;
+       	optA.textContent = `${cp.question.options[0]}`;
+       	optB.textContent = `${cp.question.options[1]}`;
+       	optC.textContent = `${cp.question.options[2]}`;
 
        	questionModal.dataset.correct = cp.question.correct;
        	questionModal.dataset.cpId = cp.id;
