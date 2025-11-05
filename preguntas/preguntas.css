@@ -286,6 +286,7 @@ header .menu-container button:hover {
   justify-content: center;
   z-index: 100;
   background: rgba(0, 0, 0, 0.75);
+ 
 }
 
 #intro-modal {
@@ -339,6 +340,9 @@ header .menu-container button:hover {
   padding: 24px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
   text-align: center;
+   max-height: 90vh;
+    overflow-x: hidden;
+    overflow-y: scroll;
 }
 
 .modal-box h2 {
@@ -348,6 +352,10 @@ header .menu-container button:hover {
 
 .modal-box p {
   line-height: 1.2;
+}
+
+.modal-box img {
+  max-height: 180px;
 }
 
 #question-text {
