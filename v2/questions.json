@@ -1,0 +1,453 @@
+[
+    {
+        "id": 1,
+        "q": "¿Cómo se denomina la parte delantera de un barco?",
+        "options": [
+            "Proa",
+            "Popa",
+            "Estribor"
+        ],
+        "correct": 0,
+        "category": "Navegacion"
+    },
+    {
+        "id": 2,
+        "q": "¿Cómo se denomina la parte trasera de un barco?",
+        "options": [
+            "Estribor",
+            "Popa",
+            "Babor"
+        ],
+        "correct": 1,
+        "category": "Navegacion"
+    },
+    {
+        "id": 3,
+        "q": "¿Cómo se denomina el lado izquierdo de un barco?",
+        "options": [
+            "Diestra",
+            "Estribor",
+            "Babor"
+        ],
+        "correct": 2,
+        "category": "Navegacion"
+    },
+    {
+        "id": 4,
+        "q": "¿Cómo se nombra el lado derecho de un barco?",
+        "options": [
+            "Diestra",
+            "Estribor",
+            "Siniestra"
+        ],
+        "correct": 1,
+        "category": "Navegacion"
+    },
+    {
+        "id": 5,
+        "q": "'China Zorrilla' es un catamarán, ¿cual es la principal característica de los catamaranes?",
+        "options": [
+            "Navega a vela",
+            "Tiene dos cascos",
+            "Es eléctrico"
+        ],
+        "correct": 1,
+        "category": "Navegacion"
+    },
+    {
+        "id": 6,
+        "q": "¿Dónde se construyó 'China Zorrilla'?",
+        "options": [
+            "Brasil",
+            "Japón",
+            "Australia"
+        ],
+        "correct": 2,
+        "category": "Navegacion"
+    },
+    {
+        "id": 7,
+        "q": "'China Zorrilla' es la nueva incorporación a la flota de Buquebus. ¿Conocés el nombre de los otros barcos de la flota actual de Buquebus?",
+        "options": [
+            "Francisco, Pepito y Juanito",
+            "Eladia, Francisco y Nacho",
+            "Francisco, Silvia Ana L y Atlantic III"
+        ],
+        "correct": 2,
+        "category": "Navegacion"
+    },
+    {
+        "id": 8,
+        "q": "¿Cómo se denomina lo que es el largo de un barco?",
+        "options": [
+            "Eslora",
+            "Manga",
+            "Largo"
+        ],
+        "correct": 0,
+        "category": "Navegacion"
+    },
+    {
+        "id": 9,
+        "q": "¿Cómo se denomina lo que es el ancho de un barco?",
+        "options": [
+            "Ancho",
+            "Manga",
+            "Grosor"
+        ],
+        "correct": 1,
+        "category": "Navegacion"
+    },
+    {
+        "id": 10,
+        "q": "¿Sabes cuánto mide la eslora y la manga de 'China Zorrilla'?",
+        "options": [
+            "65 m de eslora y 15 m de manga",
+            "130 m de eslora y 32 m de manga",
+            "90 m de eslora y 29 m de manga"
+        ],
+        "correct": 1,
+        "category": "Navegacion"
+    },
+    {
+        "id": 11,
+        "q": "¿Qué tipo de energía usará 'China Zorrilla' para navegar?",
+        "options": [
+            "Gas Natural",
+            "Eléctrica",
+            "Nafta"
+        ],
+        "correct": 1,
+        "category": "Navegacion"
+    },
+    {
+        "id": 12,
+        "q": "¿Cuántos pasajeros y cuantas bodegas podrá llevar China?",
+        "options": [
+            "2100 pasajeros y 225 bodegas",
+            "800 pasajeros y 70 bodegas",
+            "1500 pasajeros y 100 bodegas"
+        ],
+        "correct": 0,
+        "category": "Navegacion"
+    },
+    {
+        "id": 13,
+        "q": "¿Que homenajea el nombre 'China Zorrilla'?",
+        "options": [
+            "A un tipo de barco chino",
+            "Una calle de Montevideo",
+            "Una actriz uruguaya muy querida en Argentina"
+        ],
+        "correct": 2,
+        "category": "Navegacion"
+    },
+    {
+        "id": 14,
+        "q": "¿Cómo se denomina el peso del barco en el lenguaje naval?",
+        "options": [
+            "Peso",
+            "Desplazamiento",
+            "Fuerza"
+        ],
+        "correct": 1,
+        "category": "Navegacion"
+    },
+    {
+        "id": 15,
+        "q": "¿Cómo se denomina la parte más baja de la estructura de un barco?",
+        "options": [
+            "Quilla",
+            "Mástil",
+            "Timón"
+        ],
+        "correct": 0,
+        "category": "Navegacion"
+    },
+    {
+        "id": 16,
+        "q": "¿Qué significa que un barco sea más ecológico?",
+        "options": [
+            "Que navega sin hacer olas",
+            "Que es más grande que los demás",
+            "Que no libera emisiones directas a la atmósfera"
+        ],
+        "correct": 2,
+        "category": "Sustentabilidad"
+    },
+    {
+        "id": 17,
+        "q": "¿Cuál de estos combustibles utilizados para la impulsar un barco es más amigable con el planeta?",
+        "options": [
+            "Energía eléctrica",
+            "Gas Natural Licuado",
+            "Diesel o Marine Gasoil"
+        ],
+        "correct": 0,
+        "category": "Sustentabilidad"
+    },
+    {
+        "id": 18,
+        "q": "¿Qué podemos hacer los pasajeros para que el viaje sea más ecológico?",
+        "options": [
+            "Tirar la basura al mar",
+            "Separar los residuos y reciclar",
+            "Usar más plástico"
+        ],
+        "correct": 1,
+        "category": "Sustentabilidad"
+    },
+    {
+        "id": 19,
+        "q": "¿Qué significa cero emisiones móviles directas?",
+        "options": [
+            "Que no hace ruido",
+            "Que no genera olas",
+            "Que no emite gases contaminantes al navegar"
+        ],
+        "correct": 2,
+        "category": "Sustentabilidad"
+    },
+    {
+        "id": 20,
+        "q": "¿Qué pasaría si todos utilizaramos barcos eléctricos en lugar de barcos que naveguen con combustible convencional?",
+        "options": [
+            "El agua cambiaría de color",
+            "Subiría la marea",
+            "Se reducirían las emisiones sonoras y las emisiones directas a la atmósfera"
+        ],
+        "correct": 2,
+        "category": "Sustentabilidad"
+    },
+    {
+        "id": 21,
+        "q": "¿Qué significa reciclar?",
+        "options": [
+            "Reutilizar los materiales al menos una vez",
+            "Descartar residuos recurrentemente",
+            "Comprar cosas nuevas"
+        ],
+        "correct": 0,
+        "category": "Sustentabilidad"
+    },
+    {
+        "id": 22,
+        "q": "¿Qué significa energía renovable?",
+        "options": [
+            "Energía que se termina rápido",
+            "Energía que se obtiene se fuentes naturales fácilmente y de fácil reposición",
+            "Energia solo para barcos"
+        ],
+        "correct": 1,
+        "category": "Sustentabilidad"
+    },
+    {
+        "id": 23,
+        "q": "¿Cuál es la función de los paneles solares?",
+        "options": [
+            "Guardan la lluvia",
+            "Transforman la luz del sol en energía",
+            "Fabrican viento"
+        ],
+        "correct": 1,
+        "category": "Sustentabilidad"
+    },
+    {
+        "id": 24,
+        "q": "¿Por qué es importante separar la basura?",
+        "options": [
+            "Para que sea más fácil poder reciclar",
+            "Porque se ve más linda",
+            "Porque ocupa menos espacio"
+        ],
+        "correct": 0,
+        "category": "Sustentabilidad"
+    },
+    {
+        "id": 25,
+        "q": "De las siguientes opciones ¿qué energía se considera renovable?",
+        "options": [
+            "Petróleo",
+            "Solar",
+            "Gas natural"
+        ],
+        "correct": 1,
+        "category": "Sustentabilidad"
+    },
+    {
+        "id": 26,
+        "q": "¿Qué países une el Río de la Plata?",
+        "options": [
+            "Uruguay y Paraguay",
+            "Argentina y Brasil",
+            "Argentina y Uruguay"
+        ],
+        "correct": 2,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 27,
+        "q": "¿A qué ciudades de Uruguay llegan los ferries de Buquebus desde el Puerto de Buenos Aires?",
+        "options": [
+            "Colonia y Punta del Este",
+            "Colonia y Montevideo",
+            "Montevideo y Punta del Este"
+        ],
+        "correct": 1,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 28,
+        "q": "¿Cuál es la ciudad más grande a orillas del Río de la Plata?",
+        "options": [
+            "Buenos Aires",
+            "Colonia",
+            "Montevideo"
+        ],
+        "correct": 0,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 29,
+        "q": "¿Cuál es la profundidad máxima del Río de la Plata?",
+        "options": [
+            "6 metros",
+            "50 metros",
+            "28 metros"
+        ],
+        "correct": 2,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 30,
+        "q": "¿Qué tipo de agua tiene el Río de la Plata?",
+        "options": [
+            "Salada",
+            "Agua con gas",
+            "Es un estuario, con agua mas dulce o más salada dependiendo de la altura a la que se mida la salinidad."
+        ],
+        "correct": 2,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 31,
+        "q": "¿Qué es el Río de la Plata?",
+        "options": [
+            "Un estuario",
+            "Un mar",
+            "Un lago"
+        ],
+        "correct": 0,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 32,
+        "q": "¿Qué ríos principales confluyen en el Río de la Plata?",
+        "options": [
+            "Paraná y Uruguay",
+            "Amazonas y Negro",
+            "Nilo y Sena"
+        ],
+        "correct": 0,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 33,
+        "q": "¿Cuál es el ancho máximo del Río de la Plata?",
+        "options": [
+            "10 km",
+            "270 km",
+            "220 km"
+        ],
+        "correct": 2,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 34,
+        "q": "¿Qué deporte se practica mucho en el Río de la Plata?",
+        "options": [
+            "Buceo a alta profundidad",
+            "Vela",
+            "Tenis"
+        ],
+        "correct": 1,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 35,
+        "q": "¿Qué pez es famoso para la pesca deportiva en el Río de la Plata?",
+        "options": [
+            "Pejerrey",
+            "Tiburón",
+            "Salmón"
+        ],
+        "correct": 0,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 36,
+        "q": "¿Qué ave de cuello largo se puede ver en el Río de la Plata?",
+        "options": [
+            "Flamenco",
+            "Condor",
+            "Cisne de cuello negro"
+        ],
+        "correct": 2,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 37,
+        "q": "¿Qué animal peludo y nadador vive a orillas del Río de la Plata?",
+        "options": [
+            "Conejo",
+            "Nutria",
+            "Zorro"
+        ],
+        "correct": 1,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 38,
+        "q": "¿Qué reptil de caparazón se encuentra en el agua del Río de la Plata?",
+        "options": [
+            "Iguana",
+            "Tortuga de agua dulce",
+            "Cocodrilo"
+        ],
+        "correct": 1,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 39,
+        "q": "¿Qué pez de bigotes largos vive en el Río de la Plata?",
+        "options": [
+            "Bagre",
+            "Pez payaso",
+            "Sardina"
+        ],
+        "correct": 0,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 40,
+        "q": "¿Qué moluscos se pueden encontrar en el Río de la Plata?",
+        "options": [
+            "Caracoles de mar",
+            "Pulpos",
+            "Mejillones y almejas"
+        ],
+        "correct": 2,
+        "category": "Medio ambiente"
+    },
+    {
+        "id": 41,
+        "q": "¿Qué pez saltarín y cazador se encuentra en el Río de la Plata?",
+        "options": [
+            "Atún",
+            "Tiburon Blanco",
+            "Tararira"
+        ],
+        "correct": 2,
+        "category": "Medio ambiente"
+    }
+]
